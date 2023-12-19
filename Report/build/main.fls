@@ -1,0 +1,164 @@
+PWD c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report
+INPUT C:\Users\rodri\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\main.tex
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.log
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xcolor.sty
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\xcolor\xcolor.sty
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-cfg\color.cfg
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\graphics\mathcolor.ltx
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.aux
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti12.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi6.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy6.tfm
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.pdf
+INPUT C:\Users\rodri\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+INPUT .\0_Abstract\0_Abstract.tex
+INPUT .\0_Abstract\0_Abstract.tex
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT .\0_Abstract\0_Abstract.tex
+INPUT .\0_Abstract\0_Abstract.tex
+INPUT 0_Abstract\0_Abstract.tex
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.toc
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.toc
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.toc
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.toc
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lof
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lof
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lof
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lof
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lot
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lot
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lot
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.lot
+INPUT .\1_Introduction\0_Introduction.tex
+INPUT .\1_Introduction\0_Introduction.tex
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT .\1_Introduction\0_Introduction.tex
+INPUT .\1_Introduction\0_Introduction.tex
+INPUT 1_Introduction\0_Introduction.tex
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT .\1_Introduction\1_Context.tex
+INPUT .\1_Introduction\1_Context.tex
+INPUT .\1_Introduction\1_Context.tex
+INPUT .\1_Introduction\1_Context.tex
+INPUT 1_Introduction\1_Context.tex
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx12.tfm
+INPUT .\1_Introduction\2_Motivation.tex
+INPUT .\1_Introduction\2_Motivation.tex
+INPUT .\1_Introduction\2_Motivation.tex
+INPUT .\1_Introduction\2_Motivation.tex
+INPUT 1_Introduction\2_Motivation.tex
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1000.tfm
+INPUT .\1_Introduction\3_Contributions.tex
+INPUT .\1_Introduction\3_Contributions.tex
+INPUT .\1_Introduction\3_Contributions.tex
+INPUT .\1_Introduction\3_Contributions.tex
+INPUT 1_Introduction\3_Contributions.tex
+INPUT .\1_Introduction\4_Objectives.tex
+INPUT .\1_Introduction\4_Objectives.tex
+INPUT .\1_Introduction\4_Objectives.tex
+INPUT .\1_Introduction\4_Objectives.tex
+INPUT 1_Introduction\4_Objectives.tex
+INPUT .\1_Introduction\5_Structure.tex
+INPUT .\1_Introduction\5_Structure.tex
+INPUT .\1_Introduction\5_Structure.tex
+INPUT .\1_Introduction\5_Structure.tex
+INPUT 1_Introduction\5_Structure.tex
+INPUT .\2_Background\0_Background.tex
+INPUT .\2_Background\0_Background.tex
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT .\2_Background\0_Background.tex
+INPUT .\2_Background\0_Background.tex
+INPUT 2_Background\0_Background.tex
+INPUT .\2_Background\1_Related_work.tex
+INPUT .\2_Background\1_Related_work.tex
+INPUT .\2_Background\1_Related_work.tex
+INPUT .\2_Background\1_Related_work.tex
+INPUT 2_Background\1_Related_work.tex
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT .\2_Background\2_Blockchain.tex
+INPUT .\2_Background\2_Blockchain.tex
+INPUT 2_Background\2_Blockchain.tex
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.bbl
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.bbl
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.bbl
+INPUT .\Appendix.tex
+INPUT .\Appendix.tex
+OUTPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT .\Appendix.tex
+INPUT .\Appendix.tex
+INPUT Appendix.tex
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\main.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\0_Abstract\0_Abstract.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\1_Introduction\0_Introduction.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\2_Background\0_Background.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT c:\Users\rodri\OneDrive - Instituto Superior de Engenharia de Lisboa\Mestrado\TFM\Project Report\build\Appendix.aux
+INPUT C:\Users\rodri\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\rodri\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1000.pk
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx12.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti10.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
+INPUT C:\Users\rodri\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmti12.pfb
