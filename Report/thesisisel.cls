@@ -32,19 +32,19 @@
 
 % == Languages ===
 \DeclareOption{pt}{% 		//PORTUGUESE
-  \let\@language=0%
-  \PassOptionsToPackage{portuguese,english}{babel}}
+	\let\@language=0%
+	\PassOptionsToPackage{portuguese,english}{babel}}
 
 \DeclareOption{en}{%		//ENGLISH
-  \let\@language=1%
-  \PassOptionsToPackage{portuguese,english}{babel}}
+	\let\@language=1%
+	\PassOptionsToPackage{portuguese,english}{babel}}
 
 % == Printing ===
 \DeclareOption{oneside}{%
-  \PassOptionsToClass{oneside}{book}}
+	\PassOptionsToClass{oneside}{book}}
 
 \DeclareOption{twoside}{%
-  \PassOptionsToClass{twoside}{book}}
+	\PassOptionsToClass{twoside}{book}}
 
 % == Paper type/format (dfault A4) ===
 \PassOptionsToClass{a4paper}{book} % Default paper format
@@ -63,7 +63,7 @@
 
 \DeclareOption{12pt}{%
 	\PassOptionsToClass{12pt}{book}}
-			
+
 % == Text Encoding ===
 \let\@utf=1
 \DeclareOption{latin1}{\let\@utf=0}
@@ -75,7 +75,7 @@
 % \@degreetype=2	MSc preliminary report		: prepmsc
 % \@degreetype=3	MSc dissertation				: msc
 %
-			
+
 \DeclareOption{prepbsc}{
 	\let\@degreetype=0
 	\def\@degree{\@bachelordegree}
@@ -117,8 +117,8 @@
 }
 \ProcessOptions
 
-\LoadClass{book} 
-			
+\LoadClass{book}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PACKAGES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,25 +138,25 @@
 % %            pdfkeywords={ }
 %             }
 \RequirePackage[
-			breaklinks = true,
-			hidelinks,
-			colorlinks,
-			pdfdisplaydoctitle,
-			citecolor=mydarkblue,
-			linkcolor=black,
-			urlcolor=mydarkblue
-			]{hyperref}
+	breaklinks = true,
+	hidelinks,
+	colorlinks,
+	pdfdisplaydoctitle,
+	citecolor=mydarkblue,
+	linkcolor=black,
+	urlcolor=mydarkblue
+]{hyperref}
 
 %================================================
 % PACKAGE latin, utf8
 %================================================
 % Latin1
 \if\@utf0
-\RequirePackage[latin1]{inputenc}
-% UTF8
+	\RequirePackage[latin1]{inputenc}
+	% UTF8
 \else\if\@utf1
-\RequirePackage[utf8]{inputenc}
-\fi\fi
+		\RequirePackage[utf8]{inputenc}
+	\fi\fi
 
 \RequirePackage[T1]{fontenc}
 
@@ -168,19 +168,19 @@
 % fonts and symbols; adds the \eqref command for citing equations. I prefer the style
 % "(x.xx)" for referering to an equation than to use "equation x.xx".
 
-\usepackage{txfonts} 
-  \let\iint\relax 
-  \let\iiint\relax 
-  \let\iiiint\relax 
-  \let\idotsint\relax 
+\usepackage{txfonts}
+\let\iint\relax
+\let\iiint\relax
+\let\iiiint\relax
+\let\idotsint\relax
 \usepackage{amsmath, amssymb, amsfonts, verbatim, mathabx}
 \usepackage{spverbatim}
 % underline  
 \usepackage{ulem}
 
 % Provides the inparaenum environment (with an optional formatting specification in square brackets)
-\usepackage{paralist} 
-  
+\usepackage{paralist}
+
 \newcounter{saveenumi}
 \newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
 \newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
@@ -213,28 +213,28 @@
 \usepackage{ifpdf}		% This is now the recommended way for checking for PDFLaTeX:
 \ifpdf
 	\RequirePackage[pdftex]{graphicx}
-	\DeclareGraphicsExtensions{.pdf, .png, .jpg, .tif}	
-	\else
-		\RequirePackage{graphicx}
-		\DeclareGraphicsExtensions{.eps, .png, .jpg}
+	\DeclareGraphicsExtensions{.pdf, .png, .jpg, .tif}
+\else
+	\RequirePackage{graphicx}
+	\DeclareGraphicsExtensions{.eps, .png, .jpg}
 \fi
 
 
 %  === Geometry: Print on paper ===
 \if\@printable1
-\RequirePackage[top=3cm,
-	bottom=3cm,
-	inner=3.5cm,
-	outer=2.5cm]{geometry}[2010/09/12]
-	
-% === Geometry: Print on screen ===
+	\RequirePackage[top=3cm,
+		bottom=3cm,
+		inner=3.5cm,
+		outer=2.5cm]{geometry}[2010/09/12]
+
+	% === Geometry: Print on screen ===
 \else\if\@printable0
-\RequirePackage[top=3cm,
-	bottom=3cm,
-	inner=2.5cm,
-	outer=2.5cm]{geometry}[2010/09/12]
-\fi\fi
-	
+		\RequirePackage[top=3cm,
+			bottom=3cm,
+			inner=2.5cm,
+			outer=2.5cm]{geometry}[2010/09/12]
+	\fi\fi
+
 %================================================
 % PACKAGE tikz
 %================================================
@@ -281,8 +281,8 @@
 	%nonumberlist, % do not show page numbers
 	acronym,        	% generate acronym listing
 	toc                		% show listings as entries in table of contents
-	]          				% use section level for toc entries
-	{glossaries}
+]          				% use section level for toc entries
+{glossaries}
 \glsdisablehyper
 \makenoidxglossaries
 
@@ -329,7 +329,7 @@
 	\begingroup
 	\tocfile{\lstlistlistingname}{lol}
 	\endgroup
-	}
+}
 
 %================================================
 % PACKAGE subcaption, float, figures, totalcount
@@ -349,11 +349,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% GENERAL PURPOSE MACROS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- %%
- \let\origcleardoublepage=\cleardoublepage
- \def\cleardoublepage{%
-   \newpage{\pagestyle{empty}\origcleardoublepage}
- }
+%%
+\let\origcleardoublepage=\cleardoublepage
+\def\cleardoublepage{%
+	\newpage{\pagestyle{empty}\origcleardoublepage}
+}
 
 % 
 % === No identation ===
@@ -363,7 +363,7 @@
 
 %%
 % === For use with the pseudocode package ===
- \def\@lopcchapterspace{\relax}
+\def\@lopcchapterspace{\relax}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% LABELS
@@ -375,7 +375,7 @@
 \gdef\@mmastersdegreestr{Mestre}
 \gdef\@fmastersdegreestr{Mestre}
 
-\gdef\@singlemadviserstr{Orientador}
+\gdef\@singlemadviserstr{Adviser}
 \gdef\@manymadviserstr{Orientadores}
 
 \gdef\@bachelordissertationstr{Trabalho Final de Curso}
@@ -383,22 +383,21 @@
 \gdef\@mastersdissertationstr{Dissertação de Mestrado}
 \gdef\@mastersqualifyingstr{Preparação de Dissertação}
 
-\gdef\@jurystr{Júri}
-\gdef\@presidentstr{Presidente}
+\gdef\@jurystr{Jury}
+\gdef\@presidentstr{President}
 
 \gdef\@singlejuryastr{Vogal}
 \gdef\@manyjuryastr{Vogais}
 
 \gdef\@prepbscdissertationtstr{Relatório preliminar realizado no âmbito de
- \@coursefield, \\ do curso de licenciatura em \@majorfield\\
- Semestre de Verão \@scholaryear}
+	\@coursefield, \\ do curso de licenciatura em \@majorfield\\
+	Semestre de Verão \@scholaryear}
 \gdef\@bscdissertationtstr{Relatório final realizado no âmbito de
- \@coursefield, \\ do curso de licenciatura em \@majorfield\\
- Semestre de Verão \@scholaryear}
-\gdef\@prepmscdissertationtstr{Relatório preliminar para obtenção do Grau 
-de Mestre \\em \@majorfield}
-\gdef\@mscdissertationtstr{\@thesistype~ para obtenção do Grau 
-de Mestre \\em \@majorfield}
+	\@coursefield, \\ do curso de licenciatura em \@majorfield\\
+	Semestre de Verão \@scholaryear}
+\gdef\@prepmscdissertationtstr{Relatório preliminar para obtenção do Grau
+	de Mestre \\em \@majorfield}
+\gdef\@mscdissertationtstr{\@thesistype~ to obtain the masters degree \\ in \@majorfield}
 
 \gdef\@presentationtext{\@dissertationtype}
 
@@ -412,116 +411,116 @@ de Mestre \\em \@majorfield}
 
 % Portuguese
 \if\@language0
-  	\gdef\@notdefined{NÃO DEFINIDO}
-  	\gdef\acknowledgementsname{Agradecimentos} 
-  	\gdef\equationname{equação} 
-  	\addto\captionsportuguese{% Replace "english" with the language you use
-  		\renewcommand{\contentsname}{Índice}%
+	\gdef\@notdefined{NÃO DEFINIDO}
+	\gdef\acknowledgementsname{Agradecimentos}
+	\gdef\equationname{equação}
+	\addto\captionsportuguese{% Replace "english" with the language you use
+		\renewcommand{\contentsname}{Índice}%
 	}
-	
- 	\renewcommand*{\listtablename}{Lista de Tabelas}
-	\renewcommand*{\listfigurename}{Lista de Figuras}
-	
-  	\def\appendixname{Anexos}
 
-  	\def\glossaryname{Main}
- 		\addto{\captionsportuguese}{
- 			\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}
- 			\renewcommand*{\glossaryname}{Glossário}
- 			\renewcommand*{\pagelistname}{Páginas}
- 			\renewcommand*{\entryname}{Notação}
+	\renewcommand*{\listtablename}{Lista de Tabelas}
+	\renewcommand*{\listfigurename}{Lista de Figuras}
+
+	\def\appendixname{Anexos}
+
+	\def\glossaryname{Main}
+	\addto{\captionsportuguese}{
+		\renewcommand*{\acronymname}{Lista de Abreviaturas e Siglas}
+		\renewcommand*{\glossaryname}{Glossário}
+		\renewcommand*{\pagelistname}{Páginas}
+		\renewcommand*{\entryname}{Notação}
 	}
- 
+
 	\def\lstlistlistingname{Listagens}
-	  	\addto{\captionsportuguese}{%
-			%\renewcommand*{\lstlistingname}{Listagem}%
-			\renewcommand*{\lstlistingname}{Listagem}% Listing -> Algorithm
-			\renewcommand{\lstlistlistingname}{Lista de Listagens}% List of Listings -> List of Algorithms
+	\addto{\captionsportuguese}{%
+		%\renewcommand*{\lstlistingname}{Listagem}%
+		\renewcommand*{\lstlistingname}{Listagem}% Listing -> Algorithm
+		\renewcommand{\lstlistlistingname}{Lista de Listagens}% List of Listings -> List of Algorithms
 	}
-	
+
 	\renewcommand{\algorithmicrequire}{\textbf{Dados: }}
 	\renewcommand{\algorithmicensure}{\textbf{Resultado: }}
-	
-% English
+
+	% English
 \else\if\@language1
-  	\gdef\@notdefined{UNDEFINED}
-  	\gdef\acknowledgementsname{Acknowledgments}
-  	\def\appendixname{Appendix}
-	\gdef\equationname{equation}	
-	\def\lstlistlistingname{Listings}
-	  	\addto{\captionsenglish}{%
+		\gdef\@notdefined{UNDEFINED}
+		\gdef\acknowledgementsname{Acknowledgments}
+		\def\appendixname{Appendix}
+		\gdef\equationname{equation}
+		\def\lstlistlistingname{Listings}
+		\addto{\captionsenglish}{%
 			%\renewcommand*{\lstlistingname}{Listagem}%
 			\renewcommand*{\lstlistingname}{Listing}% Listing -> Algorithm
 			\renewcommand{\lstlistlistingname}{List of \lstlistingname s}% List of Listings -> List of Algorithms
-	}
-	  	
-\fi\fi
+		}
+
+	\fi\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DEFINE LOGO AND IMAGE IN FRONTPAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% ADD ISEL's LOGO and IMAGE in frontpage
 \newcommand{\logo}[2]{
-\parbox[t][0.15\paperheight]{0.1\paperwidth}{%
-\vfill
-\centering
-\hspace*{-4em}\includegraphics[scale=#2,trim=5em 0 5em 0,clip]{#1}%
-\vfill
-}}
+	\parbox[t][0.15\paperheight]{0.1\paperwidth}{%
+		\vfill
+		\centering
+		\hspace*{-4em}\includegraphics[scale=#2,trim=5em 0 5em 0,clip]{#1}%
+		\vfill
+	}}
 
 \newcommand{\image}[1]{
-\parbox[t][6cm][c]{12cm}{%
-\vfill
-\centering
-\includegraphics[height=6cm,width=12cm]{#1}%
-\vfill
-}}
+	\parbox[t][6cm][c]{12cm}{%
+		\vfill
+		\centering
+		\includegraphics[height=6cm,width=12cm]{#1}%
+		\vfill
+	}}
 
 \newcommand{\noimage}{
-\parbox[t][6cm][c]{12cm}{%
-}}
+	\parbox[t][6cm][c]{12cm}{%
+	}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% CREATING A TITLE PAGE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- \def\universitylogo#1{%
-   \gdef\@universitylogo{#1}}
- \def\@universitylogo{~universitylogo \@notdefined}
+\def\universitylogo#1{%
+	\gdef\@universitylogo{#1}}
+\def\@universitylogo{~universitylogo \@notdefined}
 
- \def\university#1{%
-   \gdef\@university{#1}}
- \def\@university{~university \@notdefined}
- 
- \def\faculty#1{%
-   \gdef\@faculty{#1}}
- \def\@faculty{~faculty\@notdefined}
- 
- \def\department#1{%
-   \gdef\@department{#1}}
- \def\@department{~department\@notdefined}
+\def\university#1{%
+	\gdef\@university{#1}}
+\def\@university{~university \@notdefined}
+
+\def\faculty#1{%
+	\gdef\@faculty{#1}}
+\def\@faculty{~faculty\@notdefined}
+
+\def\department#1{%
+	\gdef\@department{#1}}
+\def\@department{~department\@notdefined}
 
 \def\thesistype#1{%
-  \gdef\@thesistype{#1}}
+	\gdef\@thesistype{#1}}
 \def\@thesistype{~thesistype\@notdefined}
 
 \def\majorfield#1{%
-  \gdef\@majorfield{#1}}
+	\gdef\@majorfield{#1}}
 \def\@majorfield{~majorfield \@notdefined}
 
 \def\coursefield#1{%
-  \gdef\@coursefield{#1}}
+	\gdef\@coursefield{#1}}
 \def\@coursefield{~coursefield \@notdefined}
 
 \def\scholaryear#1{%
-  \gdef\@scholaryear{#1}}
+	\gdef\@scholaryear{#1}}
 \def\@scholaryear{~scholaryear \@notdefined}
 
 %\def\@noimage
 
 \def\workimage#1{%
-   \gdef\@workimage{#1}}
+	\gdef\@workimage{#1}}
 % \def\@workimage{~workimage \@notdefined}
- 
+
 \@input@{defaults}
 
 %% Date
@@ -542,7 +541,7 @@ de Mestre \\em \@majorfield}
 \def\@author{~author \thesisisel@notdefined}
 %%
 \def\authordegree#1{%
-  \gdef\@authordegree{#1}}
+	\gdef\@authordegree{#1}}
 \def\@authordegree{~authordegree \@notdefined}
 
 
@@ -551,35 +550,35 @@ de Mestre \\em \@majorfield}
 \@theauthorcount 0\relax
 
 \def\author{%
-  \@ifnextchar [%
-    {\@pauthor[]}%
-    {\@pauthor[][m]}}
+\@ifnextchar [%
+{\@pauthor[]}%
+	{\@pauthor[][m]}}
 
 % #1 = [] 
 % #2 = [m] or [f]
 % #3 = {name}
 \def\@pauthor[#1][#2]#3{%
-  \expandafter\advance\csname @the#1authorcount\endcsname 1\relax
-  \ifx#2m
-  	\def\@the#1authorgender{m}
-  \else\ifx#2f
-  	\def\@the#1authorgender{f}
-  \else
-  \typeout{^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-!  Please specify #1author gender using [m] or [f] as the second^^J%
-!  argument of the "#1author" macro.  See the template! ;)^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+	\expandafter\advance\csname @the#1authorcount\endcsname 1\relax
+	\ifx#2m
+		\def\@the#1authorgender{m}
+	\else\ifx#2f
+			\def\@the#1authorgender{f}
+		\else
+			\typeout{^^J%
+				!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+				!  Please specify #1author gender using [m] or [f] as the second^^J%
+				!  argument of the "#1author" macro.  See the template! ;)^^J%
+				!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+			}
+			\errhelp{Please be gentle and follow the template recommendations.}
+			\errmessage{Please specify author gender!}
+		\fi\fi
+	\expandafter\gdef\csname @#1authorname\expandafter\number\csname @the#1authorcount\endcsname\endcsname{#3}
 }
-   \errhelp{Please be gentle and follow the template recommendations.}
-   \errmessage{Please specify author gender!}
-  \fi\fi
-  \expandafter\gdef\csname @#1authorname\expandafter\number\csname @the#1authorcount\endcsname\endcsname{#3}
-	}
 
 \def\@theauthorstr[#1]{%
 	\@ptheauthorstr[#1]{\expandafter\csname @the#1authorcount\endcsname}{\expandafter\csname @the#1authorgender\endcsname}
-	}
+}
 
 \def\printauthor[#1]#2{%
 	\ifcsname @#1authorname#2\endcsname
@@ -589,7 +588,7 @@ de Mestre \\em \@majorfield}
 		&
 		\expandafter\csname @#1authorgender#2\endcsname
 		\expandafter\csname @#1authorname#2\endcsname
-	\\
+		\\
 	\fi
 }
 
@@ -604,44 +603,44 @@ de Mestre \\em \@majorfield}
 \@theadvisercount 0\relax
 
 \def\adviser{%
-  \@ifnextchar [%
-    {\@padviser[]}%
-    {\@padviser[][m]}}
+\@ifnextchar [%
+{\@padviser[]}%
+	{\@padviser[][m]}}
 
 % #1 = [] for adviser
 % #2 = [m] or [f]
 % #3 = {name}
 % #4 = {category}
 \def\@padviser[#1][#2]#3#4{%
-  \expandafter\advance\csname @the#1advisercount\endcsname 1\relax
-  \ifx#2m
-  	\expandafter\def\csname @the#1advisergender\endcsname{m}
-  \else\ifx#2f
-  \else
-  \typeout{^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-!  Please specify #1adviser gender using [m] or [f] as the second^^J%
-!  argument of the "#1adviser" macro.  See the template! ;)^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+	\expandafter\advance\csname @the#1advisercount\endcsname 1\relax
+	\ifx#2m
+		\expandafter\def\csname @the#1advisergender\endcsname{m}
+	\else\ifx#2f
+		\else
+			\typeout{^^J%
+				!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+				!  Please specify #1adviser gender using [m] or [f] as the second^^J%
+				!  argument of the "#1adviser" macro.  See the template! ;)^^J%
+				!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+			}
+			\errhelp{Please be gentle and follow the template recommendations.}
+			\errmessage{Please specify adviser gender!}
+		\fi\fi
+	\expandafter\gdef\csname @#1advisername\expandafter\number\csname @the#1advisercount\endcsname\endcsname{#3}
+	\expandafter\gdef\csname @#1advisercat\expandafter\number\csname @the#1advisercount\endcsname\endcsname{#4}
 }
-   \errhelp{Please be gentle and follow the template recommendations.}
-   \errmessage{Please specify adviser gender!}
-  \fi\fi
-  \expandafter\gdef\csname @#1advisername\expandafter\number\csname @the#1advisercount\endcsname\endcsname{#3}
-  \expandafter\gdef\csname @#1advisercat\expandafter\number\csname @the#1advisercount\endcsname\endcsname{#4}
-	}
 
 \def\@theadviserstr[#1]{%
 	\@ptheadviserstr[#1]{\expandafter\csname @the#1advisercount\endcsname}{\expandafter\csname @the#1advisergender\endcsname}
-	}
+}
 
 \def\@ptheadviserstr[#1]#2#3{%
 	\ifnum #2 > 1
-  		\expandafter\csname @many#3#1adviserstr\endcsname
+		\expandafter\csname @many#3#1adviserstr\endcsname
 	\else
-  		\expandafter\csname @single#3#1adviserstr\endcsname
+		\expandafter\csname @single#3#1adviserstr\endcsname
 	\fi
-	}
+}
 
 \def\printadviser[#1]#2{%
 	\ifcsname @#1advisername#2\endcsname
@@ -652,9 +651,9 @@ de Mestre \\em \@majorfield}
 		&
 		\expandafter\csname @#1advisercat#2\endcsname\
 		\expandafter\csname @#1advisername#2\endcsname
-	\\
+		\\
 	\fi
-	}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% DOCUMENT IDENTIFICATION
@@ -662,35 +661,35 @@ de Mestre \\em \@majorfield}
 %% 
 \def\@
 \def\title#1{%
-  \gdef\@title{#1}
-  \hypersetup{pdftitle={\@title}}}
+	\gdef\@title{#1}
+	\hypersetup{pdftitle={\@title}}}
 \def\@title{~title \@notdefined}
 
 \def\@texttype{%
- 	\if\@degreetype0
-    \@bachelorqualifyingstr	  
-  \else\if\@degreetype1
-    \@bachelordissertationstr
-  \else\if\@degreetype2
-    \@mastersqualifyingstr
-  \else\if\@degreetype3
-  \@mastersdissertationstr
-  \fi\fi\fi\fi}
+	\if\@degreetype0
+		\@bachelorqualifyingstr
+	\else\if\@degreetype1
+			\@bachelordissertationstr
+		\else\if\@degreetype2
+				\@mastersqualifyingstr
+			\else\if\@degreetype3
+					\@mastersdissertationstr
+				\fi\fi\fi\fi}
 
 
 \def\thedegree#1#2{%
 	\expandafter\csname @#1#2\endcsname}
 
 \def\@degree{%
-  \if\@degreetype0
-    \thedegree{\authorgender}{bachelordegreestr}
-  \else\if\@degreetype1
-    \thedegree{\authorgender}{bachelordegreestr}    
-  \else\if\@degreetype2
-    \thedegree{\authorgender}{mastersdegreestr}
-  \else\if\@degreetype3
-    \thedegree{\authorgender}{mastersdegreestr}
-\fi\fi\fi\fi}
+	\if\@degreetype0
+		\thedegree{\authorgender}{bachelordegreestr}
+	\else\if\@degreetype1
+			\thedegree{\authorgender}{bachelordegreestr}
+		\else\if\@degreetype2
+				\thedegree{\authorgender}{mastersdegreestr}
+			\else\if\@degreetype3
+					\thedegree{\authorgender}{mastersdegreestr}
+				\fi\fi\fi\fi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% JURY IDENTIFICATION (at most 5 of each)
@@ -707,16 +706,16 @@ de Mestre \\em \@majorfield}
 \@thejuryacount 0\relax
 
 \def\jury{%
-  \@ifnextchar [%
-    {\@pjury}%
-    {\@pjury[a]}}
+\@ifnextchar [%
+{\@pjury}%
+	{\@pjury[a]}}
 
 
 % #1 = [p] for president and [a] for referee
 % #2 = {name}
 \def\@pjury[#1]#2{%
 	\expandafter\advance\csname @thejury#1count\endcsname 1\relax
-  	\expandafter\gdef\csname @jury#1name\expandafter\number\csname @thejury#1count\endcsname\endcsname{#2}
+	\expandafter\gdef\csname @jury#1name\expandafter\number\csname @thejury#1count\endcsname\endcsname{#2}
 }
 
 \def\printthejuryp{%
@@ -724,32 +723,32 @@ de Mestre \\em \@majorfield}
 		& \\[-2ex]
 		\@presidentstr: & \csname @jurypname1\endcsname \\
 	\else
-  		\typeout{^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-!  Please identify one and only one president of the jury with^^J%
-!  the [p] argument of the "jury" macro.  See the template! ;)^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-}
-   		\errhelp{Please be gentle and follow the template recommendations.}
-   		\errmessage{Please specify president of the jury!}
+		\typeout{^^J%
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+			!  Please identify one and only one president of the jury with^^J%
+			!  the [p] argument of the "jury" macro.  See the template! ;)^^J%
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+		}
+		\errhelp{Please be gentle and follow the template recommendations.}
+		\errmessage{Please specify president of the jury!}
 	\fi
 }
 
 \def\@pthejuryastr{%
 	\ifnum \@thejuryacount > 1
-  		\expandafter\csname @manyjuryastr\endcsname
+		\expandafter\csname @manyjuryastr\endcsname
 	\else
-  		\expandafter\csname @singlejuryastr\endcsname
+		\expandafter\csname @singlejuryastr\endcsname
 	\fi
 }
 
 \def\@printthejurya[#1]{%
 	\ifcsname @juryaname#1\endcsname
-	\ifnum #1 = 1
-		& \\[-2ex]
-		\@pthejuryastr:
-	\fi
-	& \expandafter\csname @juryaname#1\endcsname\relax \\
+		\ifnum #1 = 1
+			& \\[-2ex]
+			\@pthejuryastr:
+		\fi
+		& \expandafter\csname @juryaname#1\endcsname\relax \\
 	\fi
 }
 
@@ -760,14 +759,14 @@ de Mestre \\em \@majorfield}
 		\@printthejurya[3]
 		\@printthejurya[4]
 	\else
-  		\typeout{^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-!  Please identify at least one referee with the [a] argument ^^J%
-!  of the "jury" macro.  See the template! ;)^^J%
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
-}
-   		\errhelp{Please be gentle and follow the template recommendations.}
-   		\errmessage{Please specify referees of the jury!}
+		\typeout{^^J%
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+			!  Please identify at least one referee with the [a] argument ^^J%
+			!  of the "jury" macro.  See the template! ;)^^J%
+			!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!^^J%
+		}
+		\errhelp{Please be gentle and follow the template recommendations.}
+		\errmessage{Please specify referees of the jury!}
 	\fi
 }
 
@@ -782,9 +781,9 @@ de Mestre \\em \@majorfield}
 		maxwidth=1\linewidth,
 		doinside=\hspace*{1.5cm},
 	]{rX}{}{
-	& \@jurystr: \\
- 	\printthejuryp
-	\printthejurya
+		& \@jurystr: \\
+		\printthejuryp
+		\printthejurya
 	}
 }
 
@@ -801,15 +800,15 @@ de Mestre \\em \@majorfield}
 \newcommand\quotefonti{\it\normalsize}
 
 %\newcommand{\reverseconcat}[3]{#3#2#1}
-\newcommand{\version}[1]{ 
+\newcommand{\version}[1]{
 	\if\@language0
 		\selectlanguage{portuguese}
-			vers\~ao #1
+		vers\~ao #1
 	\else
-	 	\selectlanguage{english}
-	 		version #1
-	 \fi
- }
+		\selectlanguage{english}
+		version #1
+	\fi
+}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% PRINT CHAPTERS, DEDICATORY, ACKNOWLEDGEMENTS, ABSTRACT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -818,54 +817,54 @@ de Mestre \\em \@majorfield}
 
 % === Dedicatory ===
 \def\dedicatoryfile#1{%
-  \gdef\@dedicatoryfile{#1}}
+	\gdef\@dedicatoryfile{#1}}
 \def\@dedicatoryfile{\@empty}
 
 \ifx\@dedicatoryfile\@empty
-\def\printdedicatory{}
+	\def\printdedicatory{}
 \else
-\def\printdedicatory{
-	\if\@degreetype0
-	\else\if\@degreetype1
-		\@input@{Chapters/\@dedicatoryfile}\global\let\@dedicatoryfile\@empty
-	\else\if\@degreetype2
-	\else\if\@degreetype3
-		\@input@{Chapters/\@dedicatoryfile}\global\let\@dedicatoryfile\@empty
-	\fi\fi\fi\fi
-}
+	\def\printdedicatory{
+		\if\@degreetype0
+		\else\if\@degreetype1
+				\@input@{Chapters/\@dedicatoryfile}\global\let\@dedicatoryfile\@empty
+			\else\if\@degreetype2
+				\else\if\@degreetype3
+						\@input@{Chapters/\@dedicatoryfile}\global\let\@dedicatoryfile\@empty
+					\fi\fi\fi\fi
+	}
 \fi
 
 % === Acknowledgement ===
 \def\acknowledgementsfile#1{%
-  \gdef\@acknowledgementsfile{#1}}
+	\gdef\@acknowledgementsfile{#1}}
 \def\@acknowledgementsfile{~acknowledgementsfile \@notdefined}
 
 \def\printacknowledgements{
-	\if\@degreetype0	
-	\else\if\@degreetype1			
-		\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
-	\else\if\@degreetype2
-	\else\if\@degreetype3		
-		\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
-	\fi\fi\fi\fi
+	\if\@degreetype0
+	\else\if\@degreetype1
+			\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
+		\else\if\@degreetype2
+			\else\if\@degreetype3
+					\@input@{Chapters/\@acknowledgementsfile}\global\let\@acknowledgementsfile\@empty
+				\fi\fi\fi\fi
 }
 
 % === Abstract ===
 \def\ptabstractfile#1{%
-  \gdef\@ptabstractfile{#1}}
+	\gdef\@ptabstractfile{#1}}
 \def\@ptabstractfile{\@empty}
 % \def\@ptabstractfile{~ptabstractfile \@notdefined}
 
 \def\enabstractfile#1{%
-  \gdef\@enabstractfile{#1}}
+	\gdef\@enabstractfile{#1}}
 \def\@enabstractfile{\@empty}
 % \def\@enabstractfile{~enabstractfile \@notdefined}
 
 \if\@language0   % Sumário-PT + Abstract-EN for thesis in Portuguese
-\def\@ptabstractfile{~ptabstractfile \@notdefined}
+	\def\@ptabstractfile{~ptabstractfile \@notdefined}
 \else\if\@language1   % Abstract-EN + Sumário-PT for thesis in English
-\def\@enabstractfile{~enabstractfile \@notdefined}
-\fi\fi
+		\def\@enabstractfile{~enabstractfile \@notdefined}
+	\fi\fi
 
 \def\printabstract{%
 	\if\@language0   % Sumário-PT + Abstract-EN for thesis in Portuguese
@@ -878,15 +877,15 @@ de Mestre \\em \@majorfield}
 			\selectlanguage{portuguese}
 		\fi
 	\else\if\@language1   % Abstract-EN + Sumário-PT for thesis in English
-		\selectlanguage{english}
-		\@input@{Chapters/\@enabstractfile}\global\let\@enabstractfile\@empty
-		\ifx\@ptabstractfile\@empty
-		\else
-			\selectlanguage{portuguese}
-			\@input@{Chapters/\@ptabstractfile}\global\let\@ptabstractfile\@empty
 			\selectlanguage{english}
-		\fi
-	\fi\fi
+			\@input@{Chapters/\@enabstractfile}\global\let\@enabstractfile\@empty
+			\ifx\@ptabstractfile\@empty
+			\else
+				\selectlanguage{portuguese}
+				\@input@{Chapters/\@ptabstractfile}\global\let\@ptabstractfile\@empty
+				\selectlanguage{english}
+			\fi
+		\fi\fi
 }
 
 % === Chapters ===
@@ -903,9 +902,9 @@ de Mestre \\em \@majorfield}
 	\newcount\@myi
 	\@myi 0\relax
 	\loop
-		\advance\@myi 1\relax
-		\def\@chapname{\expandafter\csname @chapterfile\number\@myi\endcsname}
-		\@input@{\@chapname}
+	\advance\@myi 1\relax
+	\def\@chapname{\expandafter\csname @chapterfile\number\@myi\endcsname}
+	\@input@{\@chapname}
 	\ifnum \@myi < \@chapcount
 	\repeat
 	\endthesismainmatter
@@ -913,26 +912,26 @@ de Mestre \\em \@majorfield}
 
 % === Conditional list of tables, figures, ... ===
 \newcommand\conditionalLoF{%
-  \iftotalfigures\listoffigures\fi}
+	\iftotalfigures\listoffigures\fi}
 \newcommand\conditionalLoT{%
-  \iftotaltables\listoftables\fi}
+	\iftotaltables\listoftables\fi}
 \newcommand\conditionalLoL{%
-  \iftotallstlistings\lstlistoflistings\fi} 
+	\iftotallstlistings\lstlistoflistings\fi}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Deal with optional lists in the frontmatter: listoftables, listoffigures, etc.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \def\@printlist#1{ %
-		#1\cleardoublepage
+	#1\cleardoublepage
 }
 
 \def\addlisttofrontmatter#1{ %
-		\listgadd{\@frontmatter@list}{#1}
+	\listgadd{\@frontmatter@list}{#1}
 }
 
 \def\printotherlists{ %
-		\cleardoublepage
-		\forlistloop{\@printlist}{\@frontmatter@list} %
+	\cleardoublepage
+	\forlistloop{\@printlist}{\@frontmatter@list} %
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -951,14 +950,14 @@ de Mestre \\em \@majorfield}
 	\if @openright\cleardoublepage\else\clearpage\fi
 	\thispagestyle{empty}
 	~\\[2cm]
-    \begin{flushright}
-    \begin{minipage}{100mm}
-    \quotefonti
-    \begin{flushright}}
-\def\enddedicatory{
-	\end{flushright}
-    \normalfont
-    \end{minipage}
+	\begin{flushright}
+		\begin{minipage}{100mm}
+			\quotefonti
+			\begin{flushright}}
+				\def\enddedicatory{
+			\end{flushright}
+			\normalfont
+		\end{minipage}
 	\end{flushright}
 }
 
@@ -970,14 +969,14 @@ de Mestre \\em \@majorfield}
 	\if@openright\cleardoublepage\else\clearpage\fi
 	\thispagestyle{empty}
 	~\\[2cm]
-    \begin{flushright}
-    \begin{minipage}{100mm}
-    \quotefonti
-    \begin{flushright}}
-\def\endquote{
-	\end{flushright}
-    \normalfont
-    \end{minipage}
+	\begin{flushright}
+		\begin{minipage}{100mm}
+			\quotefonti
+			\begin{flushright}}
+				\def\endquote{
+			\end{flushright}
+			\normalfont
+		\end{minipage}
 	\end{flushright}
 }
 
@@ -986,7 +985,7 @@ de Mestre \\em \@majorfield}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 \def\acknowledgements{%
-  \chapter*{\acknowledgementsname}
+	\chapter*{\acknowledgementsname}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -994,19 +993,19 @@ de Mestre \\em \@majorfield}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 \def\abstractEN{%
-  \selectlanguage{english}
-  \gdef\@keywordsname{\@keywordsnameEN}
-  \chapter*{\@abstrnameEN}
+	\selectlanguage{english}
+	\gdef\@keywordsname{\@keywordsnameEN}
+	\chapter*{\@abstrnameEN}
 }
-  
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  ABSTRACT IN PORTUGUESE LANGUAGE (RESUMO)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 \def\abstractPT{%
-  \selectlanguage{portuguese}
-  \gdef\@keywordsname{\@keywordsnamePT}
-  \chapter*{\@abstrnamePT}
+	\selectlanguage{portuguese}
+	\gdef\@keywordsname{\@keywordsnamePT}
+	\chapter*{\@abstrnamePT}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1015,7 +1014,7 @@ de Mestre \\em \@majorfield}
 %%
 \def\@keywordsname{\@defaultkeywordsname}
 \def\keywords{%
-  \par\vskip\baselineskip\noindent{\bf\@keywordsname: }}
+	\par\vskip\baselineskip\noindent{\bf\@keywordsname: }}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1039,12 +1038,12 @@ de Mestre \\em \@majorfield}
 
 \definecolor{backGrayColor}{rgb}{0.7,0.7,0.7} % Background title color
 \titleformat{\chapter}[display]
-	{\bfseries\Huge}				% format
-	{\hfill\colorbox{backGrayColor}{\fontsize{80}{100}\selectfont{\textcolor{white}	{\thechapter}}}} % label
-	{1ex}							% sep
-	{%\titlerule
-  	\vspace{2ex}\filleft}			% before
-	[\vspace{1cm}					%\titlerule
+{\bfseries\Huge}				% format
+{\hfill\colorbox{backGrayColor}{\fontsize{80}{100}\selectfont{\textcolor{white}	{\thechapter}}}} % label
+{1ex}							% sep
+{%\titlerule
+	\vspace{2ex}\filleft}			% before
+[\vspace{1cm}					%\titlerule
 ]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1061,7 +1060,7 @@ de Mestre \\em \@majorfield}
 %\usepackage{breakurl}
 \usepackage[
 	style=ieee, %{ieee, numeric, alphabetic, authoryear, authortitle, verbose, apa, chem-acs, chem-angew, mla, nature, science, nejm, phys},
-%defernumbers=true, 
+	%defernumbers=true, 
 	backend=bibtex, %{bibtex, biber}
 	sorting=debug, %{none, nty, nyt, nyvt, anyt, anyvt, ynt, debug},
 	%dashed=false, 
@@ -1081,20 +1080,20 @@ de Mestre \\em \@majorfield}
 %%%% The important part:
 \DefineBibliographyStrings{portuguese}{%
 	bibliography = {Referências},
-    references = {Referências},
-    page={pág.},
-    pages={páginas},
-    and={\&},
-  	mathesis = {Tese de Mestrado},
-  	phdthesis = {Tese de Doutoramento}
+	references = {Referências},
+	page={pág.},
+	pages={páginas},
+	and={\&},
+	mathesis = {Tese de Mestrado},
+	phdthesis = {Tese de Doutoramento}
 }
 
 \DefineBibliographyStrings{english}{%
 	bibliography = {References},
-    references = {References},
-    page={page},
-    pages={pages},
-    %and={\&}  	
+	references = {References},
+	page={page},
+	pages={pages},
+	%and={\&}  	
 }
 \usepackage{tocbibind} % Add bibliography/index/contents to Table of Contents. Automatically adds the bibliography and/or the index and/or the contents, etc., to the Table of Contents.
 
@@ -1118,17 +1117,17 @@ de Mestre \\em \@majorfield}
 }
 
 \ifx\@appendixfile\@empty
-	\def\printappendixes{}
+\def\printappendixes{}
 \else
-	\def\printappendixes{
-		\appendix
-		\newcount\@myi
-		\@myi 0\relax
-		\loop
-			\advance\@myi 1\relax
-			\def\@appxname{\expandafter\csname @appendixfile\number\@myi		\endcsname}
-		\@input@{\@appxname}
-		\ifnum \@myi < \@appxcount
-		\repeat
+\def\printappendixes{
+\appendix
+\newcount\@myi
+\@myi 0\relax
+\loop
+\advance\@myi 1\relax
+\def\@appxname{\expandafter\csname @appendixfile\number\@myi		\endcsname}
+\@input@{\@appxname}
+\ifnum \@myi < \@appxcount
+	\repeat
 	}
 \fi
