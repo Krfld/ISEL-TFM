@@ -1,13 +1,29 @@
 \chapter{Implementation}
  [Brief introduction of the chapter]
 
-% Being a blockchain project, the goal is to not use the so called Web2 technologies, this means the traditional approaches of having a backend running on a server and similar services, but rather to use only Web3 technologies for us to understand exactly the limitations there are by adopting solely the blockchain ecosystem. Ideally, of course, in the future this project benefits greatly by merging these two approaches.
+~
+
+Being a blockchain project, the goal is to not use the so called Web2 technologies, this means the traditional approaches of having a backend running on a server and similar services, but rather to use only Web3 technologies for us to understand exactly the limitations there are by adopting solely the blockchain ecosystem. Ideally, of course, in the future this project benefits greatly by merging these two approaches.
+
+We'll be doing the smart contracts in Solidity, because it's the most popular language for Ethereum smart contracts, and makes it easy to deploy to any EVM compatible blockchain. This language can be similar to other languages like JavaScript or C++, but it has some unique features that make it very powerful for smart contracts. Modifiers are a good example of this, they allow you to add custom logic to functions, and can be used to prevent reentrancy attacks, which are a common security issue in smart contracts and restrict the access to functions that implement them. We can define, for example, that a call to create an event to be restricted to only organizers or a call to validate tickets to be limited to validators.
 
 ~
 
-[todo mention network fees and network choice]
-[event lifecycle]
+[mention somewhere about solidity, how modifiers help, reentracy atacks, etc]
+
+[main smart contract]
+
+[event smart contract]
+- [creation of events]
+-- [ipfs]
+- [structs]
+- [event lifecycle]
+- [restrictioons on ticket operations]
+
 [ticket validation]
-[restrictioons on ticket operations]
+[todo mention network fees and network choice]
+
+[user app]
+[validator app]
 
 \section{Project Features}
