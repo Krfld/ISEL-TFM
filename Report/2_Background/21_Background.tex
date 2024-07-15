@@ -14,7 +14,10 @@ Blockchain is a fairly recent technology and can a lot of times be hard to under
 \label{subsec:interacting_with_the_blockchain}
 
 As we saw, a blockchain works as a decentralized network of nodes, where each node has a copy of the entire blockchain. This means that in order to interact with the blockchain, we need to send transactions to the network, which will then be validated and added to a block by the nodes. To do this, we need to use a wallet, which is an application that allows users to manage their digital assets, interact with smart contracts, and send transactions on the blockchain. Wallets provide a user-friendly interface for accessing the blockchain network, signing transactions with private keys, and viewing account balances and transaction history.
+
 The Figure \ref{fig:how_does_a_blockchain_work} shows the steps of what happens on a transaction on the blockchain. To execute one, we need to sign it with our private key, which proves that we are the rightful owner of the assets being transferred. The transaction is then broadcast to the network, where it is validated by network participants and added to a block. Once the transaction is confirmed and included in a block, it becomes part of the immutable blockchain ledger, visible to all participants in the network.
+
+This is the procedure to make a change to the blockchain state, so you always have to sign the transaction. To read information from it, you don't need to sign anything, you just need to query the network for the information you want.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{How does a blockchain work.jpg}
@@ -50,6 +53,7 @@ Smart contracts are self-executing contracts with predefined rules and condition
 ~
 
 Blockchain technology has applications across various industries, including finance, supply chain management, healthcare, and decentralized finance (DeFi). Its potential to revolutionize existing systems by enhancing security, transparency, and efficiency has led to widespread adoption and exploration of its capabilities in solving complex challenges. Some people refer to this ecosystem as Web3, which is a new paradigm for the internet that aims to decentralize control and empower users with greater ownership and privacy over their data and digital assets.
+
 A great discussion topic as for how a system like this works is because it leverages the human nature of greed and self-interest to create a system that is secure and reliable. The network of nodes is incentivized to maintain the integrity of the blockchain by rewarding them with cryptocurrency for their efforts. As long as these cryptocurrencies have value, this creates a system where the majority of the network is honest and works together to maintain the integrity of the blockchain, making it resistant to attacks and fraud, as the cost of attacking the network would far outweigh any potential gains.
 
 \subsection{Wallets}
@@ -101,6 +105,7 @@ Solana is a high-performance blockchain platform designed for decentralized appl
 ~
 
 These are just a few examples of the diverse range of blockchain networks that exist, each offering unique features, capabilities, and use cases. As the blockchain ecosystem continues to evolve, new networks and technologies are constantly being developed, driving innovation and expanding the possibilities of decentralized applications and digital assets.
+
 It is common to see other networks with a similar behavior as the Ethereum and Polygon ones, because they are built using Solidity, they are compatible with the Ethereum Virtual Machine (EVM), making it convenient for developers to deploy their smart contracts on multiple networks with the same codebase. This is a great advantage for developers, as it allows them to reach a wider audience and leverage the network effects of multiple blockchain platforms. Some other EVM compatible networks worth mentioning are the Binance Smart Chain, Avalanche, Arbitrum, and Optimism, among others.
 
 \subsection{Smart Contracts}
@@ -136,7 +141,9 @@ Smart contracts have numerous applications across various industries, including 
 
 Token standards play a crucial role in defining the rules and functionalities of digital tokens on blockchain networks. These standards provide a common framework that facilitates interoperability, compatibility, and ease of use for developers and users alike.
 
-Some of the most widely recognized token standards in the blockchain ecosystem are the ERC-20, ERC-721, and ERC-1155 standards. We can see in the Figure \ref{fig:token_standards} a visual representation of these standards, where ERC-20 is the standard for fungible tokens, the ERC-721 is the standard for non-fungible tokens, and the ERC-1155 is a hybrid standard that supports both fungible and non-fungible tokens within the same contract. In a videogame perspective, this means that ERC-20 is used as the currency of the game and ERC-721 is used for unique items. And since ERC-1155 covers both cases, it's usually the option for the game developers to use it as the main token standard.
+Some of the most widely recognized token standards in the blockchain ecosystem are the ERC-20, ERC-721, and ERC-1155 standards. We can see in the Figure \ref{fig:token_standards} a visual representation of these standards, where ERC-20 is the standard for fungible tokens, the ERC-721 is the standard for non-fungible tokens, and the ERC-1155 is a hybrid standard that supports both fungible and non-fungible tokens within the same contract.
+
+In a videogame perspective, this means that ERC-20 is used as the currency of the game and ERC-721 is used for unique items. And since ERC-1155 covers both cases, it's usually the option for the game developers to use it as the main token standard.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{Token standards.png}
