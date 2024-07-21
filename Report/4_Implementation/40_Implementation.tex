@@ -3,13 +3,19 @@
 
 [Brief introduction of the chapter]
 
-~
-
 Being a blockchain project, the goal is to not use the so called Web2 technologies, this means the traditional approaches of having a backend running on a server and similar services, but rather to use only Web3 technologies for us to understand exactly the limitations there are by adopting solely the blockchain ecosystem. Ideally, of course, in the future this project benefits greatly by merging these two approaches.
 
-We'll be doing the smart contracts in Solidity, because it's the most popular language for Ethereum smart contracts, and makes it easy to deploy to any EVM compatible blockchain. This language can be similar to other languages like C++, but it has some unique features that make it very powerful for smart contracts.
+\section{Solidity}
 
-Modifiers are a good example of this as they allow you to add custom logic to functions, can be used to prevent reentrancy attacks, which are a common security issue in smart contracts, and restrict the access to certain functions. We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tells us how much value (ether) was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary for example to buy the tickets. We'll check if the value matches the total price and reverts otherwise.
+We'll be doing the smart contracts in Solidity, because it's the most popular language for Ethereum smart contracts, and makes it easy to deploy to any EVM compatible blockchain. This language is similar to other languages like C++, but it has some unique features that make it very powerful for smart contracts.
+
+One of the things is that they run atomically, so if something should fail or revert, the changes don't take place. Modifiers are a good example where it can be used to prevent reentrancy attacks, which are a common security issue in smart contracts, and restrict the access to certain functions.
+
+We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tells us how much value (ether) was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary, for example, to buy the tickets. We'll check if the value matches the correct price and reverts otherwise.
+
+Another unique feature of Solidity is the \textit{address} type, which is basically a string strict to the Ethereum address format. That's how we'll be storing the addresses of the organizers and the events on the contracts. The only difference between a user and a contract is that a contract has code associated with it, so it can execute functions and store data, while a user can only send transactions.
+
+This way we can understand why, to send a transaction, paying for the tickets, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then to have the organizer withdraw its profit from it to his own wallet.
 
 \section{Main Smart Contract}
 \label{sec:main_smart_contract}
@@ -18,7 +24,7 @@ So smart contracts are similar to C++ mainly because it lies on a class-like str
 
 Since this is the behavior we want (each event being a NFT collection), we will have to deploy (instantiate, in C++) a new contract for each event, so we need a main contract to keep track of these events.
 
-With this in mind, like we see in the Figure \ref{fig:system_uml}, the main contract will track the organizers and the events associated with the system, with the method to register a new event with the necessary data, restricted to only organizers (to avoid unauthorized people to interact), along with the necessary setters and getters and other system configurations.
+With this in mind, like we see in the Figure \ref{fig:system_uml}, the main contract will track the organizers and the events associated with the system, along with the method to register a new event with the necessary data, restricted to only organizers (to avoid unauthorized people to interact).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{System UML.png}
@@ -26,8 +32,6 @@ With this in mind, like we see in the Figure \ref{fig:system_uml}, the main cont
     \caption{Main smart contract UML}
     \label{fig:system_uml}
 \end{figure}
-
-Another unique feature of Solidity is the \textit{address} type, which is basically a string strict to the Ethereum address format. That's how we'll be storing the addresses of the organizers and the events that are deployed with the \textit{registerEvent} method. On the blockchain the only difference between a user and a contract is that a contract has code associated with it, so it can execute functions and store data, while a user can only send transactions.
 
 With this structure, since we have this main contract where all the events of the system are stored, we can simply make a call to get them all, showcasing them in the app's home page for users to search.
 
@@ -39,7 +43,11 @@ For the event contract, we'll be extending the ERC721 standard and adding the ne
 \subsection{ERC721 Structure}
 \label{subsec:erc721_structure}
 
-The standard was obtained through the \href{https://docs.openzeppelin.com/contracts/api/token/erc721#ERC721}{OpenZeppelin} library, which is a collection of secure and community-vetted smart contracts that are used by many projects in the Ethereum ecosystem. This library is a great resource for developers to build secure and reliable smart contracts. The Figure \ref{fig:erc721_uml} shows us the most important variables and methods of the standard.
+The standard was obtained through the \href{https://docs.openzeppelin.com/contracts/api/token/erc721#ERC721}{OpenZeppelin} library, which is a collection of secure and community-vetted smart contracts that are used by many projects in the Ethereum ecosystem. This library is a great resource for developers to build secure and reliable smart contracts.
+
+Analyzing its source code [ref], and looking into the most important variables and methods of the standard shown in the Figure \ref{fig:erc721_uml}, we can understand that the NFTs are simply a mapping of the token ID to the owner address, so when you execute a transaction to get a token (this process is called minting), the token ID is then associated to your address. Then for each token it's possible set a URI, which is a link to the NFTs metadata, usually being a JSON file with the necessary information about the token, like the name, description, and image.
+
+This link could point to anything, for example a google drive file, but the common thing is to store the metadata on the IPFS, which is a decentralized storage system, so the metadata is not stored on the blockchain itself (onchain), which would be very expensive, but rather on a decentralized storage system (offchain), which is much cheaper.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{ERC721 UML.png}
@@ -48,16 +56,23 @@ The standard was obtained through the \href{https://docs.openzeppelin.com/contra
     \label{fig:erc721_uml}
 \end{figure}
 
-Analyzing its source code [ref] we can understand that the NFTs are simply a mapping of the token ID to the owner address, so when you execute a transaction to get a token (this process is called minting), the token ID is then associated to your address. Then for each token it's possible set a URI, which is a link to the NFTs metadata, usually being a JSON file with the necessary information about the token, like the name, description, and image.
+The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the NFT's metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see that it has the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section [packages], about how the packages logic is implemented.
 
-This link could point to anything, for example a google drive file, but the common thing is to store the metadata on the IPFS, which is a decentralized storage system, so the metadata is not stored on the blockchain itself (onchain), which would be very expensive, but rather on a decentralized storage system (offchain), which is much cheaper.
+\subsection{Extending the ERC721}
 
-The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see it with the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section [packages], about how the packages logic will be implemented.
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{Event UML.png}
+    \centering
+    \caption{Event smart contract UML}
+    \label{fig:event_uml}
+\end{figure}
 
-    [structs]
+[structs]
 
-    [mention storage]
-    [event smart contract]
+[mention how money gets stored in the contract]
+[mention system fees]
+[mention storage]
+[event smart contract]
 - [creation of events]
 -- [ipfs (pinata)]
 - [structs]
