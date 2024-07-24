@@ -6,23 +6,33 @@
 Being a blockchain project, the goal is to not use the so called Web2 technologies, this means the traditional approaches of having a backend running on a server and similar services, but rather to use only Web3 technologies for us to understand exactly the limitations there are by adopting solely the blockchain ecosystem. Ideally, of course, in the future this project benefits greatly by merging these two approaches.
 
 \section{Solidity}
+\label{sec:solidity}
 
 We'll be doing the smart contracts in Solidity, because it's the most popular language for Ethereum smart contracts, and makes it easy to deploy to any EVM compatible blockchain. This language is similar to other languages like C++, but it has some unique features that make it very powerful for smart contracts.
 
-One of the things is that they run atomically, so if something should fail or revert, the changes don't take place. Modifiers are a good example where it can be used to prevent reentrancy attacks, which are a common security issue in smart contracts, and restrict the access to certain functions.
+One important aspect is that when a contract is public, anyone can call its functions, that's why we need to restrict their access and take into account that possibility when defining the operations of the entire contract. So it's always important to have a mindset that any function (endpoint) can be called by anyone, which is a pretty different approach from traditional web development.
 
-We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tells us how much value (ether) was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary, for example, to buy the tickets. We'll check if the value matches the correct price and reverts otherwise.
+Another thing is that contracts run atomically, so if something should fail or revert, the changes don't take place. Modifiers are a good example where it can be used to prevent reentrancy attacks, which are a common security issue in smart contracts, and restrict the access to certain functions, reverting if an intruder tries to call them.
+
+We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tell us how much value (ether) was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary, for example, to buy the tickets. We'll check if the value matches the correct price and reverts otherwise.
 
 Another unique feature of Solidity is the \textit{address} type, which is basically a string strict to the Ethereum address format. That's how we'll be storing the addresses of the organizers and the events on the contracts. The only difference between a user and a contract is that a contract has code associated with it, so it can execute functions and store data, while a user can only send transactions.
 
-This way we can understand why, to send a transaction, paying for the tickets, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then to have the organizer withdraw its profit from it to his own wallet.
+This way we can understand why, to send a transaction, paying for the tickets for example, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then the organizer withdraw its profit to his own wallet.
 
 \section{Main Smart Contract}
 \label{sec:main_smart_contract}
 
 So smart contracts are similar to C++ mainly because it lies on a class-like structure with variables to store data and methods, where the main difference is that a class is called a contract and you can extend others to integrate their functionalities. That's essentially what's gonna happen with each event, extending the ERC721 standard, making it a collection of NFTs, where each NFT is a ticket.
 
-Since this is the behavior we want (each event being a NFT collection), we will have to deploy (instantiate, in C++) a new contract for each event, so we need a main contract to keep track of these events.
+Since this is the behavior we want (each event being a NFT collection), we will have to deploy (instantiate, in C++) a new contract for each event, like the Figure \ref{fig:system_behavior} shows, so we need a main contract to keep track of these events.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{System behavior.png}
+    \centering
+    \caption{System behavior}
+    \label{fig:system_behavior}
+\end{figure}
 
 With this in mind, like we see in the Figure \ref{fig:system_uml}, the main contract will track the organizers and the events associated with the system, along with the method to register a new event with the necessary data, restricted to only organizers (to avoid unauthorized people to interact).
 
@@ -33,7 +43,7 @@ With this in mind, like we see in the Figure \ref{fig:system_uml}, the main cont
     \label{fig:system_uml}
 \end{figure}
 
-With this structure, since we have this main contract where all the events of the system are stored, we can simply make a call to get them all, showcasing them in the app's home page for users to search.
+With this structure, since we have this main contract where all the events of the system are stored, we can simply make a call to get them all, showcasing them in the app's home page for users to search. Any event that is deployed outside the system or if it gets removed from there, it won't be shown to the users.
 
 \section{Event Smart Contract}
 \label{sec:event_smart_contract}
@@ -58,20 +68,41 @@ This link could point to anything, for example a google drive file, but the comm
 
 The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the NFT's metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see that it has the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section [packages], about how the packages logic is implemented.
 
-\subsection{Extending the ERC721}
+\subsection{Event Behavior}
+\label{subsec:event_behavior}
+
+So the event will be deployed and we need a certain control over the tickets. One of the aspects we need to account for is that when deploying an event, and since the event will extend the ERC721, any public function on that standard will be possible to execute. This is a problem because we don't want the users to mint tickets whenever they want or transfer them between themselves from outside the system, so we need to restrict these operations. As we saw already on the Figure \ref{fig:erc721_uml}, only the \textit{safeTransferFrom} method is public, so users could transfer NFTs between each other. We want that to be possible, just not from outside the system, since that can lead users to exploit the system and scalping the tickets easily. The minting, however, won't be an issue because it's an internal method, so we will access it from the buy method in the event and restrict it there.
+
+The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what restrictions are in place for the ticket operations. We will have 4 main states for the event after it has been registered, being \textit{Open}, \textit{No refund}, \textit{Start}, and \textit{End} states. Once the event is registered, it will show up in the app for user to see, and the organizers can set a later open date to allow ticket minting (buying).
+
+Once it hits the \textit{Open} state, the users will be able to buy the tickets, which will mint the NFTs by executing the \textit{safeMint} method of the ERC721 contract.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth*2/3]{Event UML.png}
+    \includegraphics[width=\textwidth]{Event lifecycle.png}
+    \centering
+    \caption{Event lifecycle}
+    \label{fig:event_lifecycle}
+\end{figure}
+
+
+% Like the Figure \ref{fig:event_uml} shows, we added the methods for the users to handle the tickets and the organizer/admins to manage the event.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*3/4]{Event UML.png}
     \centering
     \caption{Event smart contract UML}
     \label{fig:event_uml}
 \end{figure}
 
-[structs]
+[package logic]
 
-[mention system fees]
-[mention storage]
-[event smart contract]
+...
+
+    [structs]
+
+    [mention system fees]
+    [mention storage]
+    [event smart contract]
 - [creation of events]
 -- [ipfs (pinata)]
 - [structs]
@@ -85,3 +116,4 @@ The function \textit{tokenURI} is the one that is called by default in the marke
 [validator app]
 
 \section{Project Features}
+\label{sec:project_features}
