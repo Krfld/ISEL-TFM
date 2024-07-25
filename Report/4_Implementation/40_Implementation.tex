@@ -73,9 +73,7 @@ The function \textit{tokenURI} is the one that is called by default in the marke
 
 So the event will be deployed and we need a certain control over the tickets. One of the aspects we need to account for is that when deploying an event, and since the event will extend the ERC721, any public function on that standard will be possible to execute. This is a problem because we don't want the users to mint tickets whenever they want or transfer them between themselves from outside the system, so we need to restrict these operations. As we saw already on the Figure \ref{fig:erc721_uml}, only the \textit{safeTransferFrom} method is public, so users could transfer NFTs between each other. We want that to be possible, just not from outside the system, since that can lead users to exploit the system and scalping the tickets easily. The minting, however, won't be an issue because it's an internal method, so we will access it from the buy method in the event and restrict it there.
 
-The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what restrictions are in place for the ticket operations. We will have 4 main states for the event after it has been registered, being \textit{Open}, \textit{No refund}, \textit{Start}, and \textit{End} states. Once the event is registered, it will show up in the app for user to see, and the organizers can set a later open date to allow ticket minting (buying).
-
-Once it hits the \textit{Open} state, the users will be able to buy the tickets, which will mint the NFTs by executing the \textit{safeMint} method of the ERC721 contract.
+The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what restrictions are in place for the ticket operations. We will have 4 main states for the event after it has been registered, being \textit{Open}, \textit{No refund}, \textit{Start}, and \textit{End} dates. Once the event is registered, it will show up in the app for user to see, and the organizers can set a later open date to allow ticket minting (buying).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Event lifecycle.png}
@@ -84,6 +82,16 @@ Once it hits the \textit{Open} state, the users will be able to buy the tickets,
     \label{fig:event_lifecycle}
 \end{figure}
 
+Once it hits the \textit{Open} date, we will allow the users to buy the tickets, which will mint the NFTs by executing the \textit{safeMint} method of the ERC721 contract.
+
+After the \textit{No refund} date, we will prevent the users to call the refund method, which will \textit{burn} the NFTs, essentially removing them from the user and making them available again.
+This is a nice operation to add because it allows the users to get their money back if they can't attend the event. The organizer decides the percentage of the refund and the deadline, which is there to prevent users to buy a big amount of tickets and then refund them last minute, which would be a way to exploit the system (in case of a 100\% refund, they wouldn't risk anything).
+The other good thing for the organizer is in case the event is expected to be sold out. Since the users will get some money back, they will have a reason to refund their tickets, if they cannot attend the event anymore, making them available again for other users to buy at the original price, making the organizer a higher profit.
+After this deadline, the only thing to allow is for users to resell their tickets in our marketplace, which will allow the user to sell them at a higher price than the refund (but never higher than the original, of course).
+
+The \textit{Start} date is there to tell the users when the event starts, so basically when the gates will open. That's the date that appears in the app, so the users know when to show up.
+
+The \textit{End} date tells when the event is over, unlocking all the ticket operations to outside the system. So users can simply keep the tickets as a souvenir or sell them in any marketplace, without any restrictions on the tickets, including the elimination of the resell price cap.
 
 % Like the Figure \ref{fig:event_uml} shows, we added the methods for the users to handle the tickets and the organizer/admins to manage the event.
 
