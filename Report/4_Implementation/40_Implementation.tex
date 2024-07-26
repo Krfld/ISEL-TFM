@@ -68,8 +68,8 @@ This link could point to anything, for example a google drive file, but the comm
 
 The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the NFT's metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see that it has the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section [packages], about how the packages logic is implemented.
 
-\subsection{Event States}
-\label{subsec:event_states}
+\subsection{Event Behavior}
+\label{subsec:event_behavior}
 
 So the event will be deployed and we need a certain control over the tickets. One of the aspects we need to account for is that when deploying an event, and since the event will extend the ERC721, any public functions on that standard will be possible to execute. This is a problem because we don't want the users to mint tickets whenever they want or transfer them between themselves from outside the system, so we need to restrict these operations. As we saw already on the Figure \ref{fig:erc721_uml}, only the \textit{safeTransferFrom} method is public, so users could transfer NFTs between each other. We want that to be possible, just not from outside the system, since that can lead users to exploit the system and scalping the tickets easily. The minting, however, won't be an issue because it's an internal method, so we will access it from the buy method in the event and restrict it there.
 
@@ -84,16 +84,16 @@ The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what 
 
 Once it hits the \textit{Open} date, we will allow the users to buy the tickets, which will mint the NFTs by executing the \textit{safeMint} method of the ERC721 contract.
 
-After the \textit{No refund} date, we will prevent the users to call the refund method, which will \textit{burn} the NFTs, essentially removing them from the user and making them available again.
+After the \textit{No refund} date, we will prevent the users to call the refund method, which essentially \textit{burns} the NFTs, removing them from the user and making them available again.
 This is a nice operation to add because it allows the users to get their money back if they can't attend the event. The organizer decides the percentage of the refund and the deadline, which is there to prevent users to buy a big amount of tickets and then refund them last minute, which would be a way to exploit the system (in case of a 100\% refund, they wouldn't risk anything).
-The other good thing for the organizer is in case the event is expected to be sold out. Since the users will get some money back, they will have a reason to refund their tickets, if they cannot attend the event anymore, making them available again for other users to buy at the original price, making the organizer a higher profit.
-After this deadline, the only thing to allow is for users to resell their tickets in our marketplace, which will allow the user to sell them at a higher price than the refund (but never higher than the original, of course).
+The other good thing for the organizer is when the event is expected to be sold out. Since the users will get some money back, they will have a reason to refund their tickets if they cannot attend the event anymore, making them available again for other users to buy at the original price, making the organizer a higher profit.
+After this deadline, the only that'll be allowed is for users to resell their tickets in the system's marketplace, which them to sell at a higher price than the refund (but never higher than the original, of course).
 
 The \textit{Start} date is there to tell the users when the event starts, so basically when the gates will open. That's the date that appears in the app, so the users know when to show up.
 
-The \textit{End} date tells when the event is over, unlocking all the ticket operations to outside the system. So users can simply keep the tickets as a souvenir or sell them in any marketplace, without any restrictions on the tickets, including the elimination of the resell price cap.
+The \textit{End} date tells when the event is over, unlocking all the ticket operations to outside the system. So users can simply keep the tickets as a souvenir or sell them in any marketplace, without any restrictions on the tickets, including the elimination of the price cap.
 
-% Like the Figure \ref{fig:event_uml} shows, we added the methods for the users to handle the tickets and the organizer/admins to manage the event.
+With this behavior in mind, we came up with the Event UML, like shown in the Figure \ref{fig:event_uml}, where we added the necessary methods for the organizer/admins to manage the event and the users to handle the tickets, which then trigger the corresponding methods of the ERC721 contract. We added a possibility to have admins so the organizer can distribute the workload of executing the necessary operations to people he trusts.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*3/4]{Event UML.png}
@@ -102,11 +102,21 @@ The \textit{End} date tells when the event is over, unlocking all the ticket ope
     \label{fig:event_uml}
 \end{figure}
 
+\subsection{Structs}
+\label{subsec:structs}
+
+As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few structs to organize better the data. Those structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig}.
+
+The \textit{Percentage} struct
+
+
+\subsection{Ticket Packages}
+\label{subsec:ticket_packages}
+
 [package logic]
 
 ...
 
-    [structs]
 
     [mention system fees]
     [mention storage]
