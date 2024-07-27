@@ -14,7 +14,9 @@ One important aspect is that when a contract is public, anyone can call its func
 
 Another thing is that contracts run atomically, so if something should fail or revert, the changes don't take place. Modifiers are a good example where it can be used to prevent reentrancy attacks, which are a common security issue in smart contracts, and restrict the access to certain functions, reverting if an intruder tries to call them.
 
-We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tell us how much value (ether) was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary, for example, to buy the tickets. We'll check if the value matches the correct price and reverts otherwise.
+We can define, for example, a call to register an event to be restricted to only organizers or a call to validate tickets to be limited to only validators. This is possible because there are a few keywords like \textit{msg.sender} that tell us which user address called the function and \textit{msg.value} that tell us how much value was sent with the transaction. This value is essentially the amount of money the user sends in a transaction, necessary, for example, to buy the tickets. We'll check if the value matches the correct price and reverts otherwise.
+
+Each blockchain network has its own currency, in which is commonly referred to as ether, on the EVM networks. This is the unit of value that is used to pay to execute transactions, but in solidity we cannot work with floating point numbers, so we have to work with the smallest unit of ether, which is called wei. Similar to how we have 1 euro is 100 cents, we have 1 ether is $10^{18}$ wei, same as on the bitcoin network we have the 1 bitcoin (BTC) is $10^{8}$ satoshis (SATS). This is the unit being used when we call the \textit{msg.value} variable, so we always have to account for the conversion.
 
 Another unique feature of Solidity is the \textit{address} type, which is basically a string strict to the Ethereum address format. That's how we'll be storing the addresses of the organizers and the events on the contracts. The only difference between a user and a contract is that a contract has code associated with it, so it can execute functions and store data, while a user can only send transactions.
 
@@ -105,9 +107,18 @@ With this behavior in mind, we came up with the Event UML, like shown in the Fig
 \subsection{Structs}
 \label{subsec:structs}
 
-As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few structs to organize better the data. Those structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig}.
+As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few custom structs to organize better the data. Those structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig}.
 
-The \textit{Percentage} struct
+The \textit{Percentage} struct, Figure \ref{fig:percentage_struct}, is necessary because in Solidity there are no floating point numbers, so we need a way to make calculations with percentages. What this struct does is it stores the value of the percentage and the amount of decimals it has. So if we want to calculate 55.5\% of a number, we would have 555 as the value and 1 as the decimals, or 5550 as the value and 2 as the decimals.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{Percentage struct.jpg}
+    \centering
+    \caption{Percentage struct}
+    \label{fig:percentage_struct}
+\end{figure}
+
+\[y = \frac{x \times \text{percentage.value}}{100\mathrm{e}^\text{percentage.decimals}}\]
 
 
 \subsection{Ticket Packages}
