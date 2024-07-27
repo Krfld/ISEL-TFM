@@ -22,6 +22,8 @@ Another unique feature of Solidity is the \textit{address} type, which is basica
 
 This way we can understand why, to send a transaction, paying for the tickets for example, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then the organizer withdraw its profit to his own wallet.
 
+    [talk about system fees]
+
 \section{Main Smart Contract}
 \label{sec:main_smart_contract}
 
@@ -84,14 +86,22 @@ The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what 
     \label{fig:event_lifecycle}
 \end{figure}
 
+\subsubsection{Open Date}
+
 Once it hits the \textit{Open} date, we will allow the users to buy the tickets, which will mint the NFTs by executing the \textit{safeMint} method of the ERC721 contract.
+
+\subsubsection{No Refund Date}
 
 After the \textit{No refund} date, we will prevent the users to call the refund method, which essentially \textit{burns} the NFTs, removing them from the user and making them available again.
 This is a nice operation to add because it allows the users to get their money back if they can't attend the event. The organizer decides the percentage of the refund and the deadline, which is there to prevent users to buy a big amount of tickets and then refund them last minute, which would be a way to exploit the system (in case of a 100\% refund, they wouldn't risk anything).
 The other good thing for the organizer is when the event is expected to be sold out. Since the users will get some money back, they will have a reason to refund their tickets if they cannot attend the event anymore, making them available again for other users to buy at the original price, making the organizer a higher profit.
 After this deadline, the only that'll be allowed is for users to resell their tickets in the system's marketplace, which them to sell at a higher price than the refund (but never higher than the original, of course).
 
+\subsubsection{Start Date}
+
 The \textit{Start} date is there to tell the users when the event starts, so basically when the gates will open. That's the date that appears in the app, so the users know when to show up.
+
+\subsubsection{End Date}
 
 The \textit{End} date tells when the event is over, unlocking all the ticket operations to outside the system. So users can simply keep the tickets as a souvenir or sell them in any marketplace, without any restrictions on the tickets, including the elimination of the price cap.
 
@@ -107,19 +117,73 @@ With this behavior in mind, we came up with the Event UML, like shown in the Fig
 \subsection{Structs}
 \label{subsec:structs}
 
-As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few custom structs to organize better the data. Those structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig}.
+As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few custom structs to organize better the data. These structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig} structs.
 
-The \textit{Percentage} struct, Figure \ref{fig:percentage_struct}, is necessary because in Solidity there are no floating point numbers, so we need a way to make calculations with percentages. What this struct does is it stores the value of the percentage and the amount of decimals it has. So if we want to calculate 55.5\% of a number, we would have 555 as the value and 1 as the decimals, or 5550 as the value and 2 as the decimals.
+\subsubsection{Percentage Struct}
 
-\begin{figure}[H]
-    \includegraphics[width=\textwidth*2/3]{Percentage struct.jpg}
-    \centering
-    \caption{Percentage struct}
-    \label{fig:percentage_struct}
-\end{figure}
+The \textit{Percentage} struct is necessary because in Solidity there are no floating point numbers, so we need a way to make calculations with percentages. What this struct does is it stores the value of the percentage and the amount of decimals it has, so if we want to calculate 55.50\% of a number, we would have 555 as the value with 1 decimal, or 5550 with 2 decimals.
 
-\[y = \frac{x \times \text{percentage.value}}{100\mathrm{e}^\text{percentage.decimals}}\]
+The struct is as follows:
+\begin{verbatim}
+    struct Percentage {
+        uint256 value;
+        uint256 decimals;
+    }
+\end{verbatim}
+so to obtain a percentage of some $x$ number, we do $y = \frac{x \times \text{Percentage.value}}{100\mathrm{e}^\text{Percentage.decimals}}$.
 
+When working with ether units, it can be common to have values like 0.00005 ether, but it's rather rare to have small values in wei, like 1000 wei, so applying this formula won't lose much precision (note that 1 ether is $10^{18}$ wei).
+
+\subsubsection{TicketchainConfig Struct}
+
+The \textit{TicketchainConfig} struct is simply to keep it stored the system address and the system fee percentage, so we can easily access this information when applying the fees and withdrawing them, and is as follows:
+\begin{verbatim}
+    struct TicketchainConfig {
+        address ticketchainAddress;
+        Percentage feePercentage;
+    }
+\end{verbatim}
+
+\subsubsection{NFTConfig Struct}
+
+The \textit{NFTConfig} struct is just to store the NFTs basic information, like the name, symbol, and base URI, to ease the input of the NFTs information when registering the event:
+\begin{verbatim}
+    struct NFTConfig {
+        string name;
+        string symbol;
+        string baseURI;
+    }
+\end{verbatim}
+
+\subsubsection{EventConfig Struct}
+
+The \textit{EventConfig} struct is to store the event's entire configuration, like the name, description, location, dates, and refund, like this:
+\begin{verbatim}
+    struct EventConfig {
+        string name;
+        string description;
+        string location;
+        uint256 openDate;
+        uint256 noRefundDate;
+        uint256 startDate;
+        uint256 endDate;
+        Percentage refundPercentage;
+    }
+\end{verbatim}
+
+\subsubsection{PackageConfig Struct}
+
+Lastly, the \textit{PackageConfig} struct is to store the packages' information, to keep track of the ones that are available for the event:
+\begin{verbatim}
+    struct PackageConfig {
+        string name;
+        string description;
+        uint256 price;
+        uint256 supply;
+        bool individualNfts;
+    }
+\end{verbatim}
+This structure will be better discussed in the next Section \ref{subsec:ticket_packages}.
 
 \subsection{Ticket Packages}
 \label{subsec:ticket_packages}
@@ -134,8 +198,7 @@ The \textit{Percentage} struct, Figure \ref{fig:percentage_struct}, is necessary
     [event smart contract]
 - [creation of events]
 -- [ipfs (pinata)]
-- [structs]
-- [event lifecycle]
+
 - [restrictions on ticket operations]
 
 [ticket validation]
