@@ -22,8 +22,6 @@ Another unique feature of Solidity is the \textit{address} type, which is basica
 
 This way we can understand why, to send a transaction, paying for the tickets for example, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then the organizer withdraw its profit to his own wallet.
 
-    [talk about system fees]
-
 \section{Main Smart Contract}
 \label{sec:main_smart_contract}
 
@@ -201,7 +199,9 @@ For that, we will allow the organizer to add packages, indicating the supply of 
 
 This way, whenever we need to get a ticket for a certain package, we can go through the packages and see in which one the ID is. One only limitation with this is if the event is already open (users can buy tickets), the only thing we can allow the organizer to do is to add packages, neither remove or change their order, because that would change the ID of the ticket, which would be a problem for the users that already bought them.
 
-    [mention how tokenURI was implemented]
+Now we just have to make sure the information obtained with the \textit{tokenURI} method corresponds to the ticket, according to its package. For this we will have a different metadata file for each package, with the necessary information about the tickets. The \textit{individualNfts} boolean in the \textit{PackageConfig} struct is there to indicate if the organizer wants each ticket on the package to have its own metadata, or if they can share it.
+
+According to this, the \textit{tokenURI} will return an URI like 'baseURI/packageId/ticketId' for a package with individual NFTs, and 'baseURI/packageId' for a package with shared metadata. Like this, when we store the metadata on the IPFS, we store the metadata for each ticket inside a folder of the packages with individual NFTs, and only a metadata file for each package without individual NFTs.
 
 \subsection{System Fees}
 \label{subsec:system_fees}
