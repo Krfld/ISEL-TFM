@@ -70,7 +70,7 @@ This link could point to anything, for example a google drive file, but the comm
     \label{fig:erc721_uml}
 \end{figure}
 
-The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the NFT's metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see that it has the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section [packages], about how the packages logic is implemented.
+The function \textit{tokenURI} is the one that is called by default in the marketplaces to get the NFT's metadata, being one of the main reasons to extend the ERC721 standard, because it enforces the implementation of this method. In the Figure \ref{fig:erc721_uml} we see that it has the \textit{virtual} keyword, meaning this can be overridden by the contracts that extend it, to manipulate the way to store the metadata. We'll be mentioning this again in the Section \ref{fig:package_logic}, about how the packages logic is implemented.
 
 \subsection{Event Behavior}
 \label{subsec:event_behavior}
@@ -201,6 +201,7 @@ For that, we will allow the organizer to add packages, indicating the supply of 
 
 This way, whenever we need to get a ticket for a certain package, we can go through the packages and see in which one the ID is. One only limitation with this is if the event is already open (users can buy tickets), the only thing we can allow the organizer to do is to add packages, neither remove or change their order, because that would change the ID of the ticket, which would be a problem for the users that already bought them.
 
+    [mention how tokenURI was implemented]
 
 \subsection{System Fees}
 \label{subsec:system_fees}
