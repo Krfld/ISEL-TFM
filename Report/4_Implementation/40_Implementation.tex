@@ -173,7 +173,7 @@ The \textit{EventConfig} struct is to store the event's entire configuration, li
 
 \subsubsection{PackageConfig Struct}
 
-Lastly, the \textit{PackageConfig} struct is to store the packages' information, to keep track of the ones that are available for the event:
+Lastly, the \textit{PackageConfig} struct is there to store each package information, to keep track of the ones that are available for the event:
 \begin{verbatim}
     struct PackageConfig {
         string name;
@@ -188,15 +188,36 @@ This structure will be better discussed in the next Section \ref{subsec:ticket_p
 \subsection{Ticket Packages}
 \label{subsec:ticket_packages}
 
-[package logic]
+It's common to see events with different types of tickets, like VIP, standard, or even 3-day passes, each with its own price and benefits. We want to implement this feature in the system, so we can have a better control over the tickets and the users can choose the one that fits them better.
 
-...
+For that, we will allow the organizer to add packages, indicating the supply of each one, and as we saw already, the NFTs are a mapping of the ID to the owner, so we can organize the packages as a list, where the supply and order of the package defines the ID of each NFT, like the Figure \ref{fig:package_logic} demonstrates.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{Package logic.png}
+    \centering
+    \caption{Package logic}
+    \label{fig:package_logic}
+\end{figure}
+
+This way, whenever we need to get a ticket for a certain package, we can go through the packages and see in which one the ID is. One only limitation with this is if the event is already open (users can buy tickets), the only thing we can allow the organizer to do is to add packages, neither remove or change their order, because that would change the ID of the ticket, which would be a problem for the users that already bought them.
 
 
-    [mention system fees]
-    [mention storage]
-    [event smart contract]
-- [creation of events]
+\subsection{System Fees}
+\label{subsec:system_fees}
+
+One of the most important aspects of a system like this is the business model we have to take into account. Since this is a service we want to deploy for event organizers, we need to make this sustainable and profitable. This kind of service aims to do some heavy lifting, with its own features, so we could set a fee lower than the usual on the traditional marketplaces and ticket selling platforms, since the organizers need to pay for each service.
+
+These low fees are possible because with the system being deployed on the blockchain, it stays there while the network is running, so the only extra cost are the network fees when interacting with the event. For the users, each interaction is paid by them, so when a user buys a ticket, the only thing to take into account are the network fees, which depending on the network can be super low.
+
+We'll set a fee on the main smart contract, where will be stored in the event when registering it, so that if we decide to change it, the previous events aren't affected. This is also because we want to abstract the user of any extra fee, so the price the organizer sets, is the price the user pays, and the system fee is taken from the tickets price. In case an event gets cancelled, or a user decides to get a refund, the ticket fee is returned to the user (proportional to the refund), making the system less profit, but guarantees the users of a fair process. With this, we need to restrict the system to only withdraw any profit when the event is over. Since this is rather an uncommon case, the less profit for the system is worth the trust the users and organizers will have in it.
+
+~
+
+[NOTES]
+
+~
+
+[mention storage]
 -- [ipfs (pinata)]
 
 - [restrictions on ticket operations]
