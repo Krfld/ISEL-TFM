@@ -241,6 +241,23 @@ We'll set a fee on the main smart contract, where will be stored in the event wh
 \subsection{Ticket Validation}
 \label{subsec:ticket_validation}
 
+For the ticket validation, we must take into consideration a lot of aspects, because it's not just checking if the user address has a ticket associated to him. This is because, since the data is on the blockchain, anyone can see the addresses where each ticket belongs to, and pretend he's the owner of the ticket. For this to be secure, we need to guarantee the user is actually the owner of the address, and here is where the cryptographic message signature comes in, the same process that happens when executing a normal blockchain transaction.
+
+Essentially the user will have to sign a message for the validator to check if the signature is valid, and if it is, it means the user is the actual owner of the ticket. There's a cryptographic method to recover the address of the signer using the original message and it's signature.
+
+Knowing this, both parties need to know the original message so it matches. We could just use a default message for everyone, so the users would just need to give the signature to the validator, but this could become a security issue, in case the signature gets leaked, anyone who has it, could pretend to be a different address. The idea here is to have a unique message for each user at the time of the event, so it forces the user to sign it in the moment.
+
+The process defined is shown in the Figure \ref{fig:ticket_validation}, where the user reads the QR with a generated message from the validator, signs it with his wallet, and generates a JSON with the signature and useful information like the tickets to validate, the event, and the user address. After the validator reads the QR code with the JSON, he checks if the parameters match the ones on the blockchain, gets the address from the signature and the message, and checks if the user is the owner of the tickets. If everything matches, the validator will trigger a transaction to mark the tickets as validated, to avoid people sharing the accounts and using the same ticket multiple times.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*3/5]{Ticket validation.png}
+    \centering
+    \caption{Ticket validation}
+    \label{fig:ticket_validation}
+\end{figure}
+
+All this is reduced to a single transaction on the blockchain because, depending on the network, the finality of a transaction can take a while (the time it takes for a transaction to be fully registered on the blockchain). This will be discussed in the SECTION. This was planned to be done in a single transaction to avoid congestion at the entrance of the venue, so the users can enter the event with the least amount of delay.
+
 ~
 
 [NOTES]
