@@ -234,9 +234,9 @@ To store the data on the IPFS, we will be using the \href{https://www.pinata.clo
 
 One of the most important aspects of a system like this is the business model we have to take into account. Since this is a service we want to deploy for event organizers, we need to make this sustainable and profitable. This kind of service aims to do some heavy lifting, with its own features, so we could set a fee lower than the usual on the traditional marketplaces and ticket selling platforms, since the organizers need to pay for each service.
 
-These low fees are possible because with the system being deployed on the blockchain, it stays there while the network is running, so the only extra cost are the network fees when interacting with the event. For the users, each interaction is paid by them, so when a user buys a ticket, the only thing to take into account are the network fees, which depending on the network can be super low.
+These low fees are possible because with the system being deployed on the blockchain, it stays there while the network is running, so the only extra cost are the network fees when interacting with the event. For the users, each interaction is paid by them, so when a user buys a ticket, the only thing to take into account are the network fees, which depending on the network, can be super low.
 
-We'll set a fee on the main smart contract, where will be stored in the event when registering it, so that if we decide to change it, the previous events aren't affected. This is also because we want to abstract the user of any extra fee, so the price the organizer sets, is the price the user pays, and the system fee is taken from the tickets price. In case an event gets cancelled, or a user decides to get a refund, the ticket fee is returned to the user (proportional to the refund), making the system less profit, but guarantees the users of a fair process. With this, we need to restrict the system to only withdraw any profit when the event is over. Since this is rather an uncommon case, the less profit for the system is worth the trust the users and organizers will have in it.
+We'll set a fee on the main smart contract, where will be stored in the event when registering it, so that if we decide to change it, the previous events aren't affected. This is also because we want to abstract the user of any extra fee, so the price the organizer sets, is the price the user pays, and the system fee is taken from the tickets price. In case an event gets cancelled, or a user decides to get a refund, the ticket fee is returned to the user (proportional to the refund), making the system less profit, but guarantees the users of a fair process. With this, we need to restrict the system to only withdraw any profit after the event is over. Since this is rather an uncommon case, the less profit that the system makes compensates for the trust that the users and organizers will have on it.
 
 \subsection{Ticket Validation}
 \label{subsec:ticket_validation}
@@ -256,7 +256,42 @@ The process defined is shown in the Figure \ref{fig:ticket_validation}, where th
     \label{fig:ticket_validation}
 \end{figure}
 
-All this is reduced to a single transaction on the blockchain because, depending on the network, the finality of a transaction can take a while (the time it takes for a transaction to be fully registered on the blockchain). This will be discussed in the SECTION. This was planned to be done in a single transaction to avoid congestion at the entrance of the venue, so the users can enter the event with the least amount of delay.
+All this is reduced to a single transaction on the blockchain because, depending on the network, the finality of a transaction (the time it takes for a transaction to be fully registered on the blockchain) can take a while. This will be discussed in the SECTION. This was planned to be done in a single transaction to avoid congestion at the entrance of the venue, so the users can enter the event with the least amount of delay.
+
+\section{Network Choice}
+\label{sec:network_choice}
+
+The network choice is a very important aspect of the project, because it defines the limitations and the costs of the system. We want to aim for a blockchain that has low fees, is fast, secure and scalable, and since this is done using solidity, we have to aim for an EVM compatible network. Solana would be a really good candidate, matching every aspect, but this one is not EVM compatible and it's written in a different language than solidity. To see which network matches our requirements, we need to analyze the statistics of the most popular EVM compatible networks, because these are the more secure ones.
+
+Following the Figure \ref{fig:network_comparison}, we can see the main differences between the networks with the highest transactions per second (TPS). The main aspects to take into account here are the TPS and the finality.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{Network comparison 1.png}
+    \includegraphics[width=\textwidth*2/3]{Network comparison 2.png}
+    \centering
+    \caption{Network comparison. Extracted from ...}
+    \label{fig:network_comparison}
+\end{figure}
+
+Blockchains with higher TPS means they are more scalable, meaning they can process that amount of transactions in one second. Similar to how Visa and Mastercard work, they can process thousands of transactions per second, so the users don't have to wait for a long time for the transaction to be processed. In our case, a high TPS is important, but even more is the finality.
+
+The finality is the time it takes for a transaction to be fully registered on the blockchain, meaning the time it takes for the transaction to be irreversible. This is important because we want the users to be able to enter the event as soon as possible, so the transaction to validate the tickets must be as fast as possible. This is the value that, if it takes too long, we will be waiting for each user individually to enter the event, which would be a problem. It's possible to see Ethereum down there, which has an average of 16 minutes for the finality, which is way too much for what we need.
+
+Unfortunately a lot of networks there are not EVM compatible, so we have to choose between the ones that are. The two options that we could consider are the BNB Chain (also known as Binance Smart Chain (BSC)) and the Avalanche, being the first one the most popular and with higher scalability, but the second one has a way better finality.
+
+The Avalanche chain would be the best bet, but having close to 2 tx/s (transactions per second), maybe its not scalable enough. For the BSC, it has a good enough finality and a good TPS so it would be a good choice for the project. This chain is also very popular and was created by Binance, one of the biggest companies in the blockchain ecosystem, so it's very secure and reliable.
+
+\subsection{Fees}
+\label{subsec:fees}
+
+With this in mind, we still need to take into account the network fees. If this chain had big fees, then we would be forced to switch to another. Luckily, the BSC has very low fees, so it's a good choice for the project. As the Figure \ref{fig:network_fees} shows, the fees are very low, being the peak at 0.50 USD. Note that these are the fees to pay for a transaction, so if a user wants to buy multiple tickets, he can make it once instead of several individual ones.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth*2/3]{Network fees.png}
+    \centering
+    \caption{Network fees. Extracted from ...}
+    \label{fig:network_fees}
+\end{figure}
 
 ~
 
@@ -264,8 +299,6 @@ All this is reduced to a single transaction on the blockchain because, depending
 
 [should i mention marketplace and dashboard?]
 [should i include the setters and getters in the UMLs?]
-
-[todo mention network fees and network choice]
 
 [user app]
 [validator app]
