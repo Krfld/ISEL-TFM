@@ -236,6 +236,8 @@ One of the most important aspects of a system like this is the business model we
 
 These low fees are possible because with the system being deployed on the blockchain, it stays there while the network is running, so the only extra cost are the network fees when interacting with the event. For the users, each interaction is paid by them, so when a user buys a ticket, the only thing to take into account are the network fees, which depending on the network, can be super low.
 
+The other kind of fee the organizer needs to look out for is for the validators to validate the tickets, which is a necessary operation to avoid people from exploiting the system. These fees are paid by the validators, which the organizer essentially manages, so we need to take this into account when setting the system fee, to make it sustainable for the organizer to use our system.
+
 We'll set a fee on the main smart contract, where will be stored in the event when registering it, so that if we decide to change it, the previous events aren't affected. This is also because we want to abstract the user of any extra fee, so the price the organizer sets, is the price the user pays, and the system fee is taken from the tickets price. In case an event gets cancelled, or a user decides to get a refund, the ticket fee is returned to the user (proportional to the refund), making the system less profit, but guarantees the users of a fair process. With this, we need to restrict the system to only withdraw any profit after the event is over. Since this is rather an uncommon case, the less profit that the system makes compensates for the trust that the users and organizers will have on it.
 
 \subsection{Ticket Validation}
@@ -247,7 +249,7 @@ Essentially the user will have to sign a message for the validator to check if t
 
 Knowing this, both parties need to know the original message so it matches. We could just use a default message for everyone, so the users would just need to give the signature to the validator, but this could become a security issue, in case the signature gets leaked, anyone who has it, could pretend to be a different address. The idea here is to have a unique message for each user at the time of the event, so it forces the user to sign it in the moment.
 
-The process defined is shown in the Figure \ref{fig:ticket_validation}, where the user reads the QR with a generated message from the validator, signs it with his wallet, and generates a JSON with the signature and useful information like the tickets to validate, the event, and the user address. After the validator reads the QR code with the JSON, he checks if the parameters match the ones on the blockchain, gets the address from the signature and the message, and checks if the user is the owner of the tickets. If everything matches, the validator will trigger a transaction to mark the tickets as validated, to avoid people sharing the accounts and using the same ticket multiple times.
+The process defined is shown in the Figure \ref{fig:ticket_validation}, where the user reads the QR with a generated message from the validator, signs it with his wallet, and generates a JSON with the signature and useful information like the tickets to validate, the event, and the user address. After the validator reads the JSON in the QR code, he checks if the parameters match the ones on the blockchain, gets the address from the signature and the message, and checks if the user is the owner of the tickets. If everything matches, the validator will trigger a transaction to mark the tickets as validated, to avoid people sharing the accounts and using the same ticket multiple times.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*3/5]{Ticket validation.png}
@@ -256,14 +258,14 @@ The process defined is shown in the Figure \ref{fig:ticket_validation}, where th
     \label{fig:ticket_validation}
 \end{figure}
 
-All this is reduced to a single transaction on the blockchain because, depending on the network, the finality of a transaction (the time it takes for a transaction to be fully registered on the blockchain) can take a while. This will be discussed in the SECTION. This was planned to be done in a single transaction to avoid congestion at the entrance of the venue, so the users can enter the event with the least amount of delay.
+All this is reduced to a single transaction on the blockchain because, depending on the network, the finality of a transaction (the time it takes for a transaction to be fully registered on the blockchain) can take a while. This will be discussed in the next Section \ref{sec:network_choice}. This was planned to be done in a single transaction to avoid congestion at the entrance of the venue, so the users can enter the event with the least amount of delay.
 
 \section{Network Choice}
 \label{sec:network_choice}
 
-The network choice is a very important aspect of the project, because it defines the limitations and the costs of the system. We want to aim for a blockchain that has low fees, is fast, secure and scalable, and since this is done using solidity, we have to aim for an EVM compatible network. Solana would be a really good candidate, matching every aspect, but this one is not EVM compatible and it's written in a different language than solidity. To see which network matches our requirements, we need to analyze the statistics of the most popular EVM compatible networks, because these are the more secure ones.
+The network choice is a very important aspect of the project, because it defines the limitations and the costs of the system. We want to aim for a blockchain that has low fees, is fast, secure and scalable, and since this is done using solidity, we have to aim for an EVM compatible network. To see which network matches our requirements, we need to analyze the statistics of the most popular EVM compatible networks, because these are the more secure ones.
 
-Following the Figure \ref{fig:network_comparison}, we can see the main differences between the networks with the highest transactions per second (TPS). The main aspects to take into account here are the TPS and the finality.
+Following the Figure \ref{fig:network_comparison}, we can see the main differences between the networks with the highest transactions per second (TPS). The main aspects to take into account from this figure are the TPS and the finality.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{Network comparison 1.png}
@@ -284,7 +286,7 @@ The Avalanche chain would be the best bet, but having close to 2 tx/s (transacti
 \subsection{Fees}
 \label{subsec:fees}
 
-With this in mind, we still need to take into account the network fees. If this chain had big fees, then we would be forced to switch to another. Luckily, the BSC has very low fees, so it's a good choice for the project. As the Figure \ref{fig:network_fees} shows, the fees are very low, being the peak at 0.50 USD. Note that these are the fees to pay for a transaction, so if a user wants to buy multiple tickets, he can make it once instead of several individual ones.
+With this in mind, we still need to take into account the network fees. If this chain had high fees, then we would be forced to switch to another. Luckily, the BSC has very low fees, as the Figure \ref{fig:network_fees} shows, being the peak at 0.50 USD. Note that these are the fees to pay for a transaction, so if a user wants to buy multiple tickets, he can make it all at once instead of several individual purchases.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{Network fees.png}
@@ -293,15 +295,29 @@ With this in mind, we still need to take into account the network fees. If this 
     \label{fig:network_fees}
 \end{figure}
 
+These fees are necessary as they are the cost for making the network run. This is common in the blockchain ecosystem, and it's a way to maintain the network secure and reliable, because the people processing the transactions are rewarded for their work, so they have an incentive to keep the network running. So we can never run away from this kinds of fees, but we can choose networks that have lower fees, so the users pay the least amount possible.
+
+\section{User App}
+\label{sec:user_app}
+
+So the user app is a simple interface for the users to interact with the system, where they can authenticate, see the events, and buy and manage tickets. It will have a main page to check the events and a page for each event, where the user can see the details and buy the tickets, and will also have a page to see the tickets he owns.
+
+For the authentication, we will use the service \href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of wallets to interact with. What this service does is establish a connection between the app and a wallet, so that when a function needs to be called, the wallet receives the prompt and signs the transaction if the user approves.
+
+\section{Validator App}
+\label{sec:validator_app}
+
+For the validator app, we will have a simple interface for the validators to do the process mentioned in the Figure \ref{fig:ticket_validation}.
+
 ~
 
-[NOTES]
+[check if i should mention exactly what i did here (to ease the process) or if i should mention what it should actually look like (a private key give by the organizer to input)]
+%  The app itself will behave as a wallet in this case, to make things simple. 
+% So basically the app will generate a private key and when the validator validates the tickets, the app will sign the message with the private key and send it to the blockchain. Since this is done by our system, when the validator has the app, the organizer will need to pass him some funds
 
-[should i mention marketplace and dashboard?]
+Since the validators need to sign the message, the organizer just has to make sure the validators have enough funds to pay for the transaction.
+
+~
+
+[should i mention marketplace and organizer dashboard?]
 [should i include the setters and getters in the UMLs?]
-
-[user app]
-[validator app]
-
-\section{Project Features}
-\label{sec:project_features}
