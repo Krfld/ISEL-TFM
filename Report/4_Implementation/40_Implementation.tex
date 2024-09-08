@@ -20,7 +20,9 @@ Each blockchain network has its own currency, in which is commonly referred to a
 
 Another unique feature of Solidity is the \textit{address} type, which is basically a string strict to the Ethereum address format. That's how we'll be storing the addresses of the organizers and the events on the contracts. The only difference between a user and a contract is that a contract has code associated with it, so it can execute functions and store data, while a user can only send transactions.
 
-This way we can understand why, to send a transaction, paying for the tickets for example, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then the organizer withdraw its profit to his own wallet.
+This way we can understand why, to send a transaction, paying for the tickets for example, we send value along with it, matching the expected price according the logic of the buy method. Essentially we're sending money to the contract, which is stored in the contract's balance, like a normal user wallet. This is how the contract can store money and manage it, for then the organizer to withdraw its profit to his own wallet.
+
+The deployment will be done using \href{https://book.getfoundry.sh/}{Foundry}, a toolkit for the development and deployment of the smart contracts, which makes it easy to deploy to any network, and also to test the contracts locally.
 
 \section{Main Smart Contract}
 \label{sec:main_smart_contract}
@@ -127,6 +129,7 @@ As we can see, the \textit{update} method has been overridden from the ERC721 st
 As is possible to see in the Figure \ref{fig:event_uml}, and also in the Figure \ref{fig:system_uml}, we have a few custom structs to organize better the data. These structs are the \textit{Percentage}, \textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig} structs.
 
 \subsubsection{Percentage Struct}
+\label{subsubsec:percentage_struct}
 
 The \textit{Percentage} struct is necessary because in Solidity there are no floating point numbers, so we need a way to make calculations with percentages. What this struct does is it stores the value of the percentage and the amount of decimals it has, so if we want to calculate 55.50\% of a number, we would have 555 as the value with 1 decimal, or 5550 with 2 decimals.
 
@@ -142,6 +145,7 @@ so to obtain a percentage of some $x$ number, we do $y = \frac{x \times \text{Pe
 When working with ether units, it can be common to have values like 0.00005 ether, but it's rather rare to have small values in wei, like 1000 wei, so applying this formula won't lose much precision (note that 1 ether is $10^{18}$ wei).
 
 \subsubsection{TicketchainConfig Struct}
+\label{subsubsec:ticketchainconfig_struct}
 
 The \textit{TicketchainConfig} struct is simply to keep it stored the system address and the system fee percentage, so we can easily access this information when applying the fees and withdrawing them, and is as follows:
 \begin{verbatim}
@@ -152,6 +156,7 @@ The \textit{TicketchainConfig} struct is simply to keep it stored the system add
 \end{verbatim}
 
 \subsubsection{NFTConfig Struct}
+\label{subsubsec:nftconfig_struct}
 
 The \textit{NFTConfig} struct is just to store the NFTs basic information, like the name, symbol, and base URI, to ease the input of the NFTs information when registering the event:
 \begin{verbatim}
@@ -164,6 +169,7 @@ The \textit{NFTConfig} struct is just to store the NFTs basic information, like 
 The is the name of the NFT collection and the symbol is the abbreviation of it, like the name being 'Ticketchain' and the symbol being 'TCK', for example. The base URI is the link to the metadata of the NFTs, which will be used to get the information about the tickets.
 
 \subsubsection{EventConfig Struct}
+\label{subsubsec:eventconfig_struct}
 
 The \textit{EventConfig} struct is to store the event's entire configuration, like the name, description, location, dates, and refund, like this:
 \begin{verbatim}
@@ -180,6 +186,7 @@ The \textit{EventConfig} struct is to store the event's entire configuration, li
 \end{verbatim}
 
 \subsubsection{PackageConfig Struct}
+\label{subsubsec:packageconfig_struct}
 
 Lastly, the \textit{PackageConfig} struct is there to store each package information, to keep track of the ones that are available for the event:
 \begin{verbatim}
@@ -302,7 +309,7 @@ These fees are necessary as they are the cost for making the network run. This i
 
 So the user app is a simple interface for the users to interact with the system, where they can authenticate, see the events, and buy and manage tickets. It will have a main page to check the events and a page for each event, where the user can see the details and buy the tickets, and will also have a page to see the tickets he owns.
 
-For the authentication, we will use the service \href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of wallets to interact with. What this service does is establish a connection between the app and a wallet, so that when a function needs to be called, the wallet receives the prompt and signs the transaction if the user approves.
+For the authentication, we will use the service \href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of wallets to interact with. What this service does is establish a connection between the app and a wallet, so that when a function needs to be called, the wallet receives the prompt and signs the transaction after the user's approval.
 
 \section{Validator App}
 \label{sec:validator_app}
@@ -317,7 +324,8 @@ For the validator app, we will have a simple interface for the validators to do 
 
 Since the validators need to sign the message, the organizer just has to make sure the validators have enough funds to pay for the transaction.
 
-~
+\section{NOTES [to remove]}
 
-[should i mention marketplace and organizer dashboard?]
-[should i include the setters and getters in the UMLs?]
+ [should i mention marketplace and organizer dashboard?]
+
+ [should i include the setters and getters in the UMLs?]
