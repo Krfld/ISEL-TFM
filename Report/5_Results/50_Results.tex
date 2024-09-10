@@ -47,7 +47,7 @@ What's more useful for us is to be easier to interact with it from the explorer 
     \label{fig:event_read_functions}
 \end{figure}
 
-This is where we can see the details of the event, cause we made the getters for each of the structs that are important. As an example, we can check the packages configuration by calling the getter. The Figure \ref{fig:package_config} shows the result of calling the getter of the package configuration, but in this case it shows as a tuple, because the explorer doesn't understand the custom structs made by us. Still we can see its contents organized like shown in the Section \ref{subsubsec:packageconfig_struct}, showing the name, the description, the price (in wei, the smallest unit of ether), the supply, and the bool saying if the NFTs share the data.
+This is where we can get the details of the event, cause we made the getters for each of the structs that are important. As an example, we can check the packages configuration by calling the getter, and the Figure \ref{fig:package_config} shows the result of calling the getter of the package configuration, but in this case it shows as a tuple, because the explorer doesn't understand the custom structs made by us. Still, we can see its contents organized like shown in the Section \ref{subsubsec:packageconfig_struct}, showing the name, the description, the price (in wei, the smallest unit of ether), the supply, and the bool saying if the NFTs share the data.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/2]{Package config.png}
@@ -56,8 +56,12 @@ This is where we can see the details of the event, cause we made the getters for
     \label{fig:package_config}
 \end{figure}
 
+The only difference from these read-only functions and the write ones is that you'll have to be connected to a wallet, set the necessary inputs and then the wallet will be triggered for you to approve the transaction.
+
 \section{Mobile Application}
 \label{sec:mobile_application}
 
-[show application]
-[show smart contract interactions on the blockchain]
+\section{NOTES [to remove]}
+
+ [show application]
+ [show smart contract interactions on the blockchain]
