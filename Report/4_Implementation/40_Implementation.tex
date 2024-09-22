@@ -1,14 +1,50 @@
 \chapter{Implementation}
 \label{ch:implementation}
 
-[Brief introduction of the chapter]
-
 Being a blockchain project, the goal is to not use the so called Web2
 technologies, this means the traditional approaches of having a backend running
 on a server and similar services, but rather to use only Web3 technologies for
 us to understand exactly the limitations there are by adopting solely the
 blockchain ecosystem. Ideally, of course, in the future this project benefits
 greatly by merging these two approaches.
+
+[Brief introduction of the chapter]
+
+\section{Mobile App}
+\label{sec:mobile_app}
+
+% 
+% 
+
+So the user app is a simple interface for the users to interact with the
+system, where they can authenticate, see the events, and buy and manage
+tickets. It will have a main page to check the events and a page for each
+event, where the user can see the details and buy the tickets, and will also
+have a page to see the tickets he owns.
+
+For the authentication, we will use the service
+\href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of
+wallets to interact with. What this service does is establish a connection
+between the app and a wallet, so that when a function needs to be called, the
+wallet receives the prompt and signs the transaction after the user's approval.
+
+\section{Validator App}
+\label{sec:validator_app}
+
+For the validator app, we will have a simple interface for the validators to do
+the process mentioned in the Figure \ref{fig:ticket_validation}.
+
+~
+
+[check if i should mention exactly what i did here (to ease the process) or if i should mention what it should actually look like (a private key give by the organizer to input)]
+%  The app itself will behave as a wallet in this case, to make things simple. 
+% So basically the app will generate a private key and when the validator validates the tickets, the app will sign the message with the private key and send it to the blockchain. Since this is done by our system, when the validator has the app, the organizer will need to pass him some funds
+
+Since the validators need to sign the message, the organizer just has to make
+sure the validators have enough funds to pay for the transaction.
+
+% 
+% 
 
 \section{Solidity}
 \label{sec:solidity}
@@ -97,7 +133,7 @@ restricted to only organizers (to avoid unauthorized people to interact).
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{System UML.png}
 	\centering
-	\caption{Main smart contract UML}
+	\caption{Main smart contract UML (simplified)}
 	\label{fig:system_uml}
 \end{figure}
 
@@ -146,7 +182,7 @@ system (offchain), which is much cheaper.
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{ERC721 UML.png}
 	\centering
-	\caption{ERC721 UML}
+	\caption{ERC721 UML (simplified)}
 	\label{fig:erc721_uml}
 \end{figure}
 
@@ -235,7 +271,7 @@ executing the necessary operations to people he trusts.
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*3/4]{Event UML.png}
 	\centering
-	\caption{Event smart contract UML}
+	\caption{Event smart contract UML (simplified)}
 	\label{fig:event_uml}
 \end{figure}
 
@@ -591,38 +627,6 @@ rewarded for their work, so they have an incentive to keep the network running.
 So we can never run away from this kinds of fees, but we can choose networks
 that have lower fees, so the users pay the least amount possible.
 
-\section{User App}
-\label{sec:user_app}
-
-So the user app is a simple interface for the users to interact with the
-system, where they can authenticate, see the events, and buy and manage
-tickets. It will have a main page to check the events and a page for each
-event, where the user can see the details and buy the tickets, and will also
-have a page to see the tickets he owns.
-
-For the authentication, we will use the service
-\href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of
-wallets to interact with. What this service does is establish a connection
-between the app and a wallet, so that when a function needs to be called, the
-wallet receives the prompt and signs the transaction after the user's approval.
-
-\section{Validator App}
-\label{sec:validator_app}
-
-For the validator app, we will have a simple interface for the validators to do
-the process mentioned in the Figure \ref{fig:ticket_validation}.
-
-~
-
-[check if i should mention exactly what i did here (to ease the process) or if i should mention what it should actually look like (a private key give by the organizer to input)]
-%  The app itself will behave as a wallet in this case, to make things simple. 
-% So basically the app will generate a private key and when the validator validates the tickets, the app will sign the message with the private key and send it to the blockchain. Since this is done by our system, when the validator has the app, the organizer will need to pass him some funds
-
-Since the validators need to sign the message, the organizer just has to make
-sure the validators have enough funds to pay for the transaction.
-
 \section{NOTES [to remove]}
-
- [should i mention marketplace and organizer dashboard?]
 
  [should i include the setters and getters in the UMLs?] indicate UML simplificado

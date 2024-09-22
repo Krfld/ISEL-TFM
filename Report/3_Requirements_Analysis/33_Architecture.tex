@@ -1,13 +1,9 @@
 \section{Architecture}
 \label{sec:architecture}
 
-In this Section we will be mentioning the architecture of the system. As we can
-see in the Figure \ref{fig:architecture}, the main system will store the
-organizers that are allowed to create events. For each event created by them,
-there will be ticket packages deployed, which contains the batch of tickets for
-each, and the users will buy them and, consequently, the validators can
-validate them at the entrance of the venue. The validators are assigned to
-operate in each event and one validator can be assigned to multiple ones.
+The system architecture can be visualized in the Figure \ref{fig:architecture}
+below, and it illustrates how each entity of the project interacts with each
+other, taking into account the requirements mentioned in the previous Sections.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth*2/3]{Architecture.png}
@@ -15,3 +11,22 @@ operate in each event and one validator can be assigned to multiple ones.
     \caption{Architecture}
     \label{fig:architecture}
 \end{figure}
+
+We will have a mobile application for both common users and validators and a
+website dashboard to allow the Ticketchain owner and the organizers to manage
+system settings and events, respectively. Unfortunately, there wasn't enough
+time to implement this part of the system so, for now, we'll have to interact
+directly with the smart contract.
+
+In both cases, and as we saw in the use cases Section, all the users will have
+to authenticate. The authentications here, instead of using a traditional login
+with email and password, they will need a wallet software to interact with the
+blockchain, so a wallet connection service is needed to link the wallet to the
+system.
+
+After the connection is done, the system will interact with the smart contract
+to display event-related information and update the status of events or
+tickets. All this codebase will be deployed on an EVM blockchain and for the
+tickets images, we will need a file storage system to store them. The upload of
+those images would be done on that dashboard, but since it wasn't implemented,
+we'll have to do it manually.
