@@ -1,32 +1,32 @@
 \section{Architecture}
 \label{sec:architecture}
 
-The system architecture can be visualized in the Figure \ref{fig:architecture}
-below, and it illustrates how each entity of the project interacts with each
-other, taking into account the requirements mentioned in the previous Sections.
+The system architecture is illustrated in Figure \ref{fig:architecture},
+showing how each component of the project interacts, aligned with the
+requirements discussed in previous sections.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth*2/3]{Architecture.png}
     \centering
-    \caption{Architecture}
+    \includegraphics[width=0.66\textwidth]{Architecture.png}
+    \caption{System Architecture}
     \label{fig:architecture}
 \end{figure}
 
-We will have a mobile application for both common users and validators and a
-website dashboard to allow the Ticketchain owner and the organizers to manage
-system settings and events, respectively. Unfortunately, there wasn't enough
-time to implement this part of the system so, for now, we'll have to interact
-directly with the smart contract.
+The architecture comprises a mobile application for both regular users and
+validators, as well as a web dashboard for the Ticketchain owner and event
+organizers to manage system settings and events. Due to time constraints, this
+part of the system has not yet been implemented; for now, interactions will be
+conducted directly with the smart contract.
 
-In both cases, and as we saw in the use cases Section, all the users will have
-to authenticate. The authentications here, instead of using a traditional login
-with email and password, they will need a wallet software to interact with the
-blockchain, so a wallet connection service is needed to link the wallet to the
-system.
+As detailed in the use cases section, all users must authenticate before
+accessing the system. Instead of a traditional login using email and password,
+authentication will require wallet software to interact with the blockchain.
+Therefore, a wallet connection service is necessary to link users' wallets to
+the system.
 
-After the connection is done, the system will interact with the smart contract
-to display event-related information and update the status of events or
-tickets. All this codebase will be deployed on an EVM blockchain and for the
-tickets images, we will need a file storage system to store them. The upload of
-those images would be done on that dashboard, but since it wasn't implemented,
-we'll have to do it manually.
+Once the wallet connection is established, the system will communicate with the
+smart contract to display event-related information and update the status of
+events or tickets. The entire codebase will be deployed on an EVM-compatible
+blockchain. For ticket images, a file storage system will be needed. While
+image uploads will typically be managed through the dashboard, this feature has
+yet to be implemented, necessitating manual uploads for the time being.
