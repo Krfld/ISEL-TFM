@@ -1,0 +1,68 @@
+\section{Requirements}
+\label{sec:requirements}
+
+[brief introduction of the section]
+
+This Section shows the requirements for the system, divided into functional and
+non-functional requirements. The functional requirements, in the Section
+\ref{subsec:functional_requirements}, are the features that the system has to
+fulfill related to the functionality itself while the non-functional
+requirements, in the Section \ref{subsec:non_functional_requirements}, are
+related to other aspects like performance or security.
+
+\subsection{Functional Requirements}
+\label{subsec:functional_requirements}
+
+In the Table \ref{tab:functional_requirements} there are the functional
+requirements and we can see their respective description on the right side of
+the table.
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{lX}
+        \hline
+        \textbf{Requirement}             & \textbf{Description}                                                                                                                                                                                                                                               \\
+        \hline
+        Connect to a wallet software     & The system must be able to connect                                                                                                      \newline to a wallet software to interact with the blockchain and to allow the validation of the ownership of the tickets. \\
+        \hline
+        Interact with the smart contract & The system has to interact with the smart contract to display the necessary information and to update the state of any event or ticket.                                                                                                                            \\
+        \hline
+        Add NFTs metadata to the IPFS    & The system must be able to add the NFTs metadata to the InterPlanetary File System (IPFS) to store that data offchain.                                                                                                                                             \\
+        \hline
+    \end{tabularx}
+    \caption{Functional Requirements}
+    \label{tab:functional_requirements}
+\end{table}
+
+\subsection{Non-Functional Requirements}
+\label{subsec:non_functional_requirements}
+
+For the non-functional requirements, the Table
+\ref{tab:non_functional_requirements} shows the necessary criteria for the system to perform optimally and meet quality standards.
+
+\begin{table}[H]
+    \begin{tabularx}{\textwidth}{lX}
+        \hline
+        \textbf{Requirement} & \textbf{Description}                                                               \\
+        \hline
+        Secure               & The system must be secure to avoid any kind of fraud.                              \\
+        \hline
+        Low fees             & The system must have low fees for any kind of operation.                           \\
+        \hline
+        Scalable             & The system must be able to handle a large number of users and events.              \\
+        \hline
+        Fast                 & The system must be fast to allow events to have the smoothest experience possible. \\
+        \hline
+        User-friendly        & The system must be user-friendly to allow users to easily buy and sell tickets.    \\
+        \hline
+    \end{tabularx}
+    \caption{Non-Functional Requirements}
+    \label{tab:non_functional_requirements}
+\end{table}
+
+The scalable, low fees and fast requirements are essentially associated with
+the blockchain network choice. As we saw in the Section \ref{subsec:networks},
+different networks have different characteristics and we need to choose the one
+that best fits our needs. The secure and user-friendly requirements are
+associated with the systems design and implementation. We need to design the
+system in a way that is secure, to avoid any kind of fraud, and have a smooth
+experience for the users.

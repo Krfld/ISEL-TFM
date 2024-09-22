@@ -1,0 +1,11 @@
+{
+    "Config": {
+		"DataBase": {
+			"host": "localhost",
+			"port": "3306",
+			"db": "smi",
+			"username": "smi",
+			"password": "segredo"
+			}
+	}
+}

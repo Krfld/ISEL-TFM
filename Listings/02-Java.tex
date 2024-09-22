@@ -1,0 +1,33 @@
+\chapter{Linguagem Java}
+\label{ch:LangJava}
+
+A versão do exemplo \textbf{Hello World}, localizado num ficheiro e escrito na linguagem Java, é apresentada na Listagem \ref{lst:Java}.
+
+\lstinputlisting[
+	language=Java,
+	caption=Hello World em \texttt{Java},
+	label=lst:Java,
+	%firstline=5
+]
+{Hello.java}
+
+A Listagem \ref{lst:JavaVer2} apresenta um segundo exexmplo de uma listagem que apenas mostra parte de um ficheiro, nomeadamente a função \texttt{main(String[] args)}. É igualmente possível observar que quando uma linha de código sai das 
+margens do texto é inserida de forma ``automática'' uma quebra de linha.
+
+\lstinputlisting[
+	language=Java,
+	caption=Hello World em \texttt{Java} com recolha de nome,
+	label=lst:JavaVer2,
+	linerange={6-15}
+]
+{Hello-Ver2.java}
+
+A listagem \ref{lst:JavaVer3} apresenta todo o programa mas exclui as linhas correspondentes aos \texttt{import}.
+
+\lstinputlisting[
+	language=Java,
+	caption=Hello World em \texttt{Java} com recolha de nome - Programa completo,
+	label=lst:JavaVer3,
+	firstline=5
+]
+{Hello-Ver2.java}

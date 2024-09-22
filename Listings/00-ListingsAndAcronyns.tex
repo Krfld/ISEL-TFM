@@ -1,0 +1,218 @@
+\documentclass{report}
+
+% Custom language settings. In this case for Portuguese
+\usepackage[portuguese]{babel}
+
+% Package for support listings
+\usepackage{listings}
+
+% Package for support math
+\usepackage{amsmath}
+
+% Package for define some colors
+\usepackage{xcolor}
+
+% para incluir imagens e tratar de modo adequado endereços url
+\usepackage{graphicx,url}
+
+% para juntar multiplas linhas em tabelas
+\usepackage{multirow}
+
+% para poder rodar páginas
+\usepackage{pdflscape}
+
+% para incluir figuras do tipo eps
+\usepackage{epsfig}
+
+% Define some colors - Begin
+\definecolor{ListingColorKeyWord}{rgb}{0, 0.5, 0}
+\definecolor{ListingColorComment}{rgb}{0.0, 0.0, 0.6}
+\definecolor{ListingColorIdentifier}{rgb}{0.5, 0.12, 0.10}
+\definecolor{ListingColorEmphasize}{rgb}{0, 1, 1}
+
+\definecolor{ListingColorBreakLine}{rgb}{0.5, 0.12, 0.10}
+
+\definecolor{ListingColorDelimJSON}{rgb}{0, 0, 0}
+\colorlet{ListingColorPunctJSON}{red!60!black}
+
+\colorlet{HyperRefColorLink}{red!100}
+\colorlet{HyperRefColorAnchor}{black!100} 
+\colorlet{HyperRefColorCite}{green!100}
+\colorlet{HyperRefColorFile}{cyan!100}
+\colorlet{HyperRefColorMenu}{red!100}
+\colorlet{HyperRefColorRun}{cyan!100}
+\colorlet{HyperRefColorUrl}{magenta!100}
+
+\definecolor{HyperRefColorBorderLink}{rgb}{1, 0, 0}
+\definecolor{HyperRefColorBorderCite}{rgb}{0, 1, 0}
+\definecolor{HyperRefColorBorderFile}{rgb}{0, 0.5, 0.5}
+\definecolor{HyperRefColorBorderMenu}{rgb}{1, 0, 0}
+\definecolor{HyperRefColorBorderRun}{rgb}{0.7, 0.7, 0.7}
+\definecolor{HyperRefColorBorderUrl}{rgb}{0, 1, 1}
+
+\colorlet{HyperRefColorWhite}{white!100}
+
+% Define some colors - End
+
+\usepackage[automake, acronym, toc, translate=false]{glossaries}
+
+\usepackage{fancyvrb}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=HyperRefColorLink,
+	anchorcolor=HyperRefColorAnchor, 
+	citecolor=HyperRefColorCite,
+	filecolor=HyperRefColorFile,
+	menucolor=HyperRefColorMenu,
+	runcolor=HyperRefColorRun,
+	urlcolor=HyperRefColorLink,
+	%allcolors=HyperRefColorWhite,
+	citebordercolor=HyperRefColorBorderCite,
+	filebordercolor=HyperRefColorBorderFile,
+	linkbordercolor=HyperRefColorBorderLink,
+	menubordercolor=HyperRefColorBorderMenu,
+	urlbordercolor=HyperRefColorBorderUrl,
+	runbordercolor=HyperRefColorBorderRun,
+	%allbordercolors=HyperRefColorWhite,
+}
+
+% Change some of the default names used in indexes - Begin
+
+% Adpated from the template used in the course "Projeto" from LEIM
+\newcommand{\noNumChapterInIndex}[1]{
+   \chapter*{#1}
+   \addcontentsline{toc}{chapter}{#1}
+}
+
+\newcommand{\myPrefaceChapter}[1]{
+   \noNumChapterInIndex{#1}
+}
+
+\renewcommand{\lstlistingname}{Listagem}
+
+\renewcommand{\lstlistlistingname}{Índice de Listagens}
+
+\renewcommand{\acronymname}{Lista de Acrónimos}
+
+\addto\captionsportuges{
+    \renewcommand{\chaptername}{Capítulo}
+}
+
+\setlength{\headheight}{15pt}
+
+% Change some of the default names used in indexes - End
+
+% Settings to be used when showing a listing for the Java language
+\lstset{
+	language=Java,
+	keywordstyle={\color{ListingColorKeyWord}\bfseries},
+	commentstyle=\color{ListingColorComment},
+	identifierstyle=\color{ListingColorIdentifier},
+	basicstyle=\ttfamily,
+	frame=single,
+	showstringspaces=false,
+	numbers=left,
+	tabsize=2,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{ListingColorBreakLine}{$\hookrightarrow$}},
+}
+
+% Settings to be used when showing a listing for the Python language
+\lstset{
+	language=Python,
+	keywordstyle={\color{ListingColorKeyWord}\bfseries},
+	commentstyle=\color{ListingColorComment},
+	identifierstyle=\color{ListingColorIdentifier},
+	basicstyle=\ttfamily,
+	frame=single,
+	showstringspaces=false,
+	numbers=left,
+	tabsize=2,
+	breaklines=true,
+	postbreak=\mbox{\textcolor{ListingColorBreakLine}{$\hookrightarrow$}},
+}
+
+% Settings to be used when showing a listing for the Linux Bash shell script language
+\lstset{
+	language=Bash,
+	keywordstyle={\color{ListingColorKeyWord}\bfseries},
+	commentstyle=\color{ListingColorComment},
+	identifierstyle=\color{ListingColorIdentifier},
+	basicstyle=\ttfamily,
+	frame=single,
+	showstringspaces=false,
+	numbers=left,
+	tabsize=2,
+	breaklines=true,
+	emph={echo},
+	postbreak=\mbox{\textcolor{ListingColorBreakLine}{$\hookrightarrow$}},
+}
+
+% Settings to be used when showing a listing for the XML language
+\lstset{
+	language=XML,
+	emphstyle={\color{ListingColorEmphasize}\bfseries},
+	commentstyle=\color{ListingColorComment},
+	emph={Config, DataBase, host, port, db, username, password},
+}
+
+%Declare a new language. In this case JSON
+\lstdefinelanguage{JSON}{
+	basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+	frame=single,
+	showstringspaces=false,
+	numbers=left,
+	tabsize=2,
+	breaklines=true,
+	xleftmargin=21pt,
+	postbreak=\mbox{\textcolor{ListingColorBreakLine}{$\hookrightarrow$}},
+	literate=
+     *{:}{{{\color{ListingColorPunctJSON}{:}}}}{1}
+      {,}{{{\color{ListingColorPunctJSON}{,}}}}{1}
+      {\{}{{{\color{ListingColorDelimJSON}{\{}}}}{1}
+      {\}}{{{\color{ListingColorDelimJSON}{\}}}}}{1}
+      {[}{{{\color{ListingColorDelimJSON}{[}}}}{1}
+      {]}{{{\color{ListingColorDelimJSON}{]}}}}{1},
+}
+
+\makeglossaries
+
+\include{06-Acronyns-List}
+
+\begin{document}
+
+% The listing number are indexed to the chapter name
+\counterwithin{lstlisting}{chapter}
+
+\tableofcontents
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+
+\cleardoublepage
+\addcontentsline{toc}{chapter}{\lstlistlistingname}
+\lstlistoflistings
+
+\printglossaries
+
+\input{./01-Python}
+\input{./02-Java}
+\input{./03-Bash}
+\input{./04-XML}
+\input{./05-JSON}
+\input{./06-Acronyns}
+\input{./07-Misch}
+
+
+\end{document}

@@ -1,0 +1,34 @@
+\chapter{Gestão de Acrónimos}
+\label{ch:ManAcronym}
+
+O \LaTeX permite gerir acrónimos de forma automática. O primeio passo consiste em criar uma lista de acrónimos.
+A lista de acrónimos é um ficheiro de texto com entradas do tipo:
+
+\begin{verbatim}
+	\newacronym{usb}{USB}{Universal Serial Bus}
+\end{verbatim}
+
+
+Para utilizar um acrónimo utiliza-se a expressão \Verb|\gls{nome}|. No primeira utilização o acrónimo é expandido 
+e nas seguintes utilizações aparece apenas a sigla do acrónimo. Por exemplo, \gls{usb} e da segunda 
+referência \gls{usb}.
+
+No entanto, existem situações em pode ser necessário ter um controlo mais ``fino" para a expansão dos acrónimos. 
+Para tal pode-se utilizar uma das seguintes expressões \LaTeX:
+
+\begin{itemize}
+	\item \Verb|\acrlong{nome}| -- para obter a definição do acrónimo
+	\item \Verb|\acrshort{nome}| -- para obter a sigla do acrónimo
+	\item \Verb|\acrfull{nome}| -- para obter a definição e sigla do acrónimo
+\end{itemize}
+
+No caso do acrónimo \textbf{usb} a utilização das expressões anteriores seria:
+
+\begin{itemize}
+	\item \acrlong{usb} -- para obter a definição do acrónimo
+	\item \acrshort{usb} -- para obter a sigla do acrónimo
+	\item \acrfull{usb} -- para obter a definição e sigla do acrónimo
+\end{itemize}
+
+Outros acrónimos que estão definidos são \gls{asv} e \gls{usv}. Que podem ser referidos várias vezes no texto: \gls{asv} e \gls{usv}.
+
