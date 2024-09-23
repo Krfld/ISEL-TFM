@@ -1,42 +1,207 @@
 \chapter{Implementation}
 \label{ch:implementation}
 
-Being a blockchain project, the goal is to not use the so called Web2
-technologies, this means the traditional approaches of having a backend running
-on a server and similar services, but rather to use only Web3 technologies for
-us to understand exactly the limitations there are by adopting solely the
-blockchain ecosystem. Ideally, of course, in the future this project benefits
-greatly by merging these two approaches.
-
 [Brief introduction of the chapter]
 
 \section{Mobile App}
 \label{sec:mobile_app}
 
+The mobile app is the main interface for the users to interact with the system,
+where they can authenticate, see the events, and buy and manage tickets. It
+will have a main page to check the events and a page for each event, where the
+user can see the details and buy the tickets, and will also have a page to see
+the tickets he owns.
+
+We also made the validator logic in the same app to simplify the process, so we
+don't have to make a separate app for the validators, however in a real
+scenario we would have separate apps.
+
+The app will be developed using the Flutter framework, which is a
+cross-platform framework that allows us to build apps for Android and iOS from
+a single codebase. It's made by Google and it's very popular for its ease of
+use and performance.
+
+\subsection{Authentication}
+\label{subsec:authentication}
+
+The Figure \ref{fig:authentication_page} shows the starting point of the app
+that separates the authentication of the common users from the validators.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Authentication page.jpg}
+	\centering
+	\caption{Authentication page}
+	\label{fig:authentication_page}
+\end{figure}
+
+To authenticate the users, we will use the
+\href{https://walletconnect.com/}{Wallet Connect} service, which supports a
+variety of wallets to interact with. What this service does is establishes a
+connection between the app and a wallet, so that when a function needs to be
+called, the wallet receives the prompt and signs the transaction after the
+user's approval.
+
+The Figure \ref{fig:wallet_connect_prompt} shows what happens when we try to
+authenticate as common users which triggers the Wallet Connect service. This
+lists all the wallets that are supported by the service and the user can choose
+the one he uses.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Wallet connect prompt.jpg}
+	\centering
+	\caption{Wallet connect prompt}
+	\label{fig:wallet_connect_prompt}
+\end{figure}
+
+After choosing one, the wallet app will open automatically and the user will
+have to approve the connection, as the Figure \ref{fig:metamask_connect} shows.
+We're using \href{https://metamask.io/}{MetaMask} as the external blockchain
+wallet, which is the most popular blockchain wallet and it's available as a
+browser extension and as a mobile app. To use it, you just have to create a
+wallet there and you'll be all set to start interacting with the app.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{MetaMask connect.jpg}
+	\centering
+	\caption{MetaMask connect}
+	\label{fig:metamask_connect}
+\end{figure}
+
+The authentication is a one-time process, so the user doesn't have to do this
+every time he wants to interact with the app. Basically when a connection is
+established, the next time the app tries to reconnect to the wallet, it will
+skip the prompt.
+
+\subsection{Events}
+\label{subsec:events}
+
+After the common user authenticates, he will be redirected to the main page of
+the app, where he can see the events that are available. The Figure
+\ref{fig:main_page} shows the main page of the app, where the user can see the
+events and search for them.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Main page.jpg}
+	\centering
+	\caption{Main page}
+	\label{fig:main_page}
+\end{figure}
+
+When clicking on one of the events, the user will be redirected to the event
+page. The Figure \ref{fig:event_page} shows the event page, where the user can
+see the details of the event and the packages available.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Event page.jpg}
+	\centering
+	\caption{Event page}
+	\label{fig:event_page}
+\end{figure}
+
+The user sees the name, description, location, date, packages and even the
+refund information. When the user taps on the package he wants to buy, the
+prompt shown in the Figure \ref{fig:buy_tickets_prompt} appears, where the user
+can choose the amount of tickets he wants to buy. We went with this approach of
+only choosing the amount of tickets to buy, but in the future a feature like
+seat selection could be implemented.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Buy tickets prompt.jpg}
+	\centering
+	\caption{Buy tickets prompt}
+	\label{fig:buy_tickets_prompt}
+\end{figure}
+
+The user can then confirm the purchase, and the wallet will prompt the user to
+sign the transaction, as shown in the Figure
+\ref{fig:metamask_transaction_prompt}. It displays the amount of money the user
+has to pay, to which address he's interacting with, and the total cost to
+execute the transaction.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{MetaMask transaction prompt.jpg}
+	\centering
+	\caption{MetaMask transaction prompt}
+	\label{fig:metamask_transaction_prompt}
+\end{figure}
+
+\subsection{Tickets}
+\label{subsec:tickets}
+
+After confirmation, the user is redirected back to the app, where he will be
+able to see the events which he owns any tickets, on the profile page, the
+second tab with the profile icon, along with the button to disconnect from the
+wallet, like shown in the Figure \ref{fig:profile_page}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Profile page.jpg}
+	\centering
+	\caption{Profile page}
+	\label{fig:profile_page}
+\end{figure}
+
+Going into one of them, like the Figure \ref{fig:tickets_page} shows, the user
+can see the tickets he owns for that event. It's a similar page as the normal
+event one, but with the tickets he owns instead of the packages available. We
+see 4 tickets here and the first one has a mark on it. This means the ticket
+has already been validated. In the real world, a user do this doesn't make
+sense, but we did it to make sure we handle every case.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Tickets page.jpg}
+	\centering
+	\caption{Tickets page}
+	\label{fig:tickets_page}
+\end{figure}
+
+Clicking on one of the tickets, it shows us the basic ticket information, along
+with its image, like shown in the Figure \ref{fig:ticket_information}.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Ticket information.jpg}
+	\centering
+	\caption{Ticket information}
+	\label{fig:ticket_information}
+\end{figure}
+
+For operating the tickets, the user can simply click on the select tickets
+button which will allow him to choose the tickets which he wishes to operate,
+like shown in the Figure \ref{fig:ticket_operations}. In this case the user
+sees only 3 tickets (while the Figure \ref{fig:tickets_page} shows 4) because
+since the first is already validated, it's not possible to operate on it
+anymore. We see the options to gift, refund and validate the tickets he
+selected.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth/3,frame]{Ticket operations.jpg}
+	\centering
+	\caption{Ticket operations}
+	\label{fig:ticket_operations}
+\end{figure}
+
+The gift option will ask the user for the address to which he wants to gift the
+tickets. After that, it will trigger the wallet to sign the transaction, and
+the tickets will be transferred to the address.
+
+The refund option will ask the user to confirm the refund, and trigger the
+wallet to confirm the transaction in which the tickets will be burned, making
+them available again for other users to buy, and returning the correct amount
+of money to the user.
+
+The validate option will start the validation process, which will be explained
+in the Section TODO.
+
 % 
 % 
 
-So the user app is a simple interface for the users to interact with the
-system, where they can authenticate, see the events, and buy and manage
-tickets. It will have a main page to check the events and a page for each
-event, where the user can see the details and buy the tickets, and will also
-have a page to see the tickets he owns.
-
-For the authentication, we will use the service
-\href{https://walletconnect.com/}{Wallet Connect}, which supports a variety of
-wallets to interact with. What this service does is establish a connection
-between the app and a wallet, so that when a function needs to be called, the
-wallet receives the prompt and signs the transaction after the user's approval.
-
-\section{Validator App}
+\section{TODO Validator App}
 \label{sec:validator_app}
 
-For the validator app, we will have a simple interface for the validators to do
-the process mentioned in the Figure \ref{fig:ticket_validation}.
+For the validator app, we will have a simple interface for the validators to
+execute the process mentioned in the Figure \ref{fig:ticket_validation}.
 
-~
+[TODO mention the wallet being local]
 
-[check if i should mention exactly what i did here (to ease the process) or if i should mention what it should actually look like (a private key give by the organizer to input)]
 %  The app itself will behave as a wallet in this case, to make things simple. 
 % So basically the app will generate a private key and when the validator validates the tickets, the app will sign the message with the private key and send it to the blockchain. Since this is done by our system, when the validator has the app, the organizer will need to pass him some funds
 
@@ -62,8 +227,8 @@ by anyone, which is a pretty different approach from traditional web
 development.
 
 Another thing is that contracts run atomically, so if something should fail or
-revert, the changes don't take place. Modifiers are a good example where it can
-be used to prevent reentrancy attacks, which are a common security issue in
+revert, the changes don't take place. Modifiers are a good example where this
+can be used to prevent reentrancy attacks, which are a common security issue in
 smart contracts, and restrict the access to certain functions, reverting if an
 intruder tries to call them.
 
@@ -111,27 +276,18 @@ structure with variables to store data and methods, where the main difference
 is that a class is called a contract and you can extend others to integrate
 their functionalities. That's essentially what's gonna happen with each event,
 extending the ERC721 standard, making it a collection of NFTs, where each NFT
-is a ticket.
+is a ticket. Since this is the behavior we want (each event being a NFT
+collection), we will have to deploy (instantiate, in C++) a new contract for
+each event, so we will have a main contract to keep track of these events.
 
-Since this is the behavior we want (each event being a NFT collection), we will
-have to deploy (instantiate, in C++) a new contract for each event, like the
-Figure \ref{fig:system_behavior} shows, so we need a main contract to keep
-track of these events.
-
-\begin{figure}[H]
-	\includegraphics[width=\textwidth*2/3]{System behavior.png}
-	\centering
-	\caption{System behavior}
-	\label{fig:system_behavior}
-\end{figure}
-
-With this in mind, like we see in the Figure \ref{fig:system_uml}, the main
-contract will track the organizers and the events associated with the system,
-along with the method to register a new event with the necessary data,
-restricted to only organizers (to avoid unauthorized people to interact).
+With this in mind, we created the Ticketchain main smart contract UML, like the
+Figure \ref{fig:system_uml} shows. This contract will track the organizers and
+the events associated with the system, along with the method to register a new
+event with the necessary data, restricted to only organizers (to avoid
+unauthorized people to interact).
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth]{System UML.png}
+	\includegraphics[width=\textwidth]{Ticketchain UML.png}
 	\centering
 	\caption{Main smart contract UML (simplified)}
 	\label{fig:system_uml}
@@ -164,14 +320,14 @@ library, which is a collection of secure and community-vetted smart contracts
 that are used by many projects in the Ethereum ecosystem. This library is a
 great resource for developers to build secure and reliable smart contracts.
 
-Analyzing its source code [ref], and looking into the most important variables
-and methods of the standard shown in the Figure \ref{fig:erc721_uml}, we can
-understand that the NFTs are simply a mapping of the token ID to the owner
-address, so when you execute a transaction to get a token (this process is
-called minting), the token ID is then associated to your address. Then for each
-token it's possible set a URI, which is a link to the NFTs metadata, usually
-being a JSON file with the necessary information about the token, like the
-name, description, and image.
+Analyzing its source code [TODO ref], and looking into the most important
+variables and methods of the standard shown in the Figure \ref{fig:erc721_uml},
+we can understand that the NFTs are simply a mapping of the token ID to the
+owner address, so when you execute a transaction to get a token (this process
+is called minting), the token ID is then associated to your address. Then for
+each token it's possible set a URI, which is a link to the NFTs metadata,
+usually being a JSON file with the necessary information about the token, like
+the name, description, and image.
 
 This link could point to anything, for example a google drive file, but the
 common thing is to store the metadata on the IPFS, which is a decentralized
@@ -211,11 +367,9 @@ be an issue because it's an internal method, so we will access it from the buy
 method in the event and restrict it there.
 
 The Figure \ref{fig:event_lifecycle} shows the lifecycle of the event, and what
-restrictions are in place for the ticket operations. We will have 4 main states
-for the event after it has been registered, being \textit{Open}, \textit{No
-	refund}, \textit{Start}, and \textit{End} dates. Once the event is registered,
-it will show up in the app for user to see, and the organizers can set a later
-open date to allow ticket minting (buying).
+restrictions are in place for the ticket operations. The dates above the line
+indicate the states of the event, and below a small description of the
+operations that are allowed when each state is reached.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth]{Event lifecycle.png}
@@ -224,15 +378,20 @@ open date to allow ticket minting (buying).
 	\label{fig:event_lifecycle}
 \end{figure}
 
-\subsubsection{Open Date}
+We will have 4 main states for the event after it has been registered (the ones
+in bold), being the \textit{Open}, \textit{No refund}, \textit{Start}, and
+\textit{End} dates. Once the event is registered, it will show up in the app
+for user to see, and the organizers can set a later open date to allow ticket
+minting (buying).
 
-Once it hits the \textit{Open} date, we will allow the users to buy the
-tickets, which will mint the NFTs by executing the \textit{safeMint} method of
-the ERC721 contract.
+\paragraph{Open Date:} Once it hits the \textit{Open} date, we will allow the users to buy tickets,
+which will mint the NFTs by executing the \textit{safeMint} method of the
+ERC721 contract. We will allow users to operate over the NFTs, but only within
+the system. If they try to call the \textit{safeTransferFrom} directly from the
+ERC721 standard, it will revert, because we detect it's not being called
+through the system.
 
-\subsubsection{No Refund Date}
-
-After the \textit{No refund} date, we will prevent the users to call the refund
+\paragraph{No Refund Date:} After the \textit{No refund} date, we will prevent the users to call the refund
 method, which essentially \textit{burns} the NFTs, removing them from the user
 and making them available again. This is a nice operation to add because it
 allows the users to get their money back if they can't attend the event. The
@@ -248,15 +407,11 @@ that'll be allowed is for users to resell their tickets in the system's
 marketplace, which them to sell at a higher price than the refund (but never
 higher than the original, of course).
 
-\subsubsection{Start Date}
-
-The \textit{Start} date is there to tell the users when the event starts, so
+\paragraph{Start Date:} The \textit{Start} date is there to tell the users when the event starts, so
 basically when the gates will open. That's the date that appears in the app, so
 the users know when to show up.
 
-\subsubsection{End Date}
-
-The \textit{End} date tells when the event is over, unlocking all the ticket
+\paragraph{End Date:} The \textit{End} date tells when the event is over, unlocking all the ticket
 operations to outside the system. So users can simply keep the tickets as a
 souvenir or sell them in any marketplace, without any restrictions on the
 tickets, including the removal of the price cap.
@@ -276,11 +431,11 @@ executing the necessary operations to people he trusts.
 \end{figure}
 
 As we can see, the \textit{update} method has been overridden from the ERC721
-standard, to restrict the interactions with the NFTs according the defined
-behavior. This method is the one that gets called anytime there's a change in
-the NFTs state, so we can implement the necessary logic to restrict the
-operations here and we can visualize it in the following flowchart, shown in
-the Figure \ref{fig:nft_flowchart}.
+standard to restrict the interactions with the NFTs according the defined
+behavior. This method is the one that gets called anytime there's an operation
+on any NFT, so we can implement here the necessary logic to restrict the
+operations, and we can visualize that in the following flowchart, shown in the
+Figure \ref{fig:nft_flowchart}.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{NFT flowchart.png}
@@ -288,6 +443,14 @@ the Figure \ref{fig:nft_flowchart}.
 	\caption{NFT flowchart}
 	\label{fig:nft_flowchart}
 \end{figure}
+
+This logic is possible to implement because of modifiers, mentioned before.
+What we essentially do on that modifier, is set a variable to true (meaning the
+NFT operation is coming from within the system), execute the function it's
+assigned to, and then we set the variable back to false. Then we apply that
+modifier on the necessary functions, which we can see them with the operator
+	{internalTransfer} in the event UML, shown in the Figure
+\ref{sec:event_smart_contract}.
 
 \subsection{Structs}
 \label{subsec:structs}
@@ -298,10 +461,7 @@ These structs are the \textit{Percentage}, \textit{EventConfig},
 \textit{NFTConfig}, \textit{PackageConfig} and \textit{TicketchainConfig}
 structs.
 
-\subsubsection{Percentage Struct}
-\label{subsubsec:percentage_struct}
-
-The \textit{Percentage} struct is necessary because in Solidity there are no
+\paragraph{Percentage Struct:} The \textit{Percentage} struct is necessary because in Solidity there are no
 floating point numbers, so we need a way to make calculations with percentages.
 What this struct does is it stores the value of the percentage and the amount
 of decimals it has, so if we want to calculate 55.50\% of a number, we would
@@ -322,10 +482,7 @@ ether, but it's rather rare to have small values in wei, like 1000 wei, so
 applying this formula won't lose much precision (note that 1 ether is $10^{18}$
 wei).
 
-\subsubsection{TicketchainConfig Struct}
-\label{subsubsec:ticketchainconfig_struct}
-
-The \textit{TicketchainConfig} struct is simply to keep it stored the system
+\paragraph{TicketchainConfig Struct:} The \textit{TicketchainConfig} struct is simply to keep it stored the system
 address and the system fee percentage, so we can easily access this information
 when applying the fees and withdrawing them, and is as follows:
 \begin{lstlisting}[caption=TicketchainConfig struct]
@@ -335,10 +492,7 @@ when applying the fees and withdrawing them, and is as follows:
     }
 \end{lstlisting}
 
-\subsubsection{NFTConfig Struct}
-\label{subsubsec:nftconfig_struct}
-
-The \textit{NFTConfig} struct is just to store the NFTs basic information, like
+\paragraph{NFTConfig Struct:} The \textit{NFTConfig} struct is just to store the NFTs basic information, like
 the name, symbol, and base URI, to ease the input of the NFTs information when
 registering the event:
 \begin{lstlisting}[caption=NFTConfig struct]
@@ -353,10 +507,7 @@ like the name being 'Ticketchain' and the symbol being 'TCK', for example. The
 base URI is the link to the metadata of the NFTs, which will be used to get the
 information about the tickets.
 
-\subsubsection{EventConfig Struct}
-\label{subsubsec:eventconfig_struct}
-
-The \textit{EventConfig} struct is to store the event's entire configuration,
+\paragraph{EventConfig Struct:} The \textit{EventConfig} struct is to store the event's entire configuration,
 like the name, description, location, dates, and refund, like this:
 \begin{lstlisting}[caption=EventConfig struct]
     struct EventConfig {
@@ -371,10 +522,7 @@ like the name, description, location, dates, and refund, like this:
     }
 \end{lstlisting}
 
-\subsubsection{PackageConfig Struct}
-\label{subsubsec:packageconfig_struct}
-
-Lastly, the \textit{PackageConfig} struct is there to store each package
+\paragraph{PackageConfig Struct:} Lastly, the \textit{PackageConfig} struct is there to store each package
 information, to keep track of the ones that are available for the event:
 \begin{lstlisting}[caption=PackageConfig struct]
     struct PackageConfig {
@@ -398,9 +546,9 @@ tickets and the users can choose the one that fits them better.
 
 For that, we will allow the organizer to add packages, indicating the supply of
 each one, and as we saw already, the NFTs are a mapping of the ID to the owner,
-so we can organize the packages as a list, where the supply and order of the
-package defines the ID of each NFT, like the Figure \ref{fig:package_logic}
-illustrates.
+so we can organize the packages as a list, where the supply and order of them
+assigns the ID of each NFT to the package, like the Figure
+\ref{fig:package_logic} illustrates.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{Package logic.png}
@@ -410,11 +558,11 @@ illustrates.
 \end{figure}
 
 This way, whenever we need to get a ticket for a certain package, we can go
-through the packages and see in which one the ID is. One only limitation with
+through the packages and see which one the ID is in. One only limitation with
 this is if the event is already open (users can buy tickets), the only thing we
 can allow the organizer to do is to add packages, neither remove or change
-their order, because that would change the ID of the ticket, which would be a
-problem for the users that already bought them.
+their order, because that would change the package associated to the tickets,
+which would be a problem for the users that already bought them.
 
 Now we just have to make sure the information obtained with the
 \textit{tokenURI} method corresponds to the ticket, according to its package.
@@ -433,16 +581,19 @@ package without individual NFTs.
 \subsection{Metadata Storage}
 \label{subsec:metadata_storage}
 
-As we mentioned before, we'll be using the InterPlanetary File System (IPFS)
-for storing the NFTs metadata. The IPFS is a decentralized storage system where
-the data is stored in a distributed network of nodes (decentralized), making it
-very secure and reliable. This is a great solution for storing the metadata of
-the NFTs because it's very cheap and easy to use, and it's a common practice in
-the blockchain ecosystem. Other options would be to store the data on some kind
-of server, but that would be more expensive to maintain, and since we are
-dealing with NFTs, it's good practice to store the data in a decentralized
-manner, to avoid any kind of alteration on its contents, if the tickets
-possibly become valuable collectibles.
+To store the NFTs metadata files, we'll be using the
+\href{https://ipfs.tech/}{InterPlanetary File System (IPFS)} for storing the
+NFTs metadata. The IPFS is a decentralized storage system where the data is
+stored in a distributed network of nodes (decentralized), making it very secure
+and reliable. This is a great solution for storing the metadata of the NFTs
+because it's very cheap and easy to use, and it's a common practice in the
+blockchain ecosystem.
+
+Other options would be to store the data on some kind of server, but that would
+be more expensive to maintain, and since we are dealing with NFTs, it's good
+practice to store the data in a decentralized manner, to avoid any kind of
+alteration on its contents, if the tickets possibly become valuable
+collectibles.
 
 This kind of issue was something that has happened before, where people bought
 NFTs with the idea of them being somewhat valuable, but then the owner changed
@@ -537,7 +688,7 @@ validator will trigger a transaction to mark the tickets as validated, to avoid
 people sharing the accounts and using the same ticket multiple times.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth*3/5]{Ticket validation.png}
+	\includegraphics[width=\textwidth*2/3]{Ticket validation.png}
 	\centering
 	\caption{Ticket validation}
 	\label{fig:ticket_validation}
@@ -550,7 +701,7 @@ will be discussed in the next Section \ref{sec:network_choice}. This was
 planned to be done in a single transaction to avoid congestion at the entrance
 of the venue, so the users can enter the event with the least amount of delay.
 
-	[analise vai para cap 3]
+	[vv analise vai para cap 3 (network choice e fees) vv]
 
 \section{Network Choice}
 \label{sec:network_choice}
@@ -564,7 +715,7 @@ popular EVM compatible networks, because these are the more secure ones.
 
 Following the Figure \ref{fig:network_comparison}, we can see the main
 differences between the networks with the highest transactions per second
-(TPS). The main aspects to take into account from this figure are the TPS and
+(TPS). The main aspects to take into account from this Figure are the TPS and
 the finality.
 
 \begin{figure}[H]
@@ -626,7 +777,3 @@ secure and reliable, because the people processing the transactions are
 rewarded for their work, so they have an incentive to keep the network running.
 So we can never run away from this kinds of fees, but we can choose networks
 that have lower fees, so the users pay the least amount possible.
-
-\section{NOTES [to remove]}
-
- [should i include the setters and getters in the UMLs?] indicate UML simplificado
