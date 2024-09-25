@@ -2,28 +2,24 @@
 \label{sec:use_cases}
 
 This section presents the use cases for the system, categorized by four key
-actors: Ticketchain owner, organizer, validator, and user. Each actor shares a
-common use case: authentication, which is responsible for verifying user
-identities within the system.
-
-In Section \ref{subsec:ticketchain_owner}, we detail the use cases for the
-Ticketchain owner, focusing on system settings management and the oversight of
-event organizers. Section \ref{subsec:organizer} covers the use cases for
-organizers, including event creation, management, and validator selection.
-
-Section \ref{subsec:validator} describes the validator's use case, which
-involves ticket validation to ensure that only users with valid tickets can
-enter events. Finally, Section \ref{subsec:common_user} outlines the use cases for
-common users, such as purchasing, gifting, refunding, and reselling tickets.
+actors: the Ticketchain Owner in the Section \ref{subsec:ticketchain_owner}
+where we detail the use cases for the Ticketchain owner, focusing on system
+settings management and the oversight of event organizers; the organizer in the
+Section \ref{subsec:organizer} that covers the use cases for organizers,
+including event creation, management, and validator selection; the Validator in
+the Section \ref{subsec:validator} where we describe the validator's use case,
+which involves ticket validation to ensure that only users with valid tickets
+can enter events; and the Common User in the Section \ref{subsec:common_user}
+where we outline the use cases for common users, such as purchasing, gifting,
+refunding, and reselling tickets. Each actor shares a common use case:
+authentication, which is responsible for verifying user identities within the
+system.
 
 \subsection{Ticketchain Owner}
 \label{subsec:ticketchain_owner}
 
 As illustrated in Figure \ref{fig:ticketchain_owner_use_cases}, the Ticketchain
-owner has the specific use case of managing event organizers. This control is
-essential to ensure that only authorized individuals have access to the system.
-Additionally, the Ticketchain owner can manage system settings, which are
-crucial for tailoring the system’s behavior to meet the needs of organizers.
+owner has the specific use case of managing event organizers.
 
 \begin{figure}[H]
     \centering
@@ -32,14 +28,16 @@ crucial for tailoring the system’s behavior to meet the needs of organizers.
     \label{fig:ticketchain_owner_use_cases}
 \end{figure}
 
+This control is essential to ensure that only authorized individuals have
+access to the system. Additionally, the Ticketchain owner can manage system
+settings, which are crucial for tailoring the system’s behavior to meet the
+needs of organizers.
+
 \subsection{Organizer}
 \label{subsec:organizer}
 
-As shown in Figure \ref{fig:organizer}, the organizer has several key use
-cases, including event creation and management. The organizer also oversees the
-selection of validators for each event, ensuring that only authorized personnel
-can validate tickets. Furthermore, the organizer can manage event settings,
-such as updating information or canceling events when necessary.
+As shown in Figure \ref{fig:organizer_use_cases}, the organizer has several key
+use cases, including event creation and management.
 
 \begin{figure}[H]
     \centering
@@ -48,13 +46,16 @@ such as updating information or canceling events when necessary.
     \label{fig:organizer_use_cases}
 \end{figure}
 
+The organizer also oversees the selection of validators for each event,
+ensuring that only authorized personnel can validate tickets. Furthermore, the
+organizer can manage event settings, such as updating information or canceling
+events when necessary.
+
 \subsection{Validator}
 \label{subsec:validator}
 
 For validators, as illustrated in Figure \ref{fig:validator_use_cases}, the
 primary use case is to validate users' tickets, allowing entry to the event.
-This step is critical for maintaining security and ensuring that only users
-with valid tickets can participate.
 
 \begin{figure}[H]
     \centering
@@ -63,15 +64,13 @@ with valid tickets can participate.
     \label{fig:validator_use_cases}
 \end{figure}
 
+This step is critical for maintaining security and ensuring that only users
+with valid tickets can participate.
+
 \subsection{Common User}
 \label{subsec:common_user}
 
 Figure \ref{fig:common_user_use_cases} presents the use cases for common users.
-Users can purchase tickets, gift them to others, request refunds (depending on
-event policies), and resell tickets (with the condition that they cannot sell
-at a price higher than the original). These use cases provide users with the
-flexibility to manage their tickets according to their preferences while
-adhering to system regulations.
 
 \begin{figure}[H]
     \centering
@@ -79,3 +78,9 @@ adhering to system regulations.
     \caption{Common User Use Cases}
     \label{fig:common_user_use_cases}
 \end{figure}
+
+Users can purchase tickets, gift them to others, request refunds (depending on
+event policies), and resell tickets (with the condition that they cannot sell
+at a price higher than the original). These use cases provide users with the
+flexibility to manage their tickets according to their preferences while
+adhering to system regulations.
