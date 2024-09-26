@@ -1,39 +1,44 @@
 \section{Architecture}
 \label{sec:architecture}
 
-Being a blockchain project, the goal is to not use the so called Web2
-technologies, this means the traditional approaches of having a backend running
-on a server and similar services, but rather to use only Web3 technologies for
-us to understand exactly the limitations there are by adopting solely the
-blockchain ecosystem. Ideally, of course, in the future this project benefits
-greatly by merging these two approaches.
+As this is a blockchain-based project, the goal is to minimize the use of
+traditional Web2 technologies, such as server-based backends and related
+services. Instead, we aim to rely primarily on Web3 technologies to fully
+understand the limitations and possibilities of adopting a blockchain-only
+ecosystem. In the future, a hybrid approach combining both Web2 and Web3 could
+offer significant advantages.
 
-The system's architecture is illustrated in Figure \ref{fig:architecture},
-showing how each component of the project interacts, aligned with the
-requirements discussed in previous sections.
+The system architecture is depicted in Figure \ref{fig:architecture},
+illustrating how the various components of the project interact, in line with
+the requirements discussed in previous sections.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.66\textwidth]{Architecture.png}
+    \includegraphics[width=\textwidth*2/3]{Architecture.png}
     \caption{System Architecture}
     \label{fig:architecture}
 \end{figure}
 
-The architecture comprises a mobile application for both common users and
-validators, as well as a web dashboard for the Ticketchain owner and event
-organizers to manage system settings and events. Due to time constraints, this
-part of the system has not yet been implemented; for now, interactions will be
-conducted directly with the smart contract.
+The architecture includes two main mobile applications—one for regular users
+and the other for validators—as well as a website dashboard for the Ticketchain
+owner and event organizers to manage system settings and events.
 
-As detailed in the use cases section, all users must authenticate before
-accessing the system. Instead of a traditional login using email and password,
-authentication will require wallet software to interact with the blockchain.
-Therefore, a wallet connection service is necessary to link users' wallets to
-the system.
+In the diagram, components highlighted in blue represent external services,
+while green components denote those we are developing. The red component, the
+website dashboard, has not yet been implemented due to time constraints, so for
+now, interactions will occur directly with the smart contract. Additionally, to
+streamline development, the two mobile applications have been consolidated into
+a single app, allowing us to focus on the core functionality.
 
-Once the wallet connection is established, the system will communicate with the
-smart contract to display event-related information and update the status of
-events or tickets. The entire codebase will be deployed on an EVM-compatible
-blockchain. For ticket images, a file storage system will be needed. While
-image uploads will typically be managed through the dashboard, this feature has
-yet to be implemented, necessitating manual uploads for the time being.
+As described in previous sections, all users must authenticate before accessing
+the system. Instead of traditional email and password logins, authentication
+will require wallet software to interact with the blockchain. Thus, a wallet
+connection service is needed to link user wallets to the system.
+
+Once authenticated, the system will interact with the smart contract to display
+event-related information and update the status of events or tickets. The
+entire codebase will be deployed on an EVM-compatible blockchain.
+
+Regarding ticket images, a file storage system will be required. Although image
+uploads will eventually be handled via the dashboard, this feature is not yet
+implemented, necessitating manual uploads for now.

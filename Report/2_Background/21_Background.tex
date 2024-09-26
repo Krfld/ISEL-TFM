@@ -23,25 +23,16 @@ Section \ref{subsec:wallets}, Networks \textbf{(2)} in Section
 \subsection{Interacting with the Blockchain}
 \label{subsec:interacting_with_the_blockchain}
 
-A blockchain operates as a decentralized network of nodes, each maintaining a
-copy of the entire blockchain. To interact with the blockchain, users send
-transactions to the network, which are then validated and added to a block by
-the nodes. This process requires a wallet—an application that allows users to
-manage digital assets, interact with smart contracts, and send transactions.
-Wallets provide a user-friendly interface for accessing the blockchain, signing
-transactions with private keys, and viewing account balances and transaction
-history.
-
-Figure \ref{fig:how_does_a_blockchain_work} illustrates the steps involved in a
-blockchain transaction. To execute a transaction, users must sign it with their
-private key, proving ownership of the assets being transferred. The transaction
-is then broadcast to the network, validated by participants, and added to a
-block. Once confirmed, it becomes part of the immutable blockchain ledger,
-accessible to all network participants.
-
-This procedure is essential for altering the blockchain state; transactions
-must be signed. In contrast, reading information from the blockchain requires
-no signatures—users can simply query the network for the desired information.
+First let's see how an interaction with a blockchain works. A blockchain
+operates as a decentralized network of nodes, each maintaining a copy of the
+entire blockchain. To interact with it, users send transactions to the network,
+which are then validated and added to a block by the nodes. This process
+requires a wallet—an application that allows users to manage digital assets,
+interact with smart contracts, and send transactions. Wallets provide a
+user-friendly interface for accessing the blockchain, signing transactions with
+private keys, and viewing account balances and transaction history. Figure
+\ref{fig:how_does_a_blockchain_work} illustrates the steps involved in a
+blockchain transaction.
 
 \begin{figure}[H]
     \centering
@@ -50,10 +41,20 @@ no signatures—users can simply query the network for the desired information.
     \label{fig:how_does_a_blockchain_work}
 \end{figure}
 
+To execute a transaction, users must sign it with their private key, proving
+ownership of the assets being transferred. The transaction is then broadcast to
+the network, validated by participants, and added to a block. Once confirmed,
+it becomes part of the immutable blockchain ledger, accessible to all network
+participants.
+
+This procedure is essential for altering the blockchain state; transactions
+must be signed. In contrast, reading information from the blockchain requires
+no signatures—users can simply query the network for the desired information.
+
 \subsection{Blockchain}
 \label{subsec:blockchain}
 
-Blockchain is a decentralized and distributed ledger technology that enables
+So blockchain is a decentralized and distributed ledger technology that enables
 secure data recording and sharing across a network of computers. A blockchain
 consists of a series of blocks, each containing a list of transactions. These
 blocks are linked in a chronological and immutable chain, forming a transparent
@@ -86,11 +87,11 @@ intermediaries, enabling the creation of decentralized applications (DApps) on
 blockchain networks.
 
 Blockchain technology has applications across various industries, including
-finance, supply chain management, healthcare, and decentralized finance (DeFi).
-Its potential to enhance security, transparency, and efficiency has led to
-widespread exploration of its capabilities. This ecosystem is often referred to
-as Web3, a new paradigm for the internet aimed at decentralizing control and
-empowering users with greater ownership and privacy over their data.
+healthcare and finance. Its potential to enhance security, transparency, and
+efficiency has led to widespread exploration of its capabilities. This
+ecosystem is often referred to as Web3, a new paradigm for the internet aimed
+at decentralizing control and empowering users with greater ownership and
+privacy over their data.
 
 A compelling aspect of blockchain is how it harnesses human nature—greed and
 self-interest—to create a secure and reliable system. Nodes are incentivized to
@@ -203,6 +204,59 @@ DApp functionalities.
 Smart contracts have applications across finance, supply chain management, real
 estate, healthcare, and more. Their potential to revolutionize contract
 execution in the digital age is significant.
+
+\subsection{Solidity}
+\label{subsec:solidity}
+
+We'll be doing the smart contracts in Solidity, because it's the most popular
+language for Ethereum smart contracts, and makes it easy to deploy to any EVM
+compatible blockchain. This language is similar to other languages like C++,
+but it has some unique features that make it very powerful for smart contracts.
+
+\paragraph{Public:} One important aspect is that when a contract is public, anyone can call its
+functions, that's why we need to restrict their access and take into account
+that possibility when defining the operations of the entire contract. So it's
+always important to have a mindset that any function (endpoint) can be called
+by anyone, which is a pretty different approach from traditional backend
+development.
+
+\paragraph{Modifiers:} Another thing is that contracts run atomically, so if something should fail or
+revert, the changes don't take place. Modifiers are another feature that
+complement this to prevent reentrancy attacks, which are a common security
+issue in smart contracts, and restrict the access to certain functions,
+reverting if an intruder tries to call them.
+
+We can define, for example, a call to register an event to be restricted to
+only organizers or a call to validate tickets to be limited to only validators.
+This is possible because there are a few keywords like \textit{msg.sender} that
+tell us which user address called the function and \textit{msg.value} that tell
+us how much value was sent with the transaction. This value is essentially the
+amount of money the user sends in a transaction, necessary, for example, to buy
+the tickets. We'll check if the value matches the correct price and reverts
+otherwise.
+
+\paragraph{Currency:} Each blockchain network has its own currency, in which is commonly referred to
+as ether on the EVM networks. This is the unit of value that is used to pay to
+execute transactions, but in solidity we cannot work with floating point
+numbers, so we have to work with the smallest unit of ether, which is called
+wei. Similar to how we have 1 euro is 100 cents, we have 1 ether is $10^{18}$
+wei, same as on the bitcoin network we have the 1 bitcoin (BTC) is $10^{8}$
+satoshis (SATS). This is the unit being used when we call the
+\textit{msg.value} variable, so we always have to account for the conversion.
+
+\paragraph{Address:} Another unique feature of Solidity is the \textit{address} type, which is
+basically a string strict to the Ethereum address format. That's how we'll be
+storing the addresses of the organizers and the events on the contracts.
+Another detail to point out is that the only difference between a user and a
+contract is that a contract has code associated with it, so it can execute
+functions and store data, while a user can only send transactions.
+
+This way we can understand why, to send a transaction, paying for the tickets
+for example, we send value along with it, matching the expected price according
+the logic of the buy method. Essentially we're sending money to the contract,
+which is stored in the contract's balance, like a normal user wallet. This is
+how the contract can store money and manage it, for then the organizer to
+withdraw its profit to his own wallet.
 
 \subsection{Token Standards}
 \label{subsec:token_standards}

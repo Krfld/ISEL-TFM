@@ -208,68 +208,61 @@ execute the process mentioned in the Figure \ref{fig:ticket_validation}.
 Since the validators need to sign the message, the organizer just has to make
 sure the validators have enough funds to pay for the transaction.
 
-% 
-% 
+\subsection{Ticket Validation}
+\label{subsec:ticket_validation}
 
-\section{Solidity}
-\label{sec:solidity}
+For the ticket validation, we must take into consideration a lot of aspects,
+because it's not just checking if the user address has a ticket associated to
+him. This is because, since the data is on the blockchain, anyone can see the
+addresses where each ticket belongs to, and pretend he's the owner of the
+ticket. For this to be secure, we need to guarantee the user is actually the
+owner of the address, and here is where the cryptographic message signature
+comes in, the same process that happens when executing a normal blockchain
+transaction.
 
-We'll be doing the smart contracts in Solidity, because it's the most popular
-language for Ethereum smart contracts, and makes it easy to deploy to any EVM
-compatible blockchain. This language is similar to other languages like C++,
-but it has some unique features that make it very powerful for smart contracts.
+We came up with the process shown in the Figure \ref{fig:ticket_validation},
+that shows the steps between the actors and the system to validate the tickets.
 
-One important aspect is that when a contract is public, anyone can call its
-functions, that's why we need to restrict their access and take into account
-that possibility when defining the operations of the entire contract. So it's
-always important to have a mindset that any function (endpoint) can be called
-by anyone, which is a pretty different approach from traditional web
-development.
+\begin{figure}[H]
+	\includegraphics[width=\textwidth*2/3]{Ticket validation.png}
+	\centering
+	\caption{Ticket validation}
+	\label{fig:ticket_validation}
+\end{figure}
 
-Another thing is that contracts run atomically, so if something should fail or
-revert, the changes don't take place. Modifiers are a good example where this
-can be used to prevent reentrancy attacks, which are a common security issue in
-smart contracts, and restrict the access to certain functions, reverting if an
-intruder tries to call them.
+Here we see that the user reads the QR with a generated message from the
+validator, signs it with his wallet, and generates a JSON with the signature
+and useful information like the tickets to validate, the event, and the user
+address. After the validator reads the JSON in the QR code, he checks if the
+parameters match the ones on the blockchain, gets the address using a
+cryptographic method to recover it through the original message and it's
+signature, and checks if the user is the owner of the tickets. If everything
+matches, the validator will trigger a transaction to mark the tickets as
+validated, to avoid people sharing the accounts and using the same ticket
+multiple times.
 
-We can define, for example, a call to register an event to be restricted to
-only organizers or a call to validate tickets to be limited to only validators.
-This is possible because there are a few keywords like \textit{msg.sender} that
-tell us which user address called the function and \textit{msg.value} that tell
-us how much value was sent with the transaction. This value is essentially the
-amount of money the user sends in a transaction, necessary, for example, to buy
-the tickets. We'll check if the value matches the correct price and reverts
-otherwise.
+Both parties need to know the original message, so it matches. We could just
+use a default message for everyone, so the users would just need to give the
+signature to the validator, but this could become a security issue in case the
+signature gets leaked, because anyone who has it could pretend to be a
+different address. The idea here is to have a unique message for each user at
+the time of the event, so it forces the user to sign it.
 
-Each blockchain network has its own currency, in which is commonly referred to
-as ether, on the EVM networks. This is the unit of value that is used to pay to
-execute transactions, but in solidity we cannot work with floating point
-numbers, so we have to work with the smallest unit of ether, which is called
-wei. Similar to how we have 1 euro is 100 cents, we have 1 ether is $10^{18}$
-wei, same as on the bitcoin network we have the 1 bitcoin (BTC) is $10^{8}$
-satoshis (SATS). This is the unit being used when we call the
-\textit{msg.value} variable, so we always have to account for the conversion.
+All this is reduced to a single transaction on the blockchain because,
+depending on the network, the finality of a transaction (the time it takes for
+a transaction to be fully registered on the blockchain) can take a while. This
+was planned to be done in a single transaction to avoid congestion at the
+entrance of the venue, so the users can enter the event with the least amount
+of delay. This is an important aspect to consider when designing the system to
+fullfil the system being fast, so like mentioned in the Section
+\ref{subsec:non_functional_requirements}, the network choice is crucial.
 
-Another unique feature of Solidity is the \textit{address} type, which is
-basically a string strict to the Ethereum address format. That's how we'll be
-storing the addresses of the organizers and the events on the contracts. The
-only difference between a user and a contract is that a contract has code
-associated with it, so it can execute functions and store data, while a user
-can only send transactions.
-
-This way we can understand why, to send a transaction, paying for the tickets
-for example, we send value along with it, matching the expected price according
-the logic of the buy method. Essentially we're sending money to the contract,
-which is stored in the contract's balance, like a normal user wallet. This is
-how the contract can store money and manage it, for then the organizer to
-withdraw its profit to his own wallet.
+\section{Main Smart Contract}
+\label{sec:main_smart_contract}
 
 The deployment will be done using \href{https://book.getfoundry.sh/}{Foundry},
 a toolkit for the development and deployment of the smart contracts, which
 makes it easy to deploy to any network, and also to test the contracts locally.
-
-\section{Main Smart Contract}
-\label{sec:main_smart_contract}
 
 So smart contracts are similar to C++ mainly because it lies on a class-like
 structure with variables to store data and methods, where the main difference
@@ -652,130 +645,3 @@ users of a fair process. With this, we need to restrict the system to only
 withdraw any profit after the event is over. Since this is rather an uncommon
 case, the less profit that the system makes compensates for the trust that the
 users and organizers will have on it.
-
-\subsection{Ticket Validation}
-\label{subsec:ticket_validation}
-
-For the ticket validation, we must take into consideration a lot of aspects,
-because it's not just checking if the user address has a ticket associated to
-him. This is because, since the data is on the blockchain, anyone can see the
-addresses where each ticket belongs to, and pretend he's the owner of the
-ticket. For this to be secure, we need to guarantee the user is actually the
-owner of the address, and here is where the cryptographic message signature
-comes in, the same process that happens when executing a normal blockchain
-transaction.
-
-Essentially the user will have to sign a message for the validator to check if
-the signature is valid, and if it is, it means the user is the actual owner of
-the ticket. There's a cryptographic method to recover the address of the signer
-using the original message and it's signature.
-
-Knowing this, both parties need to know the original message so it matches. We
-could just use a default message for everyone, so the users would just need to
-give the signature to the validator, but this could become a security issue, in
-case the signature gets leaked, anyone who has it, could pretend to be a
-different address. The idea here is to have a unique message for each user at
-the time of the event, so it forces the user to sign it in the moment.
-
-The process defined is shown in the Figure \ref{fig:ticket_validation}, where
-the user reads the QR with a generated message from the validator, signs it
-with his wallet, and generates a JSON with the signature and useful information
-like the tickets to validate, the event, and the user address. After the
-validator reads the JSON in the QR code, he checks if the parameters match the
-ones on the blockchain, gets the address from the signature and the message,
-and checks if the user is the owner of the tickets. If everything matches, the
-validator will trigger a transaction to mark the tickets as validated, to avoid
-people sharing the accounts and using the same ticket multiple times.
-
-	[image and explain after | change to validator app, since it doesnt talk abbout blockchain]
-
-\begin{figure}[H]
-	\includegraphics[width=\textwidth*2/3]{Ticket validation.png}
-	\centering
-	\caption{Ticket validation}
-	\label{fig:ticket_validation}
-\end{figure}
-
-All this is reduced to a single transaction on the blockchain because,
-depending on the network, the finality of a transaction (the time it takes for
-a transaction to be fully registered on the blockchain) can take a while. This
-will be discussed in the next Section \ref{sec:network_choice}. This was
-planned to be done in a single transaction to avoid congestion at the entrance
-of the venue, so the users can enter the event with the least amount of delay.
-
-	[vv network choice and fees maybe chapter 3 vv]
-
-\section{Network Choice}
-\label{sec:network_choice}
-
-The network choice is a very important aspect of the project, because it
-defines the limitations and the costs of the system. We want to aim for a
-blockchain that has low fees, is fast, secure and scalable, and since this is
-done using solidity, we have to aim for an EVM compatible network. To see which
-network matches our requirements, we need to analyze the statistics of the most
-popular EVM compatible networks, because these are the more secure ones.
-
-Following the Figure \ref{fig:network_comparison}, we can see the main
-differences between the networks with the highest transactions per second
-(TPS). The main aspects to take into account from this Figure are the TPS and
-the finality.
-
-\begin{figure}[H]
-	\includegraphics[width=\textwidth*2/3]{Network comparison 1.png}
-	\includegraphics[width=\textwidth*2/3]{Network comparison 2.png}
-	\centering
-	\caption{Network comparison. Extracted from ...}
-	\label{fig:network_comparison}
-\end{figure}
-
-Blockchains with higher TPS means they are more scalable, meaning they can
-process that amount of transactions in one second. Similar to how Visa and
-Mastercard work, they can process thousands of transactions per second, so the
-users don't have to wait for a long time for the transaction to be processed.
-In our case, a high TPS is important, but even more is the finality.
-
-The finality is the time it takes for a transaction to be fully registered on
-the blockchain, meaning the time it takes for the transaction to be
-irreversible. This is important because we want the users to be able to enter
-the event as soon as possible, so the transaction to validate the tickets must
-be as fast as possible. This is the value that, if it takes too long, we will
-be waiting for each user individually to enter the event, which would be a
-problem. It's possible to see Ethereum down there, which has an average of 16
-minutes for the finality, which is way too much for what we need.
-
-Unfortunately a lot of networks there are not EVM compatible, so we have to
-choose between the ones that are. The two options that we could consider are
-the BNB Chain (also known as Binance Smart Chain (BSC)) and the Avalanche,
-being the first one the most popular and with higher scalability, but the
-second one has a way better finality.
-
-The Avalanche chain would be the best bet, but having close to 2 tx/s
-(transactions per second), maybe its not scalable enough. For the BSC, it has a
-good enough finality and a good TPS so it would be a good choice for the
-project. This chain is also very popular and was created by Binance, one of the
-biggest companies in the blockchain ecosystem, so it's very secure and
-reliable.
-
-\subsection{Fees}
-\label{subsec:fees}
-
-With this in mind, we still need to take into account the network fees. If this
-chain had high fees, then we would be forced to switch to another. Luckily, the
-BSC has very low fees, as the Figure \ref{fig:network_fees} shows, being the
-peak at 0.50 USD. Note that these are the fees to pay for a transaction, so if
-a user wants to buy multiple tickets, he can make it all at once instead of
-several individual purchases.
-
-\begin{figure}[H]
-	\includegraphics[width=\textwidth*2/3]{Network fees.png}
-	\centering
-	\caption{Network fees. Extracted from ...}
-	\label{fig:network_fees}
-\end{figure}
-
-These fees are necessary as they are the cost for making the network run. This
-is common in the blockchain ecosystem, and it's a way to maintain the network
-secure and reliable, because the people processing the transactions are
-rewarded for their work, so they have an incentive to keep the network running.
-So we can never run away from this kinds of fees, but we can choose networks
-that have lower fees, so the users pay the least amount possible.
