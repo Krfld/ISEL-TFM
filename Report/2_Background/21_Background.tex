@@ -1,17 +1,16 @@
 \section{Background}
 \label{sec:background}
 
-Blockchain is a relatively recent technology that can often be complex to
-understand. At its core, it leverages cryptographic concepts to function
-effectively. In this section, we will explain key concepts of blockchain
-technology, including how wallets work and their interaction with the
-blockchain. We will also explore some of the most popular blockchain networks,
-token standards, and the emerging trend of non-fungible tokens (NFTs). Figure
-\ref{fig:blockchain_concepts} illustrates common blockchain concepts, which we
-will discuss in detail across the following sections: Wallets \textbf{(1)} in
-Section \ref{subsec:wallets}, Networks \textbf{(2)} in Section
-\ref{subsec:networks}, and Smart Contracts \textbf{(3)} in Section
-\ref{subsec:smart_contracts}.
+Blockchain is a relatively recent technology that can be complex to grasp. At
+its core, it relies on cryptographic principles to ensure secure and
+transparent transactions. In this section, we will explain key blockchain
+concepts, including how wallets function and interact with the blockchain,
+while also exploring prominent blockchain networks, token standards, and the
+rise of non-fungible tokens (NFTs). Figure \ref{fig:blockchain_concepts}
+provides a visual overview of these concepts, which will be detailed in the
+following subsections: Wallets \textbf{(1)} in Section \ref{subsec:wallets},
+Networks \textbf{(2)} in Section \ref{subsec:networks}, and Smart Contracts
+\textbf{(3)} in Section \ref{subsec:smart_contracts}.
 
 \begin{figure}[H]
     \centering
@@ -23,282 +22,204 @@ Section \ref{subsec:wallets}, Networks \textbf{(2)} in Section
 \subsection{Interacting with the Blockchain}
 \label{subsec:interacting_with_the_blockchain}
 
-First let's see how an interaction with a blockchain works. A blockchain
-operates as a decentralized network of nodes, each maintaining a copy of the
-entire blockchain. To interact with it, users send transactions to the network,
-which are then validated and added to a block by the nodes. This process
-requires a wallet—an application that allows users to manage digital assets,
-interact with smart contracts, and send transactions. Wallets provide a
-user-friendly interface for accessing the blockchain, signing transactions with
-private keys, and viewing account balances and transaction history. Figure
-\ref{fig:how_does_a_blockchain_work} illustrates the steps involved in a
-blockchain transaction.
+A blockchain operates as a decentralized network of nodes, each maintaining a
+full copy of the blockchain. To interact with the blockchain, users send
+transactions to the network, which are validated and added to blocks by nodes.
+This process requires a wallet—an application that allows users to manage
+digital assets, interact with smart contracts, and initiate transactions.
+Wallets provide a user-friendly interface to sign transactions, manage keys,
+and view account balances. Figure \ref{fig:how_does_a_blockchain_work}
+illustrates the steps involved in a blockchain transaction.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.66\textwidth]{How does a blockchain work.jpg}
-    \caption[How does a blockchain work]{Overview of blockchain transaction processes. Extracted from ...}
+    \caption[Blockchain transaction process]{Overview of blockchain transaction processes. Extracted from ...}
     \label{fig:how_does_a_blockchain_work}
 \end{figure}
 
-To execute a transaction, users must sign it with their private key, proving
-ownership of the assets being transferred. The transaction is then broadcast to
-the network, validated by participants, and added to a block. Once confirmed,
-it becomes part of the immutable blockchain ledger, accessible to all network
-participants.
+To execute a transaction, the user must sign it with their private key, proving
+ownership of the assets being transferred. The transaction is then broadcasted
+to the network, validated by nodes, and added to the blockchain ledger, where
+it becomes immutable and accessible to all network participants.
 
-This procedure is essential for altering the blockchain state; transactions
-must be signed. In contrast, reading information from the blockchain requires
-no signatures—users can simply query the network for the desired information.
+While transactions require signatures to alter the blockchain, reading data
+from the blockchain is signature-free; users can freely query the blockchain
+for information.
 
 \subsection{Blockchain}
 \label{subsec:blockchain}
 
-So blockchain is a decentralized and distributed ledger technology that enables
-secure data recording and sharing across a network of computers. A blockchain
-consists of a series of blocks, each containing a list of transactions. These
-blocks are linked in a chronological and immutable chain, forming a transparent
-and tamper-proof record. Key characteristics of blockchain technology include:
+Blockchain is a decentralized and distributed ledger technology that enables
+secure and transparent data sharing across a network. A blockchain consists of
+a series of blocks, each containing a list of transactions. These blocks are
+linked in chronological order, forming a tamper-proof record. Key
+characteristics of blockchain technology include:
 
 \paragraph{Decentralization:}
-Blockchain operates on a decentralized network of nodes, eliminating a single
-point of failure or control. Each node maintains a copy of the entire
-blockchain.
+Blockchain operates on a decentralized network of nodes, eliminating the need
+for central control and reducing points of failure.
 
 \paragraph{Transparency:}
-Data recorded on a blockchain is visible to all network participants, fostering
-trust as users can independently verify transaction integrity without
-intermediaries.
+Data on the blockchain is visible to all participants, fostering trust and
+accountability, as transactions can be verified independently.
 
 \paragraph{Immutability:}
-Once recorded, transactions on a blockchain cannot be altered or deleted. This
-is achieved through cryptographic techniques, ensuring a tamper-proof
-historical record.
+Once recorded, transactions cannot be altered or deleted, creating an
+irreversible and secure historical record through cryptography.
 
 \paragraph{Security:}
-Blockchain employs advanced cryptographic algorithms to secure transactions.
-Network participants verify and validate transactions through consensus
-mechanisms, preventing unauthorized changes.
+Blockchain uses advanced cryptographic techniques to secure transactions, with
+network participants validating and verifying transactions via consensus
+mechanisms.
 
 \paragraph{Smart Contracts:}
-Smart contracts are self-executing contracts with predefined rules encoded in
-software. They automate transactions and enforce agreements without
-intermediaries, enabling the creation of decentralized applications (DApps) on
-blockchain networks.
+Smart contracts are self-executing programs stored on the blockchain that
+automate agreements between parties without intermediaries, enabling the
+creation of decentralized applications (DApps).
 
-Blockchain technology has applications across various industries, including
-healthcare and finance. Its potential to enhance security, transparency, and
-efficiency has led to widespread exploration of its capabilities. This
-ecosystem is often referred to as Web3, a new paradigm for the internet aimed
-at decentralizing control and empowering users with greater ownership and
-privacy over their data.
+Blockchain has potential applications across numerous industries, including
+finance and healthcare. By decentralizing control and enhancing privacy,
+blockchain is often seen as the foundation of Web3, the next phase of the
+internet.
 
-A compelling aspect of blockchain is how it harnesses human nature—greed and
-self-interest—to create a secure and reliable system. Nodes are incentivized to
-maintain blockchain integrity by earning cryptocurrency rewards, ensuring that
-a majority of the network remains honest and cooperative, thus making the
-system resistant to attacks.
+A unique aspect of blockchain is its use of incentives. Nodes are rewarded with
+cryptocurrency for validating transactions, creating a system that aligns
+self-interest with network integrity, ensuring a majority of honest
+participants.
 
 \subsection{Wallets}
 \label{subsec:wallets}
 
-Cryptocurrency wallets utilize cryptographic principles to securely manage and
-interact with digital assets on blockchain networks. Key cryptographic aspects
-of wallets include:
+Cryptocurrency wallets are essential for interacting with blockchain networks
+and managing digital assets. Key cryptographic features of wallets include:
 
 \paragraph{Private and Public Keys:}
-Wallets use a pair of cryptographic keys: a public key (wallet address) for
-receiving funds and a private key for signing transactions. This relationship
-is based on asymmetric cryptography, ensuring that only the rightful owner can
-control their assets.
+Wallets generate a pair of cryptographic keys: a public key (address) for
+receiving assets, and a private key for signing transactions. This relationship
+is based on asymmetric cryptography, ensuring that only the owner can authorize
+transactions.
 
 \paragraph{Digital Signatures:}
-When initiating a transaction, it is digitally signed with the wallet's private
-key, serving as proof of authorization. Digital signatures are generated using
-cryptographic algorithms such as ECDSA or RSA, depending on the blockchain
-protocol.
+Transactions are signed using the private key, providing proof of
+authorization. Signatures are generated via cryptographic algorithms like ECDSA
+or RSA, depending on the blockchain.
 
 \paragraph{Hash Functions:}
-Wallets use cryptographic hash functions to create unique representations of
-transaction data, known as transaction hashes. These hashes verify transaction
-integrity and prevent tampering.
+Wallets use cryptographic hash functions to create unique transaction hashes,
+ensuring data integrity and preventing tampering.
 
-\paragraph{Seed Phrases and Mnemonic Codes:}
-Some wallets use mnemonic codes or seed phrases to back up access to funds if
-the private key is lost. These phrases, generated from random words, serve as a
-human-readable representation of the private key.
+\paragraph{Seed Phrases:}
+Some wallets offer seed phrases as a backup to recover access if the private
+key is lost. These phrases are generated from random words and serve as a
+human-readable form of the private key.
 
-By leveraging these cryptographic techniques, wallets provide a secure means
-for users to store, manage, and transact with digital assets, ensuring
-confidentiality, integrity, and authenticity.
+Using these cryptographic tools, wallets securely manage and facilitate
+transactions on blockchain networks, ensuring confidentiality, integrity, and
+authenticity.
 
 \subsection{Networks}
 \label{subsec:networks}
 
-Since Bitcoin's inception in 2009, blockchain technology has evolved
-significantly, with numerous platforms emerging, each offering unique features.
-Prominent networks in the decentralized ecosystem include:
+Since the introduction of Bitcoin in 2009, various blockchain networks have
+emerged, each with unique features. Some prominent networks include:
 
 \paragraph{Bitcoin (BTC):}
-The first and most well-known cryptocurrency, Bitcoin was introduced by an
-anonymous entity under the pseudonym Satoshi Nakamoto. It operates on a
-decentralized network using a Proof of Work (PoW) consensus mechanism, designed
-as a peer-to-peer electronic cash system.
+The first and most widely known cryptocurrency, Bitcoin uses a Proof of Work
+(PoW) consensus mechanism to secure peer-to-peer transactions.
 
 \paragraph{Ethereum (ETH):}
-Ethereum is a decentralized blockchain platform that enables the creation and
-execution of smart contracts and DApps. Transitioning from a PoW to a Proof of
-Stake (PoS) consensus model with the Ethereum 2.0 upgrade, it enhances
-scalability and energy efficiency.
+Ethereum is a decentralized platform that supports smart contracts and DApps.
+It is transitioning from PoW to Proof of Stake (PoS) with Ethereum 2.0,
+improving scalability and reducing energy consumption.
 
 \paragraph{Polygon (MATIC):}
-Polygon is a Layer 2 scaling solution for Ethereum that addresses scalability
-issues by offering faster and cheaper transactions through sidechains.
+Polygon is a Layer 2 scaling solution for Ethereum, offering faster and cheaper
+transactions by utilizing sidechains.
 
 \paragraph{Solana (SOL):}
-Solana is designed for high-performance DApps and cryptocurrencies, using a
-unique combination of Proof of History (PoH) and Proof of Stake (PoS) for high
-throughput and low latency.
+Solana is designed for high-performance DApps, using a combination of Proof of
+History (PoH) and PoS to achieve high transaction throughput with low latency.
 
-These examples highlight the diversity of blockchain networks, each with
-distinct features and capabilities. As the ecosystem continues to evolve, new
-technologies will emerge, expanding the possibilities for decentralized
-applications and digital assets.
-
-Many networks, like Ethereum and Polygon, are built using Solidity, allowing
-compatibility with the Ethereum Virtual Machine (EVM). This enables developers
-to deploy smart contracts across multiple networks using the same codebase,
-enhancing reach and leveraging network effects. Other notable EVM-compatible
-networks include Binance Smart Chain, Avalanche, Arbitrum, and Optimism.
+Ethereum and its compatible networks (like Polygon) use Solidity, a popular
+language for smart contracts. Many other networks are also EVM-compatible,
+enabling cross-network deployments with the same code.
 
 \subsection{Smart Contracts}
 \label{subsec:smart_contracts}
 
-Smart contracts are self-executing contracts with terms encoded in software.
-They automatically enforce agreements when predefined conditions are met,
-eliminating the need for intermediaries. Key characteristics include:
+Smart contracts are autonomous programs stored on the blockchain that
+automatically execute when predefined conditions are met. Key properties
+include:
 
 \paragraph{Autonomy:}
-Once deployed, smart contracts operate independently, executing transactions
-without human intervention, ensuring impartial and transparent enforcement of
-terms.
+Smart contracts operate without human intervention once deployed, ensuring
+impartial enforcement of terms.
 
 \paragraph{Trust:}
-Smart contracts leverage blockchain's trustless nature, allowing parties to
-rely on contract execution without a trusted third party, supported by the
-decentralized and immutable nature of the blockchain.
+Because smart contracts run on decentralized, immutable blockchains, parties
+can rely on their execution without intermediaries.
 
 \paragraph{Security:}
-Due to blockchain's cryptographic principles, smart contracts are highly secure
-and cannot be altered once deployed, providing reliability.
+Once deployed, smart contracts cannot be altered, providing a secure and
+reliable platform for digital agreements.
 
 \paragraph{Efficiency:}
-By automating execution, smart contracts reduce costs and processing times
-associated with traditional contract enforcement, enhancing overall efficiency.
+Automating contract execution reduces transaction costs and processing times,
+increasing overall efficiency.
 
 \paragraph{Versatility:}
-Smart contracts can perform complex functions beyond simple transactions,
-managing digital assets and interacting with other contracts, enabling diverse
-DApp functionalities.
-
-Smart contracts have applications across finance, supply chain management, real
-estate, healthcare, and more. Their potential to revolutionize contract
-execution in the digital age is significant.
+Smart contracts manage digital assets, execute complex operations, and enable a
+variety of decentralized applications.
 
 \subsection{Solidity}
 \label{subsec:solidity}
 
-We'll be doing the smart contracts in Solidity, because it's the most popular
-language for Ethereum smart contracts, and makes it easy to deploy to any EVM
-compatible blockchain. This language is similar to other languages like C++,
-but it has some unique features that make it very powerful for smart contracts.
+Solidity is the leading language for developing smart contracts on
+EVM-compatible blockchains like Ethereum. With syntax similar to C++, it offers
+specific features suited for blockchain development.
 
-\paragraph{Public:} One important aspect is that when a contract is public, anyone can call its
-functions, that's why we need to restrict their access and take into account
-that possibility when defining the operations of the entire contract. So it's
-always important to have a mindset that any function (endpoint) can be called
-by anyone, which is a pretty different approach from traditional backend
-development.
+\paragraph{Public Functions:}
+Public functions in Solidity can be called by anyone, requiring careful access
+control to prevent unauthorized use.
 
-\paragraph{Modifiers:} Another thing is that contracts run atomically, so if something should fail or
-revert, the changes don't take place. Modifiers are another feature that
-complement this to prevent reentrancy attacks, which are a common security
-issue in smart contracts, and restrict the access to certain functions,
-reverting if an intruder tries to call them.
+\paragraph{Modifiers:}
+Modifiers in Solidity allow developers to control access to functions,
+protecting contracts from security vulnerabilities like reentrancy attacks.
 
-We can define, for example, a call to register an event to be restricted to
-only organizers or a call to validate tickets to be limited to only validators.
-This is possible because there are a few keywords like \textit{msg.sender} that
-tell us which user address called the function and \textit{msg.value} that tell
-us how much value was sent with the transaction. This value is essentially the
-amount of money the user sends in a transaction, necessary, for example, to buy
-the tickets. We'll check if the value matches the correct price and reverts
-otherwise.
+\paragraph{Currency:}
+Solidity handles currency in the smallest unit of ether, called wei. For
+example, 1 ether equals $10^{18}$ wei.
 
-\paragraph{Currency:} Each blockchain network has its own currency, in which is commonly referred to
-as ether on the EVM networks. This is the unit of value that is used to pay to
-execute transactions, but in solidity we cannot work with floating point
-numbers, so we have to work with the smallest unit of ether, which is called
-wei. Similar to how we have 1 euro is 100 cents, we have 1 ether is $10^{18}$
-wei, same as on the bitcoin network we have the 1 bitcoin (BTC) is $10^{8}$
-satoshis (SATS). This is the unit being used when we call the
-\textit{msg.value} variable, so we always have to account for the conversion.
-
-\paragraph{Address:} Another unique feature of Solidity is the \textit{address} type, which is
-basically a string strict to the Ethereum address format. That's how we'll be
-storing the addresses of the organizers and the events on the contracts.
-Another detail to point out is that the only difference between a user and a
-contract is that a contract has code associated with it, so it can execute
-functions and store data, while a user can only send transactions.
-
-This way we can understand why, to send a transaction, paying for the tickets
-for example, we send value along with it, matching the expected price according
-the logic of the buy method. Essentially we're sending money to the contract,
-which is stored in the contract's balance, like a normal user wallet. This is
-how the contract can store money and manage it, for then the organizer to
-withdraw its profit to his own wallet.
+\paragraph{Addresses:}
+Solidity uses a specific address type to manage users and smart contracts,
+treating both similarly except that contracts can execute functions and store
+data.
 
 \subsection{Token Standards}
 \label{subsec:token_standards}
 
-Token standards define the rules and functionalities of digital tokens on
-blockchain networks, facilitating interoperability and usability. Key token
-standards include ERC-20, ERC-721, and ERC-1155, as illustrated in Figure
-\ref{fig:token_standards}.
+Token standards define the rules for digital tokens on blockchain networks. The
+most common standards include:
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.66\textwidth]{Token standards.png}
-    \caption[Token standards]{Overview of token standards. Extracted from ...}
-    \label{fig:token_standards}
-\end{figure}
+\paragraph{ERC-20:}
+The most widely used standard for fungible tokens, enabling seamless trading on
+exchanges and easy integration into decentralized finance (DeFi) applications.
 
-\paragraph{ERC-20 (Ethereum Request for Comment 20):}
-The most widely used token standard on Ethereum, ERC-20 governs fungible
-tokens, allowing for seamless trading on exchanges. It includes functions for
-transferring tokens and querying balances.
+\paragraph{ERC-721:}
+A standard for non-fungible tokens (NFTs), used for unique assets like digital
+art and collectibles.
 
-\paragraph{ERC-721 (Ethereum Request for Comment 721):}
-This standard governs non-fungible tokens (NFTs), each of which is unique and
-represents ownership of a specific asset. ERC-721 tokens are commonly used for
-digital art and collectibles.
-
-\paragraph{ERC-1155 (Ethereum Request for Comment 1155):}
-This hybrid standard supports both fungible and non-fungible tokens within the
-same contract, allowing efficient management of multiple token types and
-reducing deployment costs.
-
-These standards represent just a few examples shaping the landscape of
-tokenization. As blockchain technology evolves, new standards will likely
-emerge, driving further adoption across various industries.
+\paragraph{ERC-1155:}
+A flexible standard that supports both fungible and non-fungible tokens within
+a single contract, reducing deployment costs and complexity.
 
 \subsection{Non-Fungible Tokens (NFTs)}
 \label{subsec:nfts}
 
-In the context of event ticketing systems, NFTs offer great potential by
-providing a secure and verifiable means of ticket issuance, transfer, and
-validation. NFT-based tickets can incorporate unique metadata—such as event
-details, seat numbers, and access permissions—creating a rich, customizable
-experience for organizers and attendees. They can also be used to issue limited
-edition or VIP tickets, granting exclusive access and additional benefits to
+NFTs hold great potential for event ticketing systems, offering secure and
+verifiable ways to issue, transfer, and validate tickets. NFT-based tickets can
+include metadata such as event details, seat numbers, and access privileges,
+creating a customizable experience for both organizers and attendees. NFTs also
+enable the creation of limited-edition tickets with special privileges for VIP
 holders.
