@@ -1,14 +1,106 @@
 \chapter{Conclusions}
 \label{ch:conclusions}
 
+In this project we developed a decentralized ticketing system, where users can
+buy, gift, refund and validate tickets. We used blockchain technologies to
+achieve this, and we used a testnet (test network) to deploy the smart
+contracts.
+
+The main goal of this project was to create a system that could be used in real
+life, and we believe we achieved that. The system is fully functional, and it
+can be used by anyone with a wallet that supports the network we deployed the
+smart contracts on. The system is also scalable, as we can add as many
+organizers and events as we want and have as many users as we want, and the
+system will handle it.
+
+We created a system that prevents scalping by leveraging the blockchain
+technology. The system also prevents users from scamming others, as the
+validation process guarantees that the owner really owns the tickets. Also the
+validator can validate several tickets at once, so one user can buy for a group
+of friends.
+
+We also allow for a refund functionality, where users can refund their tickets
+if they can't attend the event. This is a feature that is not usually available
+in other ticketing systems, and the organizers might be able to profit event
+more from this, as they can sell the ticket again at the original price.
+
 \section{Limitations}
- [network fees]
- [finality]
- [connection to wallet can be unstable depending on the wallet]
- [users can still gift others in exchange for money, but we have to let users know they should only operate within the system]
+\label{sec:limitations}
+
+There were of course some limitations found during the development of this
+project. The main limitation is the fact that we are using blockchain
+technologies, which are still in the early stages of development.
+
+The main one would be the network fees. The network fees could be a problem,
+but it all depends on the network. The users still have to pay for the fees of
+a transaction, even if they are as low as 0.0001 euros.
+
+This is specially a trouble for organizers, because they have to account for
+the validators' operations to validate the tickets. Even if the fees are low,
+it could accumulate to a significant amount of money, depending how many
+tickets they validate. There are networks where this could not be a big problem
+because the fees can really be as low as 0.0001 euros, but for those networks
+maybe they don't match the rest of the requirements of the system, like the
+finality, which is another limitation.
+
+The finality is the time it takes for a transaction to be confirmed. This is
+another limitation because the validators should wait for the validate
+transaction to be confirmed before they allow users into the venue. Usually
+when a network has good finality, either it has high fees, or its not scalable
+(not enough transactions per second).
+
+There is actually just one famous network that matches all these requirements,
+and that's Solana. The problem is that this network is not EVM compatible, so
+we would have to rewrite the smart contracts into Rust.
+
+One thing to have in mind too is that users can still gift others in exchange
+for money in person, but we have to let users know they should only operate
+within the system. This is a limitation because we can't really control what
+users do in person, but we would let them know that they should only operate
+within the system. A good thing is that we can detect a pattern if for example
+a user is always gifting tickets, it might mean that he's scalping, and that
+could be investigated if necessary.
 
 \section{Future Work}
+\label{sec:future_work}
 
- [marketplace (resell)]
- [organizer dashboard]
- [mention how wei can be translated to any currency later]
+There are several things that weren't implemented in this project that could
+improve the user experience and the overall functionality of the app. Due to
+time constraints and to ease the testing process, we did only one mobile
+application, where we merged the common users and validators functionalities.
+So as for future work, we could separate that into two different applications,
+one for the users and another for the validators. This way, we could have a
+more user-friendly interface for the users and a more robust interface for the
+validators.
+
+The other goal that wasn't implemented was the marketplace. We could have a
+marketplace where users could resell their tickets. At the moment, users can
+only buy, gift and refund tickets, and it would be a great feature to have a
+marketplace where users could resell their tickets. This way, users could buy
+tickets for events that are sold out, and organizers could have a better idea
+of the demand for their events. And avoiding, of course, the main problem of
+ticket scalping, which can only be achieved if we have a dedicated marketplace
+because only this way we can cap the prices of the tickets.
+
+The last feature that wasn't implemented was the website dashboard for the
+organizers, where they could create and manage their events. Currently that
+would have to be done manually, or through a script. This dashboard would also
+automate the process to handle the tickets metadata, instead of handling it
+manually too.
+
+There are a few extra things that could improve the system in the future. For
+this project we aimed to use exclusively web3 technologies, and as mentioned,
+this can improve the user experience by including the current web2
+technologies, like authenticating with email and socials, abstracting the
+wallet connection. This greatly improves user adoption, as users don't have to
+worry about the blockchain.
+
+In addition to this, there is a possibility to add functionality to the current
+codebase to have the prices in a fiat currency like euro, not in the network
+currency, so that users can have a better idea of the price of the tickets.
+
+Another thing is that currently we don't have the logic to allow users to see
+which ticket refers to each seat, and only just see them by packages. This
+could be a complex feature to implement on the organizers side, but it would
+step up the system to a more professional level, and could be used in stadiums
+or even theaters.
