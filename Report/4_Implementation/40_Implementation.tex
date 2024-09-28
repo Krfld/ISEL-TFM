@@ -75,16 +75,16 @@ skip the prompt.
 \subsection{Events}
 \label{subsec:events}
 
-After the common user authenticates, he will be redirected to the main page of
+After the common user authenticates, he will be redirected to the home page of
 the app, where he can see the events that are available. The Figure
-\ref{fig:main_page} shows the main page of the app, where the user can see the
-events and search for them.
+\ref{fig:home_page} shows the home page, where the users can see the events and
+search for them.
 
 \begin{figure}[H]
-	\includegraphics[width=\textwidth/3,frame]{Main page.jpg}
+	\includegraphics[width=\textwidth/3,frame]{Home page.jpg}
 	\centering
-	\caption{Main page}
-	\label{fig:main_page}
+	\caption{Home page}
+	\label{fig:home_page}
 \end{figure}
 
 When clicking on one of the events, the user will be redirected to the event
@@ -313,27 +313,8 @@ We see that the Event contract extends the ERC721 standard, and the Ticketchain
 contract will deploy the events and keep track of them. The contracts will be
 explained in detail over the next sections.
 
-% With this in mind, we created the Ticketchain main smart contract UML, like the
-% Figure \ref{fig:system_uml} shows. This contract will track the organizers and
-% the events associated with the system, along with the method to register a new
-% event with the necessary data, restricted to only organizers (to avoid
-% unauthorized people to interact).
-
-% \begin{figure}[H]
-% 	\includegraphics[width=\textwidth]{Ticketchain UML.png}
-% 	\centering
-% 	\caption{Main smart contract UML (simplified)}
-% 	\label{fig:system_uml}
-% \end{figure}
-
-% With this structure, since we have this main contract where all the events of
-% the system are stored, we can simply make a call to get them all, showcasing
-% them in the app's home page for users to search. Any event that is deployed
-% outside the system or if it gets removed from there, it won't be shown to the
-% users.
-
-\section{Ticketchain Smart Contract}
-\label{subsec:ticketchain_smart_contract}
+\section{Ticketchain Contract}
+\label{sec:ticketchain_contract}
 
 The Ticketchain contract is the main contract of the system, from where the
 events are registered and stored. It will have the necessary methods to
@@ -366,8 +347,8 @@ that are deployed, so we can easily get them all and show them in the app. The
 fee variable is there to store the system fee, which will be mentioned in the
 Section \ref{subsec:system_fees}.
 
-\section{ERC721 Smart Contract}
-\label{subsec:erc721_smart_contract}
+\section{ERC721 Contract}
+\label{sec:erc721_contract}
 
 The ERC721 standard will be extended and we will be adding the necessary
 methods to interact with the tickets, like buying, selling, and validating
@@ -413,21 +394,22 @@ keyword, meaning this can be overridden by the contracts that extend it, to
 manipulate the way to store the metadata. We'll be mentioning this again in the
 Section \ref{fig:package_logic}, about how the packages logic is implemented.
 
-\section{Event Smart Contract}
-\label{subsec:event_smart_contract}
+\section{Event Contract}
+\label{sec:event_contract}
 
-So the event will be deployed and we need a certain control over the tickets.
-One of the aspects we need to account for is that when deploying an event, and
-since it will extend the ERC721, any public functions on that standard will be
-possible to execute. This is a problem because we don't want the users to mint
-tickets whenever they want or transfer them between themselves from outside the
-system, so we need to restrict these operations. As we saw already on the
-Figure \ref{fig:erc721_uml}, only the \textit{safeTransferFrom} method is
-public, so users could transfer NFTs between each other. We want that to be
-possible, just not from outside the system, since that can lead users to
-exploit the system and scalping the tickets easily. The minting, however, won't
-be an issue because it's an internal method, so we will access it from the buy
-method in the event and restrict it there.
+So the event contract will be deployed and we need a certain control over the
+tickets. One of the aspects we need to account for is that when deploying an
+event, and since it will extend the ERC721, any public functions on that
+standard will be possible to execute. This is a problem because we don't want
+the users to mint tickets whenever they want or transfer them between
+themselves from outside the system, so we need to restrict these operations. As
+we saw already on the Figure \ref{fig:erc721_uml}, only the
+\textit{safeTransferFrom} method is public, so users could transfer NFTs
+between each other. We want that to be possible, just not from outside the
+system, since that can lead users to exploit the system and scalping the
+tickets easily. The minting, however, won't be an issue because it's an
+internal method, so we will access it from the buy method in the event and
+restrict it there.
 
 \subsection{Event Lifecycle}
 \label{subsec:event_lifecycle}
@@ -542,9 +524,10 @@ so to obtain a percentage of some $x$ number, we do $y = \frac{x \times
 		\text{Percentage.value}}{100\mathrm{e}^\text{Percentage.decimals}}$.
 
 When working with ether units, it can be common to have values like 0.00005
-ether, but it's rather rare to have small values in wei, like 1000 wei, so
-applying this formula won't lose much precision (note that 1 ether is $10^{18}$
-wei).
+ether, but it's rather rare to have values in wei like 1000 wei, so applying
+this formula won't lose much precision (note that 1 ether is $10^{18}$ wei).
+Equating this to real world value, 0.001 ether is somewhat close to 2.5\$ (at
+the moment), so 1000 wei would be way lower than even a cent.
 
 \paragraph{TicketchainConfig Struct:} The \textit{TicketchainConfig} struct is simply to keep it stored the system
 address and the system fee percentage, so we can easily access this information
@@ -693,10 +676,10 @@ platforms, since the organizers need to pay for each service.
 
 These low fees are possible because with the system being deployed on the
 blockchain, it stays there while the network is running, so the only extra cost
-are the network fees when interacting with the event. For the users, each
-interaction is paid by them, so when a user buys a ticket, the only thing to
-take into account are the network fees, which depending on the network, can be
-super low.
+are the network fees (also called gas fees) when interacting with the event.
+For the users, each interaction is paid by them, so when a user buys a ticket,
+the only thing to take into account are the network fees, which depending on
+the network, can be super low.
 
 The other kind of fee the organizer needs to look out for is for the validators
 to validate the tickets, which is a necessary operation to avoid people from
@@ -705,12 +688,12 @@ organizer essentially manages, so we need to take them into account when
 setting the system fee, to make it sustainable for the organizer to use our
 system, since the organizers will have to funds the validators' wallets.
 
-We'll set a fee on the main smart contract, where will be stored in the event
-when registering it, so that if we decide to change it, the previous events
-aren't affected. This is also because we want to abstract the user of any extra
-fee, so the price the organizer sets, is the price the user pays, and the
-system fee is taken from the ticket price. In case an event gets cancelled, or
-a user decides to get a refund, the ticket fee is returned to the user
+We'll set a fee on the Ticketchain smart contract, where will be stored in the
+event when registering it, so that if we decide to change it, the previous
+events aren't affected. This is also because we want to abstract the user of
+any extra fee, so the price the organizer sets, is the price the user pays, and
+the system fee is taken from the ticket price. In case an event gets cancelled,
+or a user decides to get a refund, the ticket fee is returned to the user
 (proportional to the refund), making the system less profit, but guarantees the
 users of a fair process. With this, we need to restrict the system to only
 withdraw any profit after the event is over. Since this is rather an uncommon
