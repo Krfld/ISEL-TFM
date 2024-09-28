@@ -1,23 +1,23 @@
 \chapter{Results}
 \label{ch:results}
 
-[brief introduction of the chapter]
+In this chapter, we present the results of the decentralized ticketing system,
+including interactions with smart contracts, the process of buying, gifting,
+refunding, and validating tickets, and the associated blockchain transactions.
 
 % \section{Smart Contract Interactions}
 % \label{sec:smart_contract_interactions}
 
-Like mentioned, the blockchain is a public ledger that stores all the
-transactions that are made, so we can see all the interactions with the smart
-contracts. We deployed the smart contracts on a testnet, so that we don't have
-to use real funds. This way we can simulate what would happen on the mainnet
-without any risks or cost. This was done with Foundry, like mentioned before,
-and we created some scripts to populate the system to be able to see it on the
-blockchain. These scripts deploy the smart contracts, adds an organizer,
-creates a few events, and adds some packages to each.
+As mentioned earlier, blockchain serves as a public ledger that records all
+transactions. We deployed the smart contracts on a testnet to avoid the use of
+real funds, allowing us to simulate mainnet operations without incurring risks
+or costs. This was achieved using Foundry, and we developed scripts to populate
+the system, which included deploying the smart contracts, adding an event
+organizer, creating events, and adding ticket packages to each event.
 
-For each network there is an explorer that allows us to see all the
-transactions that are made, and the Figure \ref{fig:ticketchain_transactions}
-shows what it looks like.
+Every network has an explorer that visualizes all transactions. Figure
+\ref{fig:ticketchain_transactions} illustrates the transactions related to our
+system.
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Ticketchain transactions.png}
     \centering
@@ -25,19 +25,19 @@ shows what it looks like.
     \label{fig:ticketchain_transactions}
 \end{figure}
 
-We can see when the contract was deployed, the adding of an organizer to the
-system, and the creation of 3 events. This information is what's then loaded in
-the app, as was previously shown in the Figure \ref{fig:home_page}.
+This explorer allows us to track when the contract was deployed, the addition
+of an organizer, and the creation of three events. This data is subsequently
+loaded into the app, as shown earlier in Figure \ref{fig:home_page}.
 
-\section{Buy Tickets}
+\section{Buying Tickets}
 \label{sec:buy_tickets}
 
-For the user to buy tickets, he will have to proceed the way mentioned in the
-Section \ref{subsec:events}. The previous Figures \ref{fig:home_page} and
-\ref{fig:tickets_page} show that we only have tickets for 2 events while there
-are 3 available, so we're going to show the process of buying tickets for the
-third one. Looking into the event page, we see there is only one package
-available with 100 tickets, like the Figure \ref{fig:buy_tickets_event} shows.
+To purchase tickets, users follow the procedure outlined in Section
+\ref{subsec:events}. Figures \ref{fig:home_page} and \ref{fig:tickets_page}
+show two available events, although there are three in total. We will now
+demonstrate the process of buying tickets for the third event, which has one
+available package containing 100 tickets, as seen in Figure
+\ref{fig:buy_tickets_event}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Event page 2.jpg}
@@ -46,136 +46,118 @@ available with 100 tickets, like the Figure \ref{fig:buy_tickets_event} shows.
     \label{fig:buy_tickets_event}
 \end{figure}
 
-When we click on the package, we see the prompt to buy tickets, and like we see
-in the Figure \ref{fig:buy_tickets_prompt}, we're going to buy 3 tickets.
+After selecting the package, the user is prompted to choose the number of
+tickets to purchase. In this case, we will buy 3 tickets, as illustrated in
+Figure \ref{fig:buy_tickets_prompt}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Buy tickets prompt 2.jpg}
     \centering
-    \caption{Buy 3 tickets prompt}
+    \caption{Prompt to buy 3 tickets}
     \label{fig:buy_tickets_prompt}
 \end{figure}
 
-After confirming the prompt, the wallet opens and we see the transaction to be
-approved, as shown in the Figure \ref{fig:buy_tickets_transaction}.
+Upon confirmation, the user's wallet opens, and the transaction is displayed
+for approval (Figure \ref{fig:buy_tickets_transaction}).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{MetaMask transaction prompt 2.jpg}
     \centering
-    \caption{Buy 3 tickets transaction}
+    \caption{Buy 3 tickets transaction prompt}
     \label{fig:buy_tickets_transaction}
 \end{figure}
 
-We can see that we're sending 0.003 eth in the transaction to buy the tickets.
-After confirmation, we see the tickets being successfully purchased, and we see
-the update on the profile page, in the Figure \ref{fig:profile_page_2}, which
-as now the third event with 3 tickets.
+The user sends 0.003 ETH to complete the purchase. After successful payment,
+the profile page updates to reflect the addition of the third event and 3
+purchased tickets (Figure \ref{fig:profile_page_2}).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Profile page 2.jpg}
     \centering
-    \caption{Profile page with the third event}
+    \caption{Profile page showing tickets for the third event}
     \label{fig:profile_page_2}
 \end{figure}
 
-Going back to the event page we see now that there are only 97 tickets left,
-like the Figure \ref{fig:buy_tickets_event_2} shows.
+Returning to the event page, we see that the number of available tickets has
+decreased to 97, as shown in Figure \ref{fig:buy_tickets_event_2}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Event page 3.jpg}
     \centering
-    \caption{Third event page with 97 tickets}
+    \caption{Third event page with 97 tickets remaining}
     \label{fig:buy_tickets_event_2}
 \end{figure}
 
-Going to the blockchain explorer to see the registered transaction, we can
-search for our address and we see that there is a recent \textit{Buy Tickets}
-transaction, like the Figure \ref{fig:user_transactions} shows.
+The blockchain explorer shows the associated transaction, as displayed in
+Figure \ref{fig:user_transactions}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{User transactions.png}
     \centering
-    \caption{User transaction}
+    \caption{User's transaction history}
     \label{fig:user_transactions}
 \end{figure}
 
-The \textit{To} column shows the address who was interacted with and the
-\textit{Transaction Hash} column shows the unique identifier of the
-transaction. Taping the transaction hash, we will be sent to a page where we
-see the details of the transaction, like the Figure
-\ref{fig:buy_tickets_transaction_details} shows.
+By selecting the transaction hash, we can view the transaction details (Figure
+\ref{fig:buy_tickets_transaction_details}).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Buy tickets transaction details.png}
     \centering
-    \caption{Buy tickets transaction details}
+    \caption{Details of the buy tickets transaction}
     \label{fig:buy_tickets_transaction_details}
 \end{figure}
 
-The main takeaways from here are the boxes highlighted. The one in blue shows
-the addresses of who interacted with whom. In this case the \textit{From} is
-our user address, and the \textit{To} is the event address.
+The key information includes the following: - **Blue box**: The addresses
+involved in the transaction, where the "From" field shows the user's address
+and the "To" field shows the event contract address. - **Green box**: The NFTs
+(tickets) transferred, showing that IDs 0, 1, and 2 were minted and assigned to
+the user. - **Red box**: The amount of ETH sent (0.003 ETH) and the network fee
+paid for the transaction.
 
-The one in green shows the NFTs that were transferred. The explorer detects
-these NFTs because it sees that the contract is extending the ERC721 standard,
-so it displays in a more readable way. We can see we that the NFTs with IDs 0,
-1, and 2 were transferred to our address, which came from the \textit{null}
-address (0x00\dots00), meaning that they were minted.
-
-The one in red shows the value that was sent in the transaction, which is the
-total price of the tickets, 0.003 eth, and also the network fee that was paid
-for the transaction.
-
-\section{Gift Tickets}
+\section{Gifting Tickets}
 \label{sec:gift_tickets}
 
-For the process of gifting tickets, we used another wallet just to check if the
-app updates accordingly. The Figure \ref{fig:gift_tickets_prompt} shows the
-prompt when the user is going to gift the tickets.
+To gift tickets, the user selects the tickets to transfer, as shown in Figure
+\ref{fig:gift_tickets_prompt}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Gift tickets prompt.jpg}
     \centering
-    \caption{Gift tickets prompt}
+    \caption{Prompt to gift tickets}
     \label{fig:gift_tickets_prompt}
 \end{figure}
 
-After executing the transaction, we logged out of the app and authenticated
-with the other address to check that the ticket appears on the profile page of
-that user. The Figure \ref{fig:profile_page_3} shows the profile page of the
-user that received the tickets and we can confirm that the transfer was
-successful.
+After the transaction is executed, we log out and authenticate with the
+recipient's wallet to confirm the successful transfer (Figure
+\ref{fig:profile_page_3}).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Profile page 3.jpg}
     \centering
-    \caption{Profile page with the gifted ticket}
+    \caption{Profile page showing gifted tickets}
     \label{fig:profile_page_3}
 \end{figure}
 
-The blockchain explorer shows the transaction of the gift operation, and the
-Figure \ref{fig:gift_tickets_transaction_details} shows the details of it.
+The blockchain explorer records the gifting transaction details, as shown in
+Figure \ref{fig:gift_tickets_transaction_details}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Gift tickets transaction details.png}
     \centering
-    \caption{Gift tickets transaction details}
+    \caption{Details of the gift tickets transaction}
     \label{fig:gift_tickets_transaction_details}
 \end{figure}
 
-We see above the interaction between our user address (0xe5{\dots}Cb) and the
-address of the event (0x6b\dots38), and on the NFT operation below we see that
-the NFT with ID 0 went from our address (0xe5{\dots}Cb) to the address of our
-other user (0x03{\dots}E4).
+The transaction shows that the NFT with ID 0 was transferred from the original
+user's address to the recipient's address.
 
-\section{Refund Tickets}
+\section{Refunding Tickets}
 \label{sec:refund_tickets}
 
-The process of refunding tickets is similar to the process of gifting them, but
-in this case the user will \textit{burn} the tickets in exchange for the
-refund. The Figure \ref{fig:refund_tickets_prompt} shows the prompt that shows
-the user the amount he's going to receive, which in the case of this event is
-100\%. Note that we paid 0.003 eth for the 3 tickets.
+The refund process mirrors the gifting process, except that the tickets are
+burned in exchange for a refund. Figure \ref{fig:refund_tickets_prompt} shows
+the prompt, indicating the refund amount, which in this case is 100\%.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Refund tickets prompt.jpg}
@@ -184,33 +166,29 @@ the user the amount he's going to receive, which in the case of this event is
     \label{fig:refund_tickets_prompt}
 \end{figure}
 
-After executing the transaction, we see the refund being made, and the Figure
-\ref{fig:refund_tickets_transaction_details} shows the details of it.
+Once the transaction is executed, the blockchain records the details, as seen
+in Figure \ref{fig:refund_tickets_transaction_details}.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{Refund tickets transaction details.png}
     \centering
-    \caption{Refund tickets transaction details}
+    \caption{Details of the refund tickets transaction}
     \label{fig:refund_tickets_transaction_details}
 \end{figure}
 
-Once again, we see our user address (0xe5{\dots}Cb) interacting the address of
-the event (0x6b\dots38), and sending our NFT with the ID 1 to the \textit{null}
-address (0x00\dots00), meaning that they were burned, becoming again available
-for purchase. We can confirm that we got the refund because on the entry above
-we also see the transfer of 0.001 eth from the contract's address (0x6b\dots38)
-to our user address (0xe5{\dots}Cb).
-
-To show that the tickets are available again, we see in the event page that the
-package that had 97 tickets left, has now 98, like the Figure
-\ref{fig:refund_tickets_event} shows.
+The NFT with ID 1 is sent to the null address (0x00\dots00), indicating it has
+been burned. Simultaneously, the user receives a refund of 0.001 ETH, and the
+event page reflects an increase in available tickets from 97 to 98 (Figure
+\ref{fig:refund_tickets_event}).
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth/3,frame]{Event page 4.jpg}
     \centering
-    \caption{Third event page with 98 tickets}
+    \caption{Third event page with 98 tickets available}
     \label{fig:refund_tickets_event}
 \end{figure}
 
-\section{Validate Tickets}
+\section{Validating Tickets}
 \label{sec:validate_tickets}
+
+[Continue with ticket validation explanation and figures...]
