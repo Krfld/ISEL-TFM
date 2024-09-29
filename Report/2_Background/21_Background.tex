@@ -4,13 +4,13 @@
 Blockchain is a relatively recent technology that can be complex to grasp. At
 its core, it relies on cryptographic principles to ensure secure and
 transparent transactions. In this section, we will explain key blockchain
-concepts, including how wallets function and interact with the blockchain,
-while also exploring prominent blockchain networks, token standards, and the
-rise of non-fungible tokens (NFTs). Figure \ref{fig:blockchain_concepts}
-provides a visual overview of these concepts, which will be detailed in the
-following subsections: Wallets \textbf{(1)} in Section \ref{subsec:wallets},
-Networks \textbf{(2)} in Section \ref{subsec:networks}, and Smart Contracts
-\textbf{(3)} in Section \ref{subsec:smart_contracts}.
+concepts, including how wallets work and interact with the blockchain, while
+also exploring prominent blockchain networks, token standards, and the rise of
+NFTs. Figure \ref{fig:blockchain_concepts} provides a visual overview of these
+concepts, which will be detailed in the following subsections: Wallets
+\textbf{(1)} in Section \ref{subsec:wallets}, Networks \textbf{(2)} in Section
+\ref{subsec:networks}, and Smart Contracts \textbf{(3)} in Section
+\ref{subsec:smart_contracts}. TODO
 
 \begin{figure}[H]
     \centering
@@ -39,9 +39,10 @@ illustrates the steps involved in a blockchain transaction.
 \end{figure}
 
 To execute a transaction, the user must sign it with their private key, proving
-ownership of the assets being transferred. The transaction is then broadcasted
-to the network, validated by nodes, and added to the blockchain ledger, where
-it becomes immutable and accessible to all network participants.
+ownership of the assets being transferred (step 1). The transaction is then
+broadcasted to the network (steps 2 and 3), validated by nodes (step 4), and
+added to the blockchain ledger, where it becomes immutable and accessible to
+all network participants (steps 5 and 6).
 
 While transactions require signatures to alter the blockchain, reading data
 from the blockchain is signature-free; users can freely query the blockchain
@@ -76,7 +77,7 @@ mechanisms.
 \paragraph{Smart Contracts:}
 Smart contracts are self-executing programs stored on the blockchain that
 automate agreements between parties without intermediaries, enabling the
-creation of decentralized applications (DApps).
+creation of \gls{dapp}.
 
 Blockchain has potential applications across numerous industries, including
 finance and healthcare. By decentralizing control and enhancing privacy,
@@ -102,8 +103,8 @@ transactions.
 
 \paragraph{Digital Signatures:}
 Transactions are signed using the private key, providing proof of
-authorization. Signatures are generated via cryptographic algorithms like ECDSA
-or RSA, depending on the blockchain.
+authorization. Signatures are generated via cryptographic algorithms like
+\gls{ecdsa} or \gls{rsa}, depending on the blockchain.
 
 \paragraph{Hash Functions:}
 Wallets use cryptographic hash functions to create unique transaction hashes,
@@ -125,25 +126,25 @@ Since the introduction of Bitcoin in 2009, various blockchain networks have
 emerged, each with unique features. Some prominent networks include:
 
 \paragraph{Bitcoin (BTC):}
-The first and most widely known cryptocurrency, Bitcoin uses a Proof of Work
-(PoW) consensus mechanism to secure peer-to-peer transactions.
+The first and most widely known cryptocurrency, Bitcoin uses a \gls{pow}
+consensus mechanism to secure peer-to-peer transactions.
 
 \paragraph{Ethereum (ETH):}
 Ethereum is a decentralized platform that supports smart contracts and DApps.
-It is transitioning from PoW to Proof of Stake (PoS) with Ethereum 2.0,
-improving scalability and reducing energy consumption.
+It is transitioning from PoW to \gls{pos} with Ethereum 2.0, improving
+scalability and reducing energy consumption.
 
 \paragraph{Polygon (MATIC):}
 Polygon is a Layer 2 scaling solution for Ethereum, offering faster and cheaper
 transactions by utilizing sidechains.
 
 \paragraph{Solana (SOL):}
-Solana is designed for high-performance DApps, using a combination of Proof of
-History (PoH) and PoS to achieve high transaction throughput with low latency.
+Solana is designed for high-performance DApps, using a combination of \gls{poh}
+and PoS to achieve high transaction throughput with low latency.
 
 Ethereum and its compatible networks (like Polygon) use Solidity, a popular
-language for smart contracts. Many other networks are also EVM-compatible,
-enabling cross-network deployments with the same code.
+language for smart contracts. Many other networks are also compatible with the
+\gls{evm}, enabling cross-network deployments with the same code.
 
 \subsection{Smart Contracts}
 \label{subsec:smart_contracts}
@@ -204,17 +205,16 @@ most common standards include:
 
 \paragraph{ERC-20:}
 The most widely used standard for fungible tokens, enabling seamless trading on
-exchanges and easy integration into decentralized finance (DeFi) applications.
+exchanges and easy integration into \gls{defi} applications.
 
 \paragraph{ERC-721:}
-A standard for non-fungible tokens (NFTs), used for unique assets like digital
-art and collectibles.
+A standard for NFTs, used for unique assets like digital art and collectibles.
 
 \paragraph{ERC-1155:}
 A flexible standard that supports both fungible and non-fungible tokens within
 a single contract, reducing deployment costs and complexity.
 
-\subsection{Non-Fungible Tokens (NFTs)}
+\subsection{\gls{nft}}
 \label{subsec:nfts}
 
 NFTs hold great potential for event ticketing systems, offering secure and

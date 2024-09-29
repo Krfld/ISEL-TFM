@@ -12,31 +12,25 @@
     listof=totoc
 ]{thesisisel}
 
-\usepackage{glossaries}
 \usepackage{tabularx}
 \usepackage{listings} %todo font to monospace pts -2 than normal | numerate and frame around structs
 \usepackage[export]{adjustbox}
-% \usepackage{biblatex}
-
-% \usepackage{graphicx}
-% \usepackage{xcolor} % Color
-% \usepackage{array} % Tables
-% \usepackage{booktabs} % Tables
-
-% \usepackage[textsize=footnotesize]{todonotes}
-% \setlength{\marginparwidth}{1.5cm}
-
-% \newcommand*{\nom}[2]{#1\nomenclature{#1}{#2}}
-
-% \usepackage{sty/code}
 
 \graphicspath{ {images/} }
 
-% \addbibresource{references.bib}
-
-% \hyphenation{}
+\newacronym{nft}{NFTs}{Non-Fungible Tokens}
+\newacronym{dapp}{DApps}{Decentralized Applications}
+\newacronym{defi}{DeFi}{Decentralized Finance}
+\newacronym{ecdsa}{ECDSA}{Elliptic Curve Digital Signature Algorithm}
+\newacronym{rsa}{RSA}{Rivest-Shamir-Adleman}
+\newacronym{pow}{PoW}{Proof of Work}
+\newacronym{pos}{PoS}{Proof of Stake}
+\newacronym{poh}{PoH}{Proof of History}
+\newacronym{evm}{EVM}{Ethereum Virtual Machine}
+\newacronym{ipfs}{IPFS}{InterPlanetary File System}
 
 \input{personaldataofthesis.tex}
+
 \hypersetup{
     pdftitle={ \thetitle},
     pdfauthor={ \theauthor},
@@ -56,6 +50,7 @@
 \listoffigures
 \listoftables
 \lstlistoflistings
+\printnoidxglossaries
 
 \include{1_Introduction/10_Introduction}
 \pagebreak

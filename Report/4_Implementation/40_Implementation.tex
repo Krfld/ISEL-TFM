@@ -7,10 +7,10 @@
 \label{sec:mobile_app}
 
 The mobile app is the main interface for the users to interact with the system,
-where they can authenticate, see the events, and buy and manage tickets. It
-will have a main page to check the events and a page for each event, where the
-user can see the details and buy the tickets, and will also have a page to see
-the tickets he owns.
+where they can authenticate, see the events, buy and manage tickets. It will
+have a main page to check the events and a page for each event, where the user
+can see the details and buy the tickets. It will also have a page to see the
+tickets he owns.
 
 We also made the validator logic in the same app to simplify the process, so we
 don't have to make a separate app for the validators, however in a real
@@ -36,10 +36,9 @@ that separates the authentication of the common users from the validators.
 
 To authenticate the users, we will use the
 \href{https://walletconnect.com/}{Wallet Connect} service, which supports a
-variety of wallets to interact with. What this service does is establishes a
-connection between the app and a wallet, so that when a function needs to be
-called, the wallet receives the prompt and signs the transaction after the
-user's approval.
+variety of wallets to interact with. This service establishes a connection
+between the app and a wallet, so that when a function needs to be called, the
+wallet receives the prompt and signs the transaction after the user's approval.
 
 The Figure \ref{fig:wallet_connect_prompt} shows what happens when we try to
 authenticate as common users which triggers the Wallet Connect service. This
@@ -54,11 +53,11 @@ the one he uses.
 \end{figure}
 
 After choosing one, the wallet app will open automatically and the user will
-have to approve the connection, as the Figure \ref{fig:metamask_connect} shows.
+have to approve the connection, as shown in Figure \ref{fig:metamask_connect}.
 We're using \href{https://metamask.io/}{MetaMask} as the external blockchain
 wallet, which is the most popular blockchain wallet and it's available as a
-browser extension and as a mobile app. To use it, you just have to create a
-wallet there and you'll be all set to start interacting with the app.
+browser extension and as a mobile app. To use it, the user just has to create a
+wallet there and he'll be ready to start interacting with the app.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{MetaMask connect.jpg}
@@ -76,9 +75,8 @@ skip the prompt.
 \label{subsec:events}
 
 After the common user authenticates, he will be redirected to the home page of
-the app, where he can see the events that are available. The Figure
-\ref{fig:home_page} shows the home page, where the users can see the events and
-search for them.
+the app, shown in Figure \ref{fig:home_page}, where he can see the events that
+are available.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Home page.jpg}
@@ -87,9 +85,9 @@ search for them.
 	\label{fig:home_page}
 \end{figure}
 
-When clicking on one of the events, the user will be redirected to the event
-page. The Figure \ref{fig:event_page} shows the event page, where the user can
-see the details of the event and the packages available.
+When clicking in one of the events, the user will be redirected to the event
+page. Figure \ref{fig:event_page} shows the event page, where the user can see
+the details of the event and the packages available.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Event page.jpg}
@@ -128,10 +126,10 @@ execute the transaction.
 \subsection{Tickets}
 \label{subsec:tickets}
 
-After confirmation, the user is redirected back to the app, where he will be
-able to see the events which he owns any tickets, on the profile page, the
-second tab with the profile icon, along with the button to disconnect from the
-wallet, like shown in the Figure \ref{fig:profile_page}.
+After confirmation, the user is redirected back to the app where, on the second
+tab with the profile icon, the profile page, he will be able to see the events
+which he owns any tickets, along with the button to disconnect from the wallet,
+as shown in the Figure \ref{fig:profile_page}.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Profile page.jpg}
@@ -143,9 +141,8 @@ wallet, like shown in the Figure \ref{fig:profile_page}.
 Going into one of them, like the Figure \ref{fig:tickets_page} shows, the user
 can see the tickets he owns for that event. It's a similar page as the normal
 event one, but with the tickets he owns instead of the packages available. We
-see 4 tickets here and the first one has a mark on it. This means the ticket
-has already been validated. In the real world, a user do this doesn't make
-sense, but we did it to make sure we handle every case.
+see 4 tickets here and the first one has a mark on it, which means the ticket
+has already been validated.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Tickets page.jpg}
@@ -155,7 +152,7 @@ sense, but we did it to make sure we handle every case.
 \end{figure}
 
 Clicking on one of the tickets, it shows us the basic ticket information, along
-with its image, like shown in the Figure \ref{fig:ticket_information}.
+with its image, as shown in the Figure \ref{fig:ticket_information}.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Ticket information.jpg}
@@ -166,11 +163,10 @@ with its image, like shown in the Figure \ref{fig:ticket_information}.
 
 For operating the tickets, the user can simply click on the select tickets
 button which will allow him to choose the tickets which he wishes to operate,
-like shown in the Figure \ref{fig:ticket_operations}. In this case the user
-sees only 3 tickets (while the Figure \ref{fig:tickets_page} shows 4) because
-since the first is already validated, it's not possible to operate on it
-anymore. We see the options to gift, refund and validate the tickets he
-selected.
+as shown in the Figure \ref{fig:ticket_operations}. In this case the user sees
+only 3 tickets (while the Figure \ref{fig:tickets_page} shows 4) because since
+the first is already validated, it's not possible to operate on it anymore. We
+see the options to gift, refund and validate the tickets he selected.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Ticket operations.jpg}
@@ -220,7 +216,7 @@ the validator has the option to check the address and to validate the tickets.
 \end{figure}
 
 When the validator taps the address he will see his address, as well as its QR
-code, like shown in the Figure \ref{fig:validator_address}.
+code, as shown in the Figure \ref{fig:validator_address}.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{Validator address.jpg}
@@ -273,13 +269,14 @@ else. The idea here is to have a unique message for each user at the time of
 the event, so they are forced to sign it.
 
 All this is reduced to a single transaction on the blockchain because,
-depending on the network, the finality of a transaction (the time it takes for
-a transaction to be fully registered on the blockchain) can take a while. This
-was planned to be done in a single transaction to avoid congestion at the
-entrance of the venue, so the users can enter the event with the least amount
-of delay. This is an important aspect to consider when designing the system to
-fullfil the system being fast, so like mentioned in the Section
-\ref{subsec:non_functional_requirements}, the network choice is crucial.
+depending on the network, the finality of a transaction (a term used in the
+blockchain ecosystem that defines the time it takes for a transaction to be
+fully registered) can take a while. This was planned to be done in a single
+transaction to avoid congestion at the entrance of the venue, so the users can
+enter the event with the least amount of delay. This is an important aspect to
+consider when designing the system to fullfil the system being fast, so like
+mentioned in the Section \ref{subsec:non_functional_requirements}, the network
+choice is crucial.
 
 \section{Smart Contracts}
 \label{sec:smart_contracts}
@@ -374,10 +371,10 @@ usually being a JSON file with the necessary information about the token, like
 the name, description, and image.
 
 This link could point to anything, for example a google drive file, but the
-common thing is to store the metadata on the IPFS, which is a decentralized
-storage system, so the metadata is not stored on the blockchain itself
-(onchain), which would be very expensive, but rather on a decentralized storage
-system (offchain), which is much cheaper.
+common thing is to store the metadata on the \gls{ipfs}, which is a
+decentralized storage system, so the metadata is not stored on the blockchain
+itself (onchain), which would be very expensive, but rather on a decentralized
+storage system (offchain), which is much cheaper.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{ERC721 UML.png}
@@ -464,7 +461,7 @@ operations to outside the system. So users can simply keep the tickets as a
 souvenir or sell them in any marketplace, without any restrictions on the
 tickets, including the removal of the price cap.
 
-With this behavior in mind, we came up with the Event UML, like shown in the
+With this behavior in mind, we came up with the Event UML, as shown in the
 Figure \ref{fig:event_uml}, where we added the necessary methods for the
 organizer/admins to manage the event and the users to handle the tickets, which
 then trigger the corresponding methods of the ERC721 contract. We added a
@@ -629,12 +626,11 @@ package without individual NFTs.
 \label{subsec:metadata_storage}
 
 To store the NFTs metadata files, we'll be using the
-\href{https://ipfs.tech/}{InterPlanetary File System (IPFS)} for storing the
-NFTs metadata. The IPFS is a decentralized storage system where the data is
-stored in a distributed network of nodes (decentralized), making it very secure
-and reliable. This is a great solution for storing the metadata of the NFTs
-because it's very cheap and easy to use, and it's a common practice in the
-blockchain ecosystem.
+\href{https://ipfs.tech/}{\gls{ipfs}} for storing the NFTs metadata. The IPFS
+is a decentralized storage system where the data is stored in a distributed
+network of nodes (decentralized), making it very secure and reliable. This is a
+great solution for storing the metadata of the NFTs because it's very cheap and
+easy to use, and it's a common practice in the blockchain ecosystem.
 
 Other options would be to store the data on some kind of server, but that would
 be more expensive to maintain, and since we are dealing with NFTs, it's good
