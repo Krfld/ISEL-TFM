@@ -1061,7 +1061,7 @@
 \usepackage[
 	style=ieee, %{ieee, numeric, alphabetic, authoryear, authortitle, verbose, apa, chem-acs, chem-angew, mla, nature, science, nejm, phys},
 	%defernumbers=true, 
-	backend=bibtex, %{bibtex, biber}
+	backend=biber, %{bibtex, biber}
 	sorting=debug, %{none, nty, nyt, nyvt, anyt, anyvt, ynt, debug},
 	%dashed=false, 
 	maxnames=20,

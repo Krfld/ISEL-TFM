@@ -13,9 +13,16 @@
 ]{thesisisel}
 
 \usepackage{tabularx}
-\usepackage{listings} %todo font to monospace pts -2 than normal | numerate and frame around structs
 \usepackage[export]{adjustbox}
 
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\footnotesize,
+    frame=single,
+    numbers=left,
+}
+\lstset{style=mystyle}
+
+\addbibresource{references.bib}
 \graphicspath{ {images/} }
 
 \newacronym{nft}{NFTs}{Non-Fungible Tokens}
@@ -65,7 +72,7 @@
 
 \include{6_Conclusions/60_Conclusions}
 
-% \printbibliography
+\printbibliography[heading=bibintoc]
 
 % \nocite{*}
 % \bibliographystyle{plain}

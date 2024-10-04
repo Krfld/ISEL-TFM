@@ -1,26 +1,29 @@
-\section{Background}
-\label{sec:background}
+\section{Background}\label{sec:background}
 
 Blockchain is a relatively recent technology that can be complex to grasp. At
 its core, it relies on cryptographic principles to ensure secure and
 transparent transactions. In this section, we will explain key blockchain
-concepts, including how wallets work and interact with the blockchain, while
-also exploring prominent blockchain networks, token standards, and the rise of
-NFTs. Figure \ref{fig:blockchain_concepts} provides a visual overview of these
+concepts, including how wallets work and interact with the blockchain, in
+Sections~\ref{subsec:interacting_with_the_blockchain}
+and~\ref{subsec:blockchain}, while also exploring prominent blockchain
+networks, token standards, and the rise of NFTs.
+Figure~\ref{fig:blockchain_concepts} provides a visual overview of these
 concepts, which will be detailed in the following subsections: Wallets
-\textbf{(1)} in Section \ref{subsec:wallets}, Networks \textbf{(2)} in Section
-\ref{subsec:networks}, and Smart Contracts \textbf{(3)} in Section
-\ref{subsec:smart_contracts}. TODO
+\textbf{(1)} in Section~\ref{subsec:wallets}, Networks \textbf{(2)} in
+Section~\ref{subsec:networks}, and Smart Contracts \textbf{(3)} in
+Section~\ref{subsec:smart_contracts}. We'll also explain more technical
+concepts in the scope of this project, like Solidity \textbf{(4)} in
+Section~\ref{subsec:solidity}, Token Standards \textbf{(5)} in
+Section~\ref{subsec:token_standards}, and NFTs \textbf{(6)} in
+Section~\ref{subsec:nfts}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.66\textwidth]{Blockchain concepts.png}
-    \caption[Blockchain concepts]{Key concepts of blockchain technology. Adapted from ...}
-    \label{fig:blockchain_concepts}
+    \includegraphics[width=0.5\textwidth]{Blockchain concepts.png}
+    \caption[Key concepts of blockchain technology]{Key concepts of blockchain technology. Adapted from~\cite{blockchain_concepts}}\label{fig:blockchain_concepts}
 \end{figure}
 
-\subsection{Interacting with the Blockchain}
-\label{subsec:interacting_with_the_blockchain}
+\subsection{Interacting with the Blockchain}\label{subsec:interacting_with_the_blockchain}
 
 A blockchain operates as a decentralized network of nodes, each maintaining a
 full copy of the blockchain. To interact with the blockchain, users send
@@ -28,14 +31,13 @@ transactions to the network, which are validated and added to blocks by nodes.
 This process requires a wallet—an application that allows users to manage
 digital assets, interact with smart contracts, and initiate transactions.
 Wallets provide a user-friendly interface to sign transactions, manage keys,
-and view account balances. Figure \ref{fig:how_does_a_blockchain_work}
+and view account balances. Figure~\ref{fig:how_does_a_blockchain_work}
 illustrates the steps involved in a blockchain transaction.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.66\textwidth]{How does a blockchain work.jpg}
-    \caption[Blockchain transaction process]{Overview of blockchain transaction processes. Extracted from ...}
-    \label{fig:how_does_a_blockchain_work}
+    \caption[Blockchain transaction process]{Overview of blockchain transaction processes. Extracted from~\cite{how_blockchain_works}}\label{fig:how_does_a_blockchain_work}
 \end{figure}
 
 To execute a transaction, the user must sign it with their private key, proving
@@ -48,8 +50,7 @@ While transactions require signatures to alter the blockchain, reading data
 from the blockchain is signature-free; users can freely query the blockchain
 for information.
 
-\subsection{Blockchain}
-\label{subsec:blockchain}
+\subsection{Blockchain}\label{subsec:blockchain}
 
 Blockchain is a decentralized and distributed ledger technology that enables
 secure and transparent data sharing across a network. A blockchain consists of
@@ -89,8 +90,7 @@ cryptocurrency for validating transactions, creating a system that aligns
 self-interest with network integrity, ensuring a majority of honest
 participants.
 
-\subsection{Wallets}
-\label{subsec:wallets}
+\subsection{Wallets}\label{subsec:wallets}
 
 Cryptocurrency wallets are essential for interacting with blockchain networks
 and managing digital assets. Key cryptographic features of wallets include:
@@ -119,8 +119,7 @@ Using these cryptographic tools, wallets securely manage and facilitate
 transactions on blockchain networks, ensuring confidentiality, integrity, and
 authenticity.
 
-\subsection{Networks}
-\label{subsec:networks}
+\subsection{Networks}\label{subsec:networks}
 
 Since the introduction of Bitcoin in 2009, various blockchain networks have
 emerged, each with unique features. Some prominent networks include:
@@ -146,8 +145,7 @@ Ethereum and its compatible networks (like Polygon) use Solidity, a popular
 language for smart contracts. Many other networks are also compatible with the
 \gls{evm}, enabling cross-network deployments with the same code.
 
-\subsection{Smart Contracts}
-\label{subsec:smart_contracts}
+\subsection{Smart Contracts}\label{subsec:smart_contracts}
 
 Smart contracts are autonomous programs stored on the blockchain that
 automatically execute when predefined conditions are met. Key properties
@@ -173,8 +171,7 @@ increasing overall efficiency.
 Smart contracts manage digital assets, execute complex operations, and enable a
 variety of decentralized applications.
 
-\subsection{Solidity}
-\label{subsec:solidity}
+\subsection{Solidity}\label{subsec:solidity}
 
 Solidity is the leading language for developing smart contracts on
 EVM-compatible blockchains like Ethereum. With syntax similar to C++, it offers
@@ -197,8 +194,7 @@ Solidity uses a specific address type to manage users and smart contracts,
 treating both similarly except that contracts can execute functions and store
 data.
 
-\subsection{Token Standards}
-\label{subsec:token_standards}
+\subsection{Token Standards}\label{subsec:token_standards}
 
 Token standards define the rules for digital tokens on blockchain networks. The
 most common standards include:
@@ -214,8 +210,7 @@ A standard for NFTs, used for unique assets like digital art and collectibles.
 A flexible standard that supports both fungible and non-fungible tokens within
 a single contract, reducing deployment costs and complexity.
 
-\subsection{\gls{nft}}
-\label{subsec:nfts}
+\subsection{Non-Fungible Tokens (NFTs)}\label{subsec:nfts}
 
 NFTs hold great potential for event ticketing systems, offering secure and
 verifiable ways to issue, transfer, and validate tickets. NFT-based tickets can
