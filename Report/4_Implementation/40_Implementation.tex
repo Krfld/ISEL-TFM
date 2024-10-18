@@ -272,7 +272,7 @@ choice is crucial.
 
 We split this section into the main three contracts of the system: the
 Ticketchain contract in Section~\ref{subsec:ticketchain_contract}, the ERC721
-contract in Section~\ref{subsec:erc721_contract}, and the Event contract in
+contract in Section~\ref{subsec:erc721_standard}, and the Event contract in
 Section~\ref{subsec:event_contract}.
 
 The deployment of the smart contracts will be done using
@@ -291,7 +291,8 @@ Since this is the behavior we want (each event being a NFT collection), we will
 have to deploy (instantiate, in C++) a new contract for each event, so we will
 have a main contract (called Ticketchain, since it's the main contract) to keep
 track of them. This structure can be visualized in the
-Figure~\ref{fig:system_uml}, which shows the simplified UML of the system.
+Figure~\ref{fig:system_uml}, which shows the simplified \gls{uml} of the
+system.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{System UML.png}
@@ -335,7 +336,7 @@ that are deployed, so we can easily get them all and show them in the app. The
 fee variable is there to store the system fee, which will be mentioned in the
 Section~\ref{subsubsec:system_fees}.
 
-\subsection{ERC721 Contract}\label{subsec:erc721_contract}
+\subsection{ERC721 Standard}\label{subsec:erc721_standard}
 
 The ERC721 standard will be extended and we will be adding the necessary
 methods to interact with the tickets, like buying, selling, and validating
@@ -355,7 +356,7 @@ variables and methods of the standard shown in the Figure~\ref{fig:erc721_uml},
 we can understand that the NFTs are simply a mapping of the token ID to the
 owner address, so when you execute a transaction to get a token (this process
 is called minting), the token ID is then associated to your address. Then for
-each token it's possible set a URI, which is a link to the NFTs metadata,
+each token it's possible set a \gls{uri}, which is a link to the NFTs metadata,
 usually being a JSON file with the necessary information about the token, like
 the name, description, and image.
 
@@ -371,10 +372,10 @@ storage system (offchain), which is much cheaper.
 	\caption{ERC721 UML (relevant methods)}\label{fig:erc721_uml}
 \end{figure}
 
-The function \textit{tokenURI} is the one that is called by default in the
+The function \texttt{tokenURI} is the one that is called by default in the
 marketplaces to get the NFT's metadata, being one of the main reasons to extend
 the ERC721 standard, because it enforces the implementation of this method. In
-the Figure~\ref{fig:erc721_uml} we see that it has the \textit{virtual}
+the Figure~\ref{fig:erc721_uml} we see that it has the \texttt{virtual}
 keyword, meaning this can be overridden by the contracts that extend it, to
 manipulate the way to store the metadata. We'll be mentioning this again in the
 Section~\ref{fig:package_logic}, about how the packages logic is implemented.
@@ -383,12 +384,12 @@ Section~\ref{fig:package_logic}, about how the packages logic is implemented.
 
 So the event contract will be deployed and we need a certain control over the
 tickets. One of the aspects we need to account for is that when deploying an
-event, and since it will extend the ERC721, any public functions on that
-standard will be possible to execute. This is a problem because we don't want
-the users to mint tickets whenever they want or transfer them between
+event, and since it will extend the ERC721 standard, any public functions on
+that standard will be possible to execute. This is a problem because we don't
+want the users to mint tickets whenever they want or transfer them between
 themselves from outside the system, so we need to restrict these operations. As
 we saw already on the Figure~\ref{fig:erc721_uml}, only the
-\textit{safeTransferFrom} method is public, so users could transfer NFTs
+\texttt{safeTransferFrom} method is public, so users could transfer NFTs
 between each other. We want that to be possible, just not from outside the
 system, since that can lead users to exploit the system and scalping the
 tickets easily. The minting, however, won't be an issue because it's an
@@ -409,20 +410,20 @@ operations that are allowed when each state is reached.
 \end{figure}
 
 We will have 4 main states for the event after it has been registered (the ones
-in bold), being the \textit{Open}, \textit{No refund}, \textit{Start}, and
-\textit{End} dates. Once the event is registered, it will show up in the app
+in bold), being the \textbf{Open}, \textbf{No refund}, \textbf{Start}, and
+\textbf{End} dates. Once the event is registered, it will show up in the app
 for user to see, and the organizers can set a later open date to allow ticket
 minting (buying).
 
-\paragraph{Open Date:} Once it hits the \textit{Open} date, we will allow the users to buy tickets,
-which will mint the NFTs by executing the \textit{safeMint} method of the
-ERC721 contract. We will allow users to operate over the NFTs, but only within
-the system. If they try to call the \textit{safeTransferFrom} directly from the
+\paragraph{Open Date:} Once it hits the \textbf{Open} date, we will allow the users to buy tickets,
+which will mint the NFTs by executing the \texttt{safeMint} method of the
+ERC721 standard. We will allow users to operate over the NFTs, but only within
+the system. If they try to call the \texttt{safeTransferFrom} directly from the
 ERC721 standard, it will revert, because we detect it's not being called
 through the system.
 
-\paragraph{No Refund Date:} After the \textit{No refund} date, we will prevent the users to call the refund
-method, which essentially \textit{burns} the NFTs, removing them from the user
+\paragraph{No Refund Date:} After the \textbf{No refund} date, we will prevent the users to call the refund
+method, which essentially \texttt{burns} the NFTs, removing them from the user
 and making them available again. This is a nice operation to add because it
 allows the users to get their money back if they can't attend the event. The
 organizer decides the percentage of the refund and the deadline, which is there
@@ -437,11 +438,11 @@ that'll be allowed is for users to resell their tickets in the system's
 marketplace, which them to sell at a higher price than the refund (but never
 higher than the original, of course).
 
-\paragraph{Start Date:} The \textit{Start} date is there to tell the users when the event starts, so
+\paragraph{Start Date:} The \textbf{Start} date is there to tell the users when the event starts, so
 basically when the gates will open. That's the date that appears in the app, so
 the users know when to show up.
 
-\paragraph{End Date:} The \textit{End} date tells when the event is over, unlocking all the ticket
+\paragraph{End Date:} The \textbf{End} date tells when the event is over, unlocking all the ticket
 operations to outside the system. So users can simply keep the tickets as a
 souvenir or sell them in any marketplace, without any restrictions on the
 tickets, including the removal of the price cap.
@@ -449,7 +450,7 @@ tickets, including the removal of the price cap.
 With this behavior in mind, we came up with the Event UML, as shown in the
 Figure~\ref{fig:event_uml}, where we added the necessary methods for the
 organizer/admins to manage the event and the users to handle the tickets, which
-then trigger the corresponding methods of the ERC721 contract. We added a
+then trigger the corresponding methods of the ERC721 standard. We added a
 possibility to have admins so the organizer can distribute the workload of
 executing the necessary operations to people he trusts.
 
@@ -459,11 +460,11 @@ executing the necessary operations to people he trusts.
 	\caption{Event UML (relevant methods)}\label{fig:event_uml}
 \end{figure}
 
-As we can see, the \textit{update} method has been overridden from the ERC721
+As we can see, the \texttt{update} method has been overridden from the ERC721
 standard to restrict the interactions with the NFTs according the defined
 behavior. This method is the one that gets called anytime there's an operation
 on any NFT, so we can implement here the necessary logic to restrict the
-operations, and we can visualize that in the following flowchart, shown in the
+operations, and we can visualize that in the flowchart shown in
 Figure~\ref{fig:nft_flowchart}.
 
 \begin{figure}[H]
@@ -481,19 +482,19 @@ modifier on the necessary functions, which we can see them with the operator
 
 \subsubsection{Structs}\label{subsubsec:structs}
 
-From the UML figures, we can see that we have a few custom structs to organize
-better the data. These structs are the \textit{Percentage},
-\textit{EventConfig}, \textit{NFTConfig}, \textit{PackageConfig} and
-\textit{TicketchainConfig} structs.
+From the Figure~\ref{fig:ticketchain_uml} and Figure~\ref{fig:event_uml}, the
+UML of our smart contracts, we can see that we have a few custom structs to
+better organize the data. These structs are the \texttt{Percentage},
+\texttt{EventConfig}, \texttt{NFTConfig}, \texttt{PackageConfig} and
+\texttt{TicketchainConfig} structs.
 
-\paragraph{Percentage Struct:} The \textit{Percentage} struct is necessary because in Solidity there are no
+\paragraph{Percentage Struct:} The \texttt{Percentage} struct is necessary because in Solidity there are no
 floating point numbers, so we need a way to make calculations with percentages.
 What this struct does is it stores the value of the percentage and the amount
 of decimals it has, so if we want to calculate 55.50\% of a number, we would
-have 555 as the value with 1 decimal, or 5550 with 2 decimals.
-
-The struct is as follows:
-\begin{lstlisting}[caption=Percentage struct]
+have 555 as the value with 1 decimal, or 5550 with 2 decimals. The struct is
+shown in Listing~\ref{lst:percentage_struct}:
+\begin{lstlisting}[caption=Percentage struct,label={lst:percentage_struct}]
 struct Percentage {
 	uint256 value;
 	uint256 decimals;
@@ -508,34 +509,36 @@ this formula won't lose much precision (note that 1 ether is $10^{18}$ wei).
 Equating this to real world value, 0.001 ether is somewhat close to 2.5\$ (at
 the moment), so 1000 wei would be way lower than even a cent.
 
-\paragraph{TicketchainConfig Struct:} The \textit{TicketchainConfig} struct is simply to keep it stored the system
+\paragraph{TicketchainConfig Struct:} The \texttt{TicketchainConfig} struct is simply to keep it stored the system
 address and the system fee percentage, so we can easily access this information
-when applying the fees and withdrawing them, and is as follows:
-\begin{lstlisting}[caption=TicketchainConfig struct]
+when applying the fees and withdrawing them, and is shown in
+Listing~\ref{lst:ticketchain_config_struct}:
+\begin{lstlisting}[caption=TicketchainConfig struct,label={lst:ticketchain_config_struct}]
 struct TicketchainConfig {
     address ticketchainAddress;
     Percentage feePercentage;
 }
 \end{lstlisting}
 
-\paragraph{NFTConfig Struct:} The \textit{NFTConfig} struct is just to store the NFTs basic information, like
+\paragraph{NFTConfig Struct:} The \texttt{NFTConfig} struct is just to store the NFTs basic information, like
 the name, symbol, and base URI, to ease the input of the NFTs information when
-registering the event:
-\begin{lstlisting}[caption=NFTConfig struct]
+registering the event, as Listing~\ref{lst:nft_config_struct} shows:
+\begin{lstlisting}[caption=NFTConfig struct,label={lst:nft_config_struct}]
 struct NFTConfig {
 	string name;
 	string symbol;
 	string baseURI;
 }
 \end{lstlisting}
-The \textit{name} is the name of the NFT collection and the symbol is the
+The \texttt{name} is the name of the NFT collection and the symbol is the
 abbreviation of it, like the name being \textit{Ticketchain} and the symbol
 being \textit{TCK}, for example. The base URI is the link to the metadata of
 the NFTs, which will be used to get the information about the tickets.
 
-\paragraph{EventConfig Struct:} The \textit{EventConfig} struct is to store the event's entire configuration,
-like the name, description, location, dates, and refund, like this:
-\begin{lstlisting}[caption=EventConfig struct]
+\paragraph{EventConfig Struct:} The \texttt{EventConfig} struct is to store the event's entire configuration,
+like the name, description, location, dates, and refund, as shown in
+Listing~\ref{lst:event_config_struct}:
+\begin{lstlisting}[caption=EventConfig struct,label={lst:event_config_struct}]
 struct EventConfig {
 	string name;
 	string description;
@@ -548,9 +551,10 @@ struct EventConfig {
 }
 \end{lstlisting}
 
-\paragraph{PackageConfig Struct:} Lastly, the \textit{PackageConfig} struct is there to store each package
-information, to keep track of the ones that are available for the event:
-\begin{lstlisting}[caption=PackageConfig struct]
+\paragraph{PackageConfig Struct:} Lastly, the \texttt{PackageConfig} struct is there to store each package
+information, to keep track of the ones that are available for the event, as
+Listing~\ref{lst:package_config_struct} shows:
+\begin{lstlisting}[caption=PackageConfig struct,label={lst:package_config_struct}]
 struct PackageConfig {
 	string name;
 	string description;
@@ -559,8 +563,7 @@ struct PackageConfig {
 	bool individualNfts;
 }
 \end{lstlisting}
-This structure will be better discussed in the next
-Section~\ref{subsubsec:ticket_packages}.
+This structure will be better discussed in the next Section.
 
 \subsubsection{Ticket Packages}\label{subsubsec:ticket_packages}
 
@@ -589,15 +592,15 @@ their order, because that would change the package associated to the tickets,
 which would be a problem for the users that already bought them.
 
 Now we just have to make sure the information obtained with the
-\textit{tokenURI} method corresponds to the ticket, according to its package.
+\texttt{tokenURI} method corresponds to the ticket, according to its package.
 For this we will have a different metadata file for each package, with the
-necessary information about the tickets. The \textit{individualNfts} boolean in
-the \textit{PackageConfig} struct is there to indicate if the organizer wants
+necessary information about the tickets. The \texttt{individualNfts} boolean in
+the \texttt{PackageConfig} struct is there to indicate if the organizer wants
 each ticket on the package to have its own metadata, or if they can share it.
 
-According to this, the \textit{tokenURI} will return an URI like
-\textit{baseURI/packageId/ticketId} for a package with individual NFTs, and
-\textit{baseURI/packageId} for a package with shared metadata. Like this, when
+According to this, the \texttt{tokenURI} will return an URI like
+\texttt{baseURI/packageId/ticketId} for a package with individual NFTs, and
+\texttt{baseURI/packageId} for a package with shared metadata. Like this, when
 we store the metadata on the \gls{ipfs}, we store the metadata for each ticket
 inside a folder of the packages with individual NFTs, and only a metadata file
 for each package without individual NFTs.
@@ -607,7 +610,7 @@ for each package without individual NFTs.
 To store the NFTs metadata files, we'll be using the \gls{ipfs} for storing the
 NFTs metadata. The \gls{ipfs} is a decentralized storage system where the data
 is stored in a distributed network of nodes (decentralized), making it very
-secure and reliable. This is a great solution for storing the metadata of the
+secure and reliable. This is a good solution for storing the metadata of the
 NFTs because it's very cheap and easy to use, and it's a common practice in the
 blockchain ecosystem.
 
