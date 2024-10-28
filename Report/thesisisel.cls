@@ -375,7 +375,7 @@
 \gdef\@mmastersdegreestr{Mestre}
 \gdef\@fmastersdegreestr{Mestre}
 
-\gdef\@singlemadviserstr{Adviser}
+\gdef\@singlemadviserstr{Orientador}
 \gdef\@manymadviserstr{Orientadores}
 
 \gdef\@bachelordissertationstr{Trabalho Final de Curso}
@@ -383,8 +383,8 @@
 \gdef\@mastersdissertationstr{Dissertação de Mestrado}
 \gdef\@mastersqualifyingstr{Preparação de Dissertação}
 
-\gdef\@jurystr{Jury}
-\gdef\@presidentstr{President}
+\gdef\@jurystr{Júri}
+\gdef\@presidentstr{Presidente}
 
 \gdef\@singlejuryastr{Vogal}
 \gdef\@manyjuryastr{Vogais}
@@ -397,7 +397,7 @@
 	Semestre de Verão \@scholaryear}
 \gdef\@prepmscdissertationtstr{Relatório preliminar para obtenção do Grau
 	de Mestre \\em \@majorfield}
-\gdef\@mscdissertationtstr{\@thesistype~ to obtain the masters degree \\ in \@majorfield}
+\gdef\@mscdissertationtstr{\@thesistype~ para obtenção do grau de Mestre em \\ \@majorfield}
 
 \gdef\@presentationtext{\@dissertationtype}
 
