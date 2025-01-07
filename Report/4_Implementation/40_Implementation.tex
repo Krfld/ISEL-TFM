@@ -105,10 +105,9 @@ seat selection could be implemented.
 \end{figure}
 
 The user can then confirm the purchase, and the wallet will prompt the user to
-sign the transaction, as shown in the
-Figure~\ref{fig:metamask_transaction_prompt}. It displays the amount of money
-the user has to pay, to which address he's interacting with, and the total cost
-to execute the transaction.
+sign the transaction, as shown in Figure~\ref{fig:metamask_transaction_prompt}.
+It displays the amount of money the user has to pay, to which address he's
+interacting with, and the total cost to execute the transaction.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth/3,frame]{MetaMask transaction prompt.jpg}
@@ -172,7 +171,7 @@ them available again for other users to buy, and returning the correct amount
 of money to the user.
 
 The validate option will start the validation process, which will be explained
-in the Section~\ref{subsec:validate_tickets}.
+in Section~\ref{subsec:validate_tickets}.
 
 \section{Validator App}\label{sec:validator_app}
 
@@ -194,10 +193,10 @@ Section~\ref{subsec:validate_tickets}.
 
 Since this is the case, we need a way to see the address of the validator, so
 that the organizer can add him to the event and give him the necessary funds to
-operate. The reason for the necessary funds is mentioned in the
+operate. The reason for the necessary funds is mentioned in
 Section~\ref{subsubsec:system_fees}.
 
-The Figure~\ref{fig:validator_page} shows the starting point of the app after
+Figure~\ref{fig:validator_page} shows the starting point of the app after
 authentication, where the validator has the option to check the address and to
 validate the tickets.
 
@@ -266,7 +265,7 @@ fully registered) can take a while. This was planned to be done in a single
 transaction to avoid congestion at the entrance of the venue, so the users can
 enter the event with the least amount of delay. This is an important aspect to
 consider when designing the system to fullfil the system being fast, so like
-mentioned in the Section~\ref{subsec:non_functional_requirements}, the network
+mentioned in Section~\ref{subsec:non_functional_requirements}, the network
 choice is crucial.
 
 \section{Smart Contracts}\label{sec:smart_contracts}
@@ -291,9 +290,8 @@ is a ticket.
 Since this is the behavior we want (each event being a NFT collection), we will
 have to deploy (instantiate, in C++) a new contract for each event, so we will
 have a main contract (called Ticketchain, since it's the main contract) to keep
-track of them. This structure can be visualized in the
-Figure~\ref{fig:system_uml}, which shows the simplified \gls{uml} of the
-system.
+track of them. This structure can be visualized in Figure~\ref{fig:system_uml},
+which shows the simplified \gls{uml} of the system.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{System UML.png}
@@ -309,7 +307,7 @@ explained in detail over the next sections.
 
 The Ticketchain contract is the main contract of the system, from where the
 events are registered and stored. It will have the necessary methods to
-register new events and to add organizers. The Figure~\ref{fig:ticketchain_uml}
+register new events and to add organizers. Figure~\ref{fig:ticketchain_uml}
 shows the most relevant methods of the contract.
 
 \begin{figure}[H]
@@ -334,7 +332,7 @@ the organizer can execute the necessary operations.
 
 We also have the events address list, which is a way to track all the events
 that are deployed, so we can easily get them all and show them in the app. The
-fee variable is there to store the system fee, which will be mentioned in the
+fee variable is there to store the system fee, which will be mentioned in
 Section~\ref{subsubsec:system_fees}.
 
 \subsection{ERC721 Standard}\label{subsec:erc721_standard}
@@ -378,7 +376,7 @@ marketplaces to get the NFT's metadata, being one of the main reasons to extend
 the ERC721 standard, because it enforces the implementation of this method. In
 Figure~\ref{fig:erc721_uml} we see that it has the \texttt{virtual} keyword,
 meaning this can be overridden by the contracts that extend it, to manipulate
-the way to store the metadata. We'll be mentioning this again in the
+the way to store the metadata. We'll be mentioning this again in
 Section~\ref{fig:package_logic}, about how the packages logic is implemented.
 
 \subsection{Event Contract}\label{subsec:event_contract}
@@ -399,7 +397,7 @@ restrict it there.
 
 \subsubsection{Event Lifecycle}\label{subsubsec:event_lifecycle}
 
-The Figure~\ref{fig:event_lifecycle} shows the lifecycle of the event, and what
+Figure~\ref{fig:event_lifecycle} shows the lifecycle of the event, and what
 restrictions are in place for the ticket operations. The dates above the line
 indicate the states of the event, and below a small description of the
 operations that are allowed when each state is reached.
@@ -448,7 +446,7 @@ operations to outside the system. So users can simply keep the tickets as a
 souvenir or sell them in any marketplace, without any restrictions on the
 tickets, including the removal of the price cap.
 
-With this behavior in mind, we came up with the Event UML, as shown in the
+With this behavior in mind, we came up with the Event UML, as shown in
 Figure~\ref{fig:event_uml}, where we added the necessary methods for the
 organizer/admins to manage the event and the users to handle the tickets, which
 then trigger the corresponding methods of the ERC721 standard. We added a
@@ -576,8 +574,8 @@ tickets and the users can choose the one that fits them better.
 For that, we will allow the organizer to add packages, indicating the supply of
 each one, and as we saw already, the NFTs are a mapping of the ID to the owner,
 so we can organize the packages as a list, where the supply and order of them
-assigns the ID of each NFT to the package, like the
-Figure~\ref{fig:package_logic} illustrates.
+assigns the ID of each NFT to the package, like Figure~\ref{fig:package_logic}
+illustrates.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth*2/3]{Package logic.png}
@@ -629,8 +627,8 @@ which is a scam that made the NFTs worthless, keeping the money for himself.
 To store the data on the \gls{ipfs}, we will be using the Pinata~\cite{pinata}
 service, which does the heavy lifting for interacting with the storage itself.
 To accomplish this, we just need to arrange the files according to the ticket
-packages, like mentioned before in the Section~\ref{subsubsec:ticket_packages},
-and then upload them to the \gls{ipfs}, getting the link to the metadata, which
+packages, like mentioned before in Section~\ref{subsubsec:ticket_packages}, and
+then upload them to the \gls{ipfs}, getting the link to the metadata, which
 we'll then store on the contract as the base URI. The files would be stored
 like Figure~\ref{fig:metadata_storage} shows, being the packages 1 and 3 with
 shared metadata, and the package 2 with individual NFTs.
