@@ -100,7 +100,7 @@
 % Date
 \fontsize{10}{12.2}
 \selectfont
-\textbf{\@themonth, \@theyear}
+\textbf{\@themonth de \@theyear}
 	
 \end{center}
 \restoregeometry
