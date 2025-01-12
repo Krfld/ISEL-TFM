@@ -940,6 +940,7 @@
 %%
 \input{thesisisel-files/frontpage.clo}
 \input{thesisisel-files/frontpageMSc.clo}
+\input{thesisisel-files/frontpageMSc_copy.clo}
 \input{thesisisel-files/frontpageBSC.clo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
